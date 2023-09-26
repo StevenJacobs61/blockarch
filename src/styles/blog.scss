@@ -1,0 +1,264 @@
+@import './variables.scss';
+
+.blog_{
+    &container{
+        @include flexCol();
+        margin: 0.5rem 1rem 0;
+        width: 90vw;
+        @media(min-width:1024px){
+            width: 100%;
+        }
+    }
+    &hdr{
+        text-align: center;
+        font-weight: 400;
+        font-size: 3rem;
+        margin: 0 0 1.5rem;
+        @media(min-width:1024px){
+            margin: 1.5rem 0 2rem;
+            font-size: 3.5rem;
+        }
+        @media(min-width:1350px){
+            font-size: 4rem;
+            margin: 2.5rem 0 2rem;
+        }
+    }
+    &subtext{
+        text-align: center;
+        font-size: 1.4rem;
+        @media(min-width:1024px){
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+        @media(min-width:1350px){
+            font-size: 2.2rem;
+        }
+    }
+}
+.blogGrid_{
+    &container{
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 3rem 0;
+        gap: 3rem;
+        @media(min-width:480px){
+            grid-template-columns: 1fr 1fr;
+            gap: 5vw;
+        }
+        @media(min-width:769px){
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5vw;
+        }
+        @media(min-width:1024px){
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2vw;
+        }
+        @media(min-width:1350px){
+            gap: 2.8vw;
+        }
+    }
+    &card{
+        @include flexCol();
+        width: 250px;
+        height: 375px;
+        background: $backgroundPink;
+        cursor: pointer;
+        border: 0.5px solid $baseL;
+        border-radius: 1px;
+        @media(min-width:480px){
+            width: 210px;
+            height: 300px;
+        }
+        @media(min-width:1024px){
+            height: 310px;
+        }
+        @media(min-width:1350px){
+            height: 350px;
+            width: 240px;
+        }
+    }
+    &imgContainer{
+        object-fit: cover;
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        @media(min-width:480px){
+            height: 160px;
+        }
+        @media(min-width:1350px){
+            height: 180px;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &contentsContainer{
+        @include flexCol();
+        margin: 1.5rem 2rem;
+        @media(min-width:480px){
+            margin: 0.5rem 2rem;
+        }
+        @media(min-width:1350px){
+            margin: 1rem 2rem;
+        }
+    }
+    &hdr{
+        font-weight: 400;
+        margin: 0.5rem 0;
+        color: $base;
+        @media(min-width:480px){
+            margin: 0.2rem 0 0;
+            font-size: 1.8rem;
+            overflow: hidden;
+        }
+        @media(min-width:1350px){
+            font-size: 2rem;
+        }
+    }
+    &text{
+        margin: 1rem 0 0;
+        font-size: 1.3rem;
+        @media(min-width:480px){
+            margin: 0.5rem 0 0;
+            font-size: 1.15rem;
+        }
+        @media(min-width:1024px){
+            margin: 0.7rem 0 0;
+        }
+        @media(min-width:1350px){
+            font-size: 1.3rem;
+            margin: 0.8rem 0 0;
+        }
+        &::before {
+            content: '*';
+            display: inline-block;
+            width: 1em;
+          }
+    }
+    &link{
+        text-align: left;
+        width: 100%;
+    }
+}
+.blogAudio_{
+    &container{
+        @include flexCol();
+        margin: 2rem 0 1.5rem;
+        @media (min-width:480px){
+            flex-direction: row;
+            margin: 2rem 2.2rem 1.5rem;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+    }
+    &hdr{
+        font-size: 2.2rem;
+        text-align: center;
+        font-weight: 400;
+        margin: 0 0 1rem;
+        @media (min-width:480px){
+            text-align: left;
+            width: 50%;
+            font-size: 2.3rem;
+            font-weight: 400;
+            margin: 4rem 0 1rem;
+        }
+        @media (min-width:769px){
+            font-size: 2.5rem;
+            margin: 4rem 3rem 1rem 5rem;
+        }
+        @media (min-width:1024px){
+            font-size: 2.7rem;
+            width: 40%;
+        }
+    }
+    &audiosContainer{
+        width: fit-content;
+        @include flexCol();
+        border: 1px solid $base;
+        margin: 2rem 0;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        background: $backgroundPink;
+        overflow-y: scroll;
+        max-height: 250px;
+        background: none;
+            border: none;
+            scrollbar-width: thin; // for non-webkit browsers
+            scrollbar-color: $base $backgroundPink;
+            &::-webkit-scrollbar {
+                width: 8px; // width of the scrollbar
+            }
+        
+            &::-webkit-scrollbar-track {
+                background-color: $backgroundPink; // color of the track
+                border-radius: 0px; // radius of the track
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                background-color: $baseL; // color of the thumb
+                border-radius: 0px; // radius of the thumb
+            }
+
+            &::-webkit-scrollbar-button:start:decrement {
+                background-image: url("../svg/up.svg");
+                background-size: 100%; // size of the arrow image
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        
+            &::-webkit-scrollbar-button:end:increment {
+                background-image: url("../svg/down.svg");
+                background-size: 100%; // size of the arrow image
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        @media (min-width:480px){
+            width: fit-content;
+            max-height: 270px;
+        }
+        @media (min-width:769px){
+            
+        }
+        }
+    
+    &audioContainer{
+        @include flex();
+        justify-content: space-between;
+        width: 190px;
+        border: 1px solid;
+        padding: 0.1rem 1rem;
+        margin: 0.8rem 0;
+        background: $offWhite;
+        border-radius: 1.5px;
+        overflow: hidden;
+        min-height: 30px;
+        @media (min-width:769px){
+            width: 300px;
+            min-height: 38px;
+        }
+    }
+    &title{
+        width: 57%;
+        text-align: left;
+        font-weight: 500;
+        text-transform: capitalize;
+        font-size: 1.3rem;
+        color: $base;
+        @media (min-width:769px){
+            font-size: 1.5rem;
+        }
+    }
+    &iconContainer{
+        width: 30px;
+        height: 30px;
+        fill: $base;
+        overflow: hidden;
+        @media (min-width:769px){
+            width: 40px;
+            height: 40px;
+        }
+    }
+}

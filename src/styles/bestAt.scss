@@ -1,0 +1,18 @@
+@import './variables.scss';
+
+.bestAt_{
+    &container{
+        @include flexCol();
+        margin: 2rem 0;
+        @media(min-width:1350px){
+            margin: 3rem 0;
+        }
+    }
+    &gridContainer{
+        @include flexCol();
+        margin: 2rem 0;
+        @media(min-width:1350px){
+            margin: 3rem;
+        }
+    }
+}

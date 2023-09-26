@@ -1,0 +1,102 @@
+@import './variables.scss';
+
+.sequence_{
+    &container{
+        margin: 1rem 0;
+        width: 95%;
+        max-width: 400px;
+        @include flexCol();
+        @media (min-width:480px){
+            width: 80%;
+            max-width: 600px;
+            max-width: unset;
+        }
+        @media (min-width:769px){
+            width: 80%;
+            max-width: unset;
+        }
+        @media (min-width:1024px){
+            margin: 1.8rem;
+        }
+        @media (min-width:1200px){
+            width: 90%;
+            max-width: 1100px;
+        }
+    }
+    &hdr{
+        text-align: left;
+        width: 90%;
+        font-size: 1rem;
+        margin: 0 0 0.5rem 0.5rem;
+        @media (min-width:480px){
+           font-size: 1.5rem;
+        }
+        @media (min-width:1024px){
+           font-size: 1.8rem;
+        }
+    }
+    &text{
+        text-align: left;
+        width: 90%;
+        margin: 0.5rem 0 0 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 400;
+        @media (min-width:480px){
+            font-size: 1.2rem;
+         }
+         @media (min-width:1024px){
+            font-size: 1.5rem;
+         }
+         @media (min-width:1200px){
+            font-size: 1.6rem;
+         }
+    }
+    &iconsContainer{
+        @include flex();
+        justify-content: space-between;
+        width: 90%;
+        @media (min-width:769px){
+            gap: 1rem;
+        }
+        @media (min-width:1200px){
+            gap: 1.3rem;
+        }
+    }
+    &iconContainer{
+        width: 45px;
+        height: 45px;
+        margin: 0;
+        overflow: hidden;
+        @include flex();
+        @media (min-width:380px){
+            width: 50px;
+            height: 50px;
+        }
+        @media (min-width:480px){
+            width: 70px;
+            height: 70px;
+        }
+        @media (min-width:769px){
+            width: 75px;
+            height: 75px;
+        }
+        @media (min-width:1024px){
+            width: 88px;
+            height: 88px;
+        }
+    }
+}
+#near{
+    transform: scale(0.55);
+}
+#solana, #bsc, #hyperledger{
+    transform: scale(0.65);
+}
+#hyperledger{
+    display: none;
+  }
+@media (min-width:480px){
+  #hyperledger{
+    display: unset;
+  }
+}

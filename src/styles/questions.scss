@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+.questions_{
+    &container{
+        @include flexCol();
+    }
+    &button{
+        margin: 1rem;
+        background: $white;
+        border: 1px solid;
+        padding: 0.7rem;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    &questionsContainer{
+        @include flexCol();
+    }
+    &inputContainer{
+        @include flexCol();
+        margin: 0 0 0.5rem;
+    }
+    &question{
+        text-align: center;
+        font-weight: 400;
+        margin: 1rem 0;
+    }
+    &label{
+        text-transform: capitalize;
+        margin: 0.5rem 0;
+    }
+}

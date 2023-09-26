@@ -1,0 +1,55 @@
+$base: #FF06D7;
+$baseL: #ff78e1;
+$baseD: #ed00be;
+$lGray: #dfdfdf;
+$highlight: #c5ecf9;
+$black: #101010;
+$white: #fff;
+$offWhite: #F7FCFF;
+$offBlack: #4A4444;
+$backgroundPink: rgba(249, 211, 247, 0.5);
+
+$shadow: 0 0 2px $offBlack;
+$textShadow: 0 0 0.2px $base;
+
+@mixin flex{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+@mixin flexCol{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+@mixin flexCenC{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+@mixin flexCenR{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.separator{
+    width: 100vw;
+    height: 0.5px;
+    background: $offBlack;
+    margin: 0;
+    // @media(min-width:769px){
+    //     width: 110%;
+    // }
+    // @media(min-width:1024px){
+    //     width: 95%;
+    // }
+    // @media(min-width:1200px){
+    //     width: 90%;
+    // }
+    // @media(min-width:1350px){
+    //     width: 93%;
+    // }
+
+}

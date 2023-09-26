@@ -1,0 +1,269 @@
+@import './variables.scss';
+
+.cardThree_{
+    &container{
+        @include flexCol();
+        margin: 2.5rem 0;
+        @media (min-width: 769px){
+            flex-direction: row;
+            gap: 0;
+            transform: scale(0.8);
+        }
+        @media (min-width: 1024px){
+            gap: 3rem;
+            transform: scale(0.9);
+        }
+        @media (min-width: 1350px){
+        }
+    }
+    &cardContainer{
+        padding: 0.6rem;
+        width: 78vw;
+        height: 350px;
+        max-width: 280px;
+        border-radius: 20px;
+        box-shadow: 2px 2px 9px 0.5px #5c5c5c;
+        margin: 1rem 1rem 1.5rem;
+        &:first-child{
+            background: linear-gradient(to top, #fcecfa, $base);
+        }
+        &:nth-child(2){
+            background: linear-gradient(to bottom, #fcecfa, $base);   
+        }
+        &:nth-child(3){
+            background: linear-gradient(to top, #fcecfa, $base);   
+        }
+        @media (min-width: 769px){
+            &:first-child{
+                background: linear-gradient(to right, #fc95ee, $base);
+            }
+            &:nth-child(2){
+                background: $base; 
+            }
+            &:nth-child(3){
+                background: linear-gradient(to left, #fc95ee, $base);   
+            }
+        }
+        @media (min-width: 769px){
+          border-radius: 20px;
+          box-shadow: 2px 2px 13px 0.5px #5c5c5c;
+            margin: 1rem;
+        }
+    }
+    &card{
+        height: 100%;
+        @include flexCol();
+        justify-content: flex-start;
+        text-align: center;
+        border-radius: 25px;
+        padding: 2rem 2rem;
+        &#first-child{
+            background: linear-gradient(to bottom, #fedef9, #fff);
+        }
+        &#second-child{
+            background: linear-gradient(to bottom, #fff, #fedef9);
+        }
+        &#third-child{
+            background: linear-gradient(to top, #fff, #fedef9);
+        }
+    }
+        // @media (min-width: 480px){
+        //     height: 280px;
+        //     max-width: 240px;
+        // }
+        // @media (min-width: 1200px){
+        //     height: 310px;
+        //     max-width: 240px;
+        // }
+        // @media (min-width: 1350px){
+        //     height: 370px;
+        //     max-width: 290px;
+        //     padding: 3rem 2.5rem;
+        // }
+    &topContainer{
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+        height: 30%;
+    }
+    &topRight{
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 80%;
+    }
+    &number{
+        font-size: 3.5rem;
+        color: $base;
+        font-weight: 400;
+        margin-top: -0.7rem;
+    }
+    &hdr{
+        font-size: 1.95rem;
+        font-weight: 400;
+        color: $black;
+        overflow: hidden;
+        text-shadow: 0 0 0.5px $base;
+        @media (min-width: 480px){
+            font-size: 2rem;
+        }
+        @media (min-width: 769px){
+            font-size: 1.8rem;
+        }
+        @media (min-width: 1200px){
+            font-size: 2.3rem;
+        }
+        @media (min-width: 1350px){
+            font-size: 2.5rem;
+        }
+    }
+    &subtext{
+        font-weight: 400;
+        font-size: 1.2rem;
+        color: $offBlack;
+        margin: 1rem 0 0;
+    }
+    &infoContainer{
+        @include flexCol();
+        justify-content: space-between;
+        height: 100%;
+        margin: 1.5rem 0 0;
+        gap: 0.5rem;
+        width: 85%;
+    }
+    &infoCard{
+        background: #817b7d;
+        border-radius: 20px;
+        overflow: hidden;
+        @include flex();
+        justify-content: center;
+        width: 100%;
+        padding: 0.5rem;
+    }
+    &infoText{
+        font-size: 1.2rem;    
+        font-weight: 500;
+        color: $offWhite;
+        @media (min-width: 480px){
+            font-size: 1.1rem;
+        }
+        @media (min-width: 1200px){
+            font-size: 1.2rem;
+        }
+        @media (min-width: 1350px){
+            font-size: 1.45rem;
+        }
+    }
+
+    &infoGrid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        padding: 1.5rem 0.5rem;
+        overflow: hidden;
+    }
+    &infoGridCard{
+        width: 50px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px #a3a2a2;
+        height: 50px;
+        background: $white;
+        overflow: hidden;
+    }
+
+    &infoGridThird{
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: -2.5rem;
+        width: 85%;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+    }
+    &infoGridCardTop{
+        width: 90%;
+        justify-self: center;
+        height: 35px;
+        background: linear-gradient(to right, #c5dff8, #4ba5f9, #8535e0, #f83cc9, #ffc5aa);
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.4rem;
+    }
+    &infoGridCardTopInner{
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+        background-color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &topGrid{
+        display: flex;
+        gap: 0.3rem;
+        padding: 0 0.4rem;
+    }
+    &infoGridCardThird{
+        width: 95%;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px #a3a2a2;
+        height: 35px;
+        background: $white;
+        justify-self: center;
+        @include flex();
+        justify-content: flex-start;
+    }
+    &infoCardText{
+        width: 100%;
+        text-align: left;
+        padding: 0 0 0 1rem;
+        font-size: 0.8rem;
+    }
+    &infoGridCardThirdTop{
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px #a3a2a2;
+        height: 55px;
+        background: $white;
+        margin: 0.4rem 0.2rem;
+        @include flex();
+        justify-content: center;
+    }
+    &donutOuter{
+        // background: $base;
+        border-top: 7px solid $base;
+        border-bottom: 7px solid $base;
+        border-right: 7px solid $base;
+        border-left: 7px solid $white;
+        transform: rotate(15deg);
+        width: 44px;
+        height: 44px;
+        border-radius: 150%;
+        @include flex();
+        justify-content: center;
+    }
+    &donutText{
+        font-size: 1rem;
+        color: $base;
+        font-weight: 600;
+        transform: rotate(-15deg);
+    }
+    &comingSoonContainer{
+        @include flex();
+        justify-content: center;
+        width: 32px;
+        height: 23px;
+        background-color: $baseL;
+        border-radius: 50px;
+        margin-right: 1rem;
+
+    }
+    &comingSoon{
+        font-size: 0.5rem;
+        text-align: center;
+        font-weight: 600;
+    }
+}

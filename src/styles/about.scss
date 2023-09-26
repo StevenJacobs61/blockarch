@@ -1,0 +1,25 @@
+@import './variables.scss';
+
+.about_{
+    &container{
+        @include flexCol();
+        padding: 2rem 0 0;
+    }
+    &hdr{
+        text-align: center;
+        font-weight: 400;
+        font-size: 2.3rem;
+        margin: 0 0 2rem;
+        @media(min-width:769px){
+            font-size: 2.6rem;
+        }
+        @media(min-width:1024px){
+            font-size: 2.9rem;
+            margin: 0 0 2.5rem;
+        }
+        @media(min-width:1350px){
+            font-size: 3.2rem;
+            margin: 0 0 3rem;
+        }
+    }
+}

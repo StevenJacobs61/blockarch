@@ -1,0 +1,12 @@
+@import './variables.scss';
+
+.perks_{
+    &container{
+        width: 100%;
+        @include flexCol();
+        background: $baseL;
+    }
+    &gridContainer{
+        @include flexCol();
+    }
+}

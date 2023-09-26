@@ -1,0 +1,72 @@
+@import './variables.scss';
+
+.capture_{
+    &container{
+        width: 100%;
+        @include flexCol();
+        gap: 0.5rem;
+    }
+    &label{
+        font-weight: 300;
+        font-size: 0.8rem;
+        text-align: left;
+        width: 99%;
+        @media(min-width:480px){
+            font-size: 1.1rem;
+        }
+        @media(min-width:769px){
+            font-size: 1.2rem;
+        }
+        @media(min-width:1024px){
+            font-size: 1.5rem;
+        }
+        @media(min-width:1200px){
+            font-size: 1.3rem;
+        }
+    }
+    &inputContainer{
+        @include flex();
+        gap: 0.5rem;
+        width: 100%;
+        height: 2.3rem;
+        @media(min-width:480px){
+         height: 2.5rem;   
+        }
+        @media(min-width:769px){
+         height: 2.7rem;   
+        }
+        @media(min-width:1200px){
+         height: 3rem;   
+        }
+    }
+    &input{
+        width: 100%;
+        -webkit-appearance: none;
+        border: 1px solid $lGray;
+        border-radius: 3px;
+        height: 100%;
+    }
+    &button{
+        overflow: hidden;
+        color: $white;
+        background: $base;
+        border: none;
+        padding: 0.4rem 0;
+        border-radius: 3px;
+        box-shadow: $shadow;
+        height: 100%;
+        width: 70px;
+        cursor: pointer;
+        @media(min-width:769px){
+            font-size: 1.5rem; 
+            width: 80px;  
+           }
+        @media(min-width:1024px){
+            width: 90px;  
+           }
+        &:hover{
+            transform: scale(1.05);
+            color: $offWhite;
+        }
+    }
+}

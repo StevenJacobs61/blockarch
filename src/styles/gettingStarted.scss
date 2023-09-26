@@ -1,0 +1,61 @@
+@import './variables.scss';
+
+.gettingStarted_{
+    &container{
+        @include flexCol();
+        width: 100%;
+    }
+    &hdr{
+        font-size: 1rem;
+        margin: 0.8rem 0 0;
+        font-weight: 500;
+        text-align: center;
+        text-transform: capitalize;
+    }
+    &subtext{
+        font-size: 1.8rem;
+        margin: 1rem 0 0;
+        font-weight: 400;
+        text-align: center;
+        width: 80%;
+    }
+}
+@media (min-width:480px){
+    .gettingStarted_{
+        &hdr{
+            font-size: 1.2rem;
+        }
+        &subtext{
+            width: 70%;
+        }
+    }
+}
+@media (min-width:769px){
+    .gettingStarted_{
+        &hdr{
+            font-size: 1.5rem;
+            margin: 2rem 0 0;
+        }
+        &subtext{
+            font-size: 2rem;
+        }
+    }
+}
+@media (min-width:1024px){
+    .gettingStarted_{
+        &hdr{
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+        }
+        &subtext{
+            font-size: 2.5rem;
+        }
+    }
+}
+@media (min-width:1200px){
+    .gettingStarted_{
+        &hdr{
+            font-size: 1.9rem;
+        }
+    }
+}
