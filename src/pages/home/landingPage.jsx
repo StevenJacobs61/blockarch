@@ -18,11 +18,11 @@ const LandingPage = () => {
           <h1 className="landingPage_hdr">Architect Blockchain Applications
             in Minutes.
           </h1>
-          <div className="landingPage_listContainer">
+          <ul className="landingPage_listContainer">
             <li className="landingPage_listItem">Cost-Effective Development</li>
             <li className="landingPage_listItem">Reduce Knowledge Gaps</li>
             <li className="landingPage_listItem">Accelerate end-to-end design</li>
-          </div>
+          </ul>
           {/* <h2 className="landingPage_subtext">
             Our AI Architect tool helps entrepreneurs quickly
             launch and validate their business ideas.
