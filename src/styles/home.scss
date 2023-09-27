@@ -81,7 +81,7 @@
         &heroContainer{
             @include flex();
             margin: 0;
-            width: 85%;
+            width: 80%;
         }
         &heroImgContainer{
             width: 90%;
@@ -104,7 +104,7 @@
             text-align: left;
         }
         &listContainer{
-            margin: 1rem 1rem 1.5rem;
+            margin: 1rem 1rem 1.5rem 2rem;
             width: 90%;
         }
         &listItem{
@@ -112,18 +112,13 @@
             text-align: left;
             font-size: 1.3rem;
         }
-        &subtext{
-            font-size: 1.2rem;
-            width: 75%;
-            margin-left: 2rem;
-        }
         &captureContainer{
-            width: 65%;
+            width: 60%;
             justify-content: flex-start;
             margin: 0.5rem 6rem 3rem 0;
         }
         &captureWrapper{
-            width: 65%;
+            width: 60%;
         }
 }
 }

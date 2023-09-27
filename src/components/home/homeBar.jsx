@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ReactComponent as Menu } from '../../svg/menu.svg';
 import { ReactComponent as Cross } from '../../svg/cross.svg';
+import { ReactComponent as Linkedin } from '../../svg/linkedin.svg';
+import { ReactComponent as Twitter } from '../../svg/twitter.svg';
 
 const HomeBar = () => {
   
@@ -12,28 +14,6 @@ const HomeBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.pathname;
-
-  // const blog = pathname === '/blog';
-  // const about = pathname === '/about';
-
-  // const appBarSX = {
-  //   backgroundColor: 'common.lightGray',
-  //   justifyContent: "center",
-  //   height: 
-  //     isSmallScreen ? "45px" : 
-  //     isMediumScreen ? "50px" : 
-  //     "60px"
-  // }
-  // const buttonSX = {
-  //   fontSize: 
-  //     isSmallScreen ? "1.2rem" :
-  //     isMediumScreen ? "1rem" :
-  //     "1.2rem",
-  //   color: "common.offBlack",
-  //   margin: 
-  //     isMediumScreen ? "0 0.5rem" :
-  //     '0 0.8rem 0 0',
-  // }
 
   useEffect(()=>{
     const handleResize = () => {
@@ -44,6 +24,8 @@ const HomeBar = () => {
     }
     window.addEventListener('resize', handleResize)
   },[])
+
+  
   
   return (
     <div className='homeBar_barContainer'>
@@ -55,6 +37,18 @@ const HomeBar = () => {
           onClick={()=>navigate('/')}/>
       </div>
       <div className='homeBar_actionContainer'>
+      <div className="homeBar_socialsContainer">
+        <div
+            className='homeBar_menuIconTop'
+            onClick={()=>window.location.href = "https://twitter.com/blockarch_?s=11&t=sMO7Csa0LziSjQLf0Vw4mg" + setClick(false)}>
+            <Twitter width='100%' height='100%'/>
+          </div>
+        <div
+            className='homeBar_menuIconTop'
+            onClick={()=>window.location.href = "https://www.linkedin.com/company/blockarchio/" + setClick(false)}>
+            <Linkedin width='100%' height='100%' fill='#0e76a8'/>
+          </div>
+        </div>
         <div className='homeBar_linksContainer'>
           <p 
             className='homeBar_link' 
@@ -93,6 +87,16 @@ const HomeBar = () => {
             onClick={()=>navigate("/blog") + setClick(false)}>
             Blog
           </p>
+          <div 
+            className='homeBar_menuIcon'
+            onClick={()=> window.location.href = "https://twitter.com/blockarch_?s=11&t=sMO7Csa0LziSjQLf0Vw4mg" + setClick(false)}>
+            <Twitter width='100%' height='100%'/>
+          </div>
+          <div
+            className='homeBar_menuIcon'
+            onClick={()=>window.location.href = "https://www.linkedin.com/company/blockarchio/" + setClick(false)}>
+            <Linkedin width='100%' height='100%' fill='#0e76a8'/>
+          </div>
         </div>
           : null}
           </div>
