@@ -8,7 +8,6 @@ import ComingSoon from '../img/comingSoon.jpg';
 
 const CardAreaTwo = () => {
 
-
   return (
     <div className='cardArea_container'>
       <div className='cardArea_cardContainer'>

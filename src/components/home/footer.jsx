@@ -1,6 +1,7 @@
 import '../../styles/footer.scss'
 import Capture from './capture'
 import { ReactComponent as Smile } from '../../svg/smile.svg'
+import { ReactComponent as Logo } from '../../svg/logo-with-name.svg'
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
         <Capture/>
         </div>
         <span className='footer_iconContainer'>
-            <Smile width='100%' height='100%'/>
+            <Logo width='100%' height='100%'/>
         </span>
         <p className='info_subtext'>Sign up for early access. Join hundreds of entrepreneurs today and start architecting.</p>
     </div>

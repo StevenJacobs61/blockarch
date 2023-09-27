@@ -5,6 +5,7 @@
         width: 100%;
         @include flexCol();
         background: $baseL;
+        border-top: 1px solid $black;
     }
     &gridContainer{
         @include flexCol();

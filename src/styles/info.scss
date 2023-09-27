@@ -60,7 +60,12 @@
 @media (min-width:769px){
     .info_{
         &buttonsContainer{
-            @include flex();
+            @include flexCenR();
+            width: 100%;
+        }
+        &button{
+            flex: 1;
+            max-width: 215px;
         }
     }
 }

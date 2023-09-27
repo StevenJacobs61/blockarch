@@ -13,7 +13,8 @@ const Sequence = () => {
 
   return (
     <div className='sequence_container'>
-        <h1 className='sequence_hdr'>Multi-chain</h1>
+        <h2 className='sequence_text'>A single point of truth to assess, evaluate and architect on all blockchains for your project or business.</h2>
+        {/* <h1 className='sequence_hdr'>Multi-chain</h1> */}
         <div className='sequence_iconsContainer'>
             <span id='bsc' className='sequence_iconContainer'>
                 <Binance width='100%' height='100%' fill='#ffb8f4'/>
@@ -43,7 +44,6 @@ const Sequence = () => {
                 <Near width='100%' height='100%'/>
             </span>
         </div>
-        <h2 className='sequence_text'>A single point of truth to assess, evaluate and architect on all blockchains for your project or business.</h2>
     </div>
   )
 }
