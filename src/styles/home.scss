@@ -36,14 +36,16 @@
     }
     &listContainer{
         margin: 0.5rem 0 1.5rem;
+        width: 65%;
+
     }
     &listItem{
         text-align: left;
+        font-size: 1.4rem;
         &::before{
             content: '✓   ';
         }
     }
-
     &subtext{
         font-size: 1rem;
         font-weight: 400;
@@ -54,7 +56,7 @@
     &captureContainer{
         width: 60%;
         @include flex();
-        margin: 0.5rem 0 2rem;
+        margin: 0.5rem 0 2.5rem;
     }
     &captureWrapper{
         @include flex();
@@ -78,30 +80,32 @@
         }
         &heroContainer{
             @include flex();
-            margin: 2rem 0;
-            width: 80%;
+            margin: 0;
+            width: 85%;
         }
         &heroImgContainer{
-            width: 60%;
-            height: 190px;
+            width: 90%;
+            height: 200px;
             overflow: hidden;
         }
         &heroRight{
             display: unset;
             width: 50%;
             @include flexCenR;
-            margin: 4rem 0 0;
+            padding: 6rem 2rem 0 0;
         }
         &heroLeft{
-            width: 70%;
+            width: 60%;
             margin: 0 0 0 2rem;
         }
         &hdr{
             font-size: 2.7rem;
             padding: 2rem 0 0;
+            text-align: left;
         }
         &listContainer{
             margin: 1rem 1rem 1.5rem;
+            width: 90%;
         }
         &listItem{
             list-style-type: circle;
@@ -114,270 +118,159 @@
             margin-left: 2rem;
         }
         &captureContainer{
-            width: 60%;
+            width: 65%;
             justify-content: flex-start;
             margin: 0.5rem 6rem 3rem 0;
-    }
+        }
+        &captureWrapper{
+            width: 65%;
+        }
 }
 }
 @media(min-width:600px){
     .layout_{
         &container{
-            padding-top: 10px;
+            padding-top: 0;
         }
     }
     .landingPage_{
         &heroContainer{
-            margin-bottom: 0;
+            margin: 2rem 0 0;
+            width: 90%;
         }
         &hdr{
-            font-size: 3.7rem;
-            margin-top: 2rem;
+            font-size: 3.2rem;
             width: 95%;
         }
-        &heroLeft{
-            width: 60%;
-        }
-        &heroRight{
-            margin: 7rem 3rem 0 2rem;
-        }
         &heroImgContainer{
-            width: 90%;
-            max-width: 180px;
             height: 220px;
         }
         &captureContainer{
-            margin: 2rem 15rem 4rem 0;
-            width: 50%;
+            width:70%;
+        }
+        &captureWrapper{
+            width: 60%;
         }
     }
 }
 @media (min-width: 769px) { 
     .layout_{
         &container{
-            padding: 0 25px 20px;
+            padding: 0;
         }
     }
     .landingPage_{
         &heroContainer{
-            flex-direction: row;
-            justify-content: center;
-        }
-        &heroLeft{
-            width: 80%;
-        }
-        &heroRight{
-            margin: 10rem -4rem 0 0;
-            display: unset;
-        }
-        &heroImgContainer{
-           max-width: 210px;
-           height: 250px;
-        }
-        &hdr{
-            font-size: 3.8rem;
-            padding: 0rem 0rem 1rem 0rem;
-            width: 85%;
+         width: 78%;
         }
         &listContainer{
-            margin: 0.2rem 0 0;
+            width: 95%;
         }
         &listItem{
-            font-size: 1.7rem;
-        }
-        &subtext{
-            font-size: 1.5rem;
+            font-size: 1.8rem;
         }
         &captureContainer{
-            width: 90%;
-            margin: 2rem 0 3rem;
+            width: 65%;
         }
         &captureWrapper{
-            width: 60%;
-            padding: 0 0 0 08rem;
-            justify-content: center;
+            width: 50%;
         }
     }
 }
 @media (min-width: 1024px) { 
     .landingPage_{
-        &container{
-            width: 100%;
+        &heroContainer{
+            width: 75%;
         }
         &hdr{
-            font-size: 4.2rem;
-            width: 90%;
-            margin: 2.8rem 0 3.5rem;
+            font-size: 3.8rem;
+            margin: 3rem 0 2rem;
             font-weight: 400;
         }
         &listItem{
-            font-size: 2.3rem;
-        }
-        &subtext{
-            font-size: 1.8rem;
-            // text-align: left;
+            font-size: 2rem;
         }
         &heroImgContainer{
             width: 90%;
-            max-width: 240px;
-            height: 290px;
-            margin-left: 3rem;
-        }
-        &captureWrapper{
-            width: 60%;
-        }
-        &captureContainer{
-            width: 70%;
-        }
-    }
-}
-// @media (min-width: 1200px) { 
-//     .landingPage_{
-//         &heroContainer{
-//             width: 90%;
-//             margin-top: 1rem;
-//             padding-bottom: 5rem;
-//         }
-//         &heroLeft{
-//             position: relative;
-//         }
-//         &hdr{
-//             font-size: 4.5rem;
-//             width: 80%;
-//             margin: 6rem 0 3rem;
-//             text-align: left;
-//         }
-//         &listContainer{
-//             margin: 0 0 1rem;
-//         }
-//         &listItem{
-//             font-size: 2rem;
-//             margin: 0 0 0.5rem;
-//         }
-//         &captureContainer{
-//             display: none;
-//         }
-//         &captureContainerTwo{
-//             display: unset;
-//             width: 70%;
-//             margin: 5rem 0 0;
-//         }
-//         &captureWrapper{
-//             width: 50%;
-//             padding: 0 0 0 15rem;
-//             // margin-top: -5rem;
-//             z-index: 990;
-//         }
-//         &heroImgContainer{
-//             height: 350px;
-//             max-width: 290px;
-//             margin-left: 7rem;
-//             padding-top: 0;
-//         }
-//         &subtext{
-//             font-size: 2rem;
-//             width: 90%;
-//         }
-//     }
-// }
-@media (min-width: 1200px) { 
-    .landingPage_{
-        &heroContainer{
-            width: 90%;
-            padding-bottom: 5rem;
-        }
-        &heroLeft{
-            width: 60%;
-        }
-        &hdr{
-            font-size: 4.5rem;
-            text-align: left;
-            width: 100%;
-            margin: 6rem 0 3rem 5rem;
-        }
-        &listContainer{
-            margin: 0 0 1rem 7rem;
-            width: 100%;
-        }
-        &listItem{
-            font-size: 2.3rem;
-            margin: 0 0 0.5rem;
+            height: 220px;
+            margin-bottom: 2rem;
         }
         &captureContainer{
             display: none;
         }
         &captureContainerTwo{
             display: unset;
-            width: 60%;
-            margin: 5rem 3rem 0 0;
+            width: 90%;
+            margin: 2rem 0 4rem;
         }
         &captureWrapper{
-            width: 50%;
-            padding: 0 0 0 15rem;
-            // margin-top: -5rem;
-            z-index: 990;
+            width: 70%;
+        }
+    }
+}
+@media (min-width: 1200px) { 
+    .landingPage_{
+        &heroContainer{
+            width: 90%;
+            padding-top: 5rem;
+        }
+        &hdr{
+            font-size: 4.2rem;
+            text-align: left;
+            width: 95%;
+            margin: 0 0 2rem;
+        }
+        &listContainer{
+            margin: 1rem 0 2rem 1rem;
+            width: 95%;
+        }
+        &listItem{
+            font-size: 2.1rem;
+            margin: 0 0 0.5rem;
+        }
+        &captureWrapper{
+            width: 70%;
         }
         &heroImgContainer{
-            height: 300px;
+            height: 290px;
             max-width: unset;
-            width: 70%;
-            overflow: hidden;
-            margin-left: 5rem;
-            padding-top: 0;
-        }
-        &subtext{
-            font-size: 2rem;
-            width: 90%;
+            width: 100%;
+            margin-bottom: 5rem;
         }
     }
 }
 @media (min-width: 1350px) { 
     .landingPage_{
         &heroContainer{
-            width: 95%;
+            width: 83%;
+            padding: 4rem 0 2rem;
+            max-width: 1400px;
         }
         &heroLeft{
-            width: 65%;
+            width: 70%;
         }
         &hdr{
             font-size: 4.5rem;
-            text-align: left;
-            width: 99%;
-            margin: 6rem 0 3rem 3rem;
+            width: 100%;
         }
         &listContainer{
-            margin: 0 0 1rem 7rem;
             width: 100%;
         }
         &listItem{
-            font-size: 2.3rem;
-            margin: 0 0 0.5rem;
-        }
-        &captureContainer{
-            display: none;
+            margin: 0 0 1rem;
         }
         &captureContainerTwo{
-            display: unset;
-            width: 70%;
-            margin: 5rem 0 0;
+            width: 98%;
         }
         &captureWrapper{
-            width: 50%;
-            padding: 0 0 0 15rem;
-            // margin-top: -5rem;
-            z-index: 990;
+            width: 60%;
         }
-        &heroImgContainer{
-            height: 350px;
-            max-width: unset;
-            width: 80%;
-            overflow: hidden;
-            margin-left: 7rem;
-            padding-top: 0;
-        }
-        &subtext{
-            font-size: 2rem;
-            width: 90%;
+    }
+}
+@media (min-width: 1500px) { 
+    .landingPage_{
+        &heroContainer{
+            gap: 10rem;
         }
     }
 }

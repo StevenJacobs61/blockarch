@@ -28,7 +28,9 @@ const LandingPage = () => {
             launch and validate their business ideas.
           </h2> */}
           <div className="landingPage_captureContainerTwo">
+            <div className="landingPage_captureWrapper">
           <Capture/>
+            </div>
           </div>
         </div>
 
