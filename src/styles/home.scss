@@ -80,7 +80,6 @@
         }
         &heroContainer{
             @include flex();
-            margin: 0;
             width: 80%;
         }
         &heroImgContainer{
@@ -130,7 +129,7 @@
     }
     .landingPage_{
         &heroContainer{
-            margin: 2rem 0 0;
+            margin: 3rem 0 0;
             width: 90%;
         }
         &hdr{
@@ -157,6 +156,7 @@
     .landingPage_{
         &heroContainer{
          width: 78%;
+         margin-top: 2rem;
         }
         &listContainer{
             width: 95%;

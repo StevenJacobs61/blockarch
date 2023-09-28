@@ -1,7 +1,6 @@
 import '../../styles/footer.scss'
 import Capture from './capture'
-import { ReactComponent as Smile } from '../../svg/smile.svg'
-import { ReactComponent as Logo } from '../../svg/logo-with-name.svg'
+import { ReactComponent as Logo } from '../../svg/logo-no-text.svg'
 
 const Footer = () => {
   return (

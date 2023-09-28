@@ -45,6 +45,11 @@
         width: 38px;
         height: 38px;
         margin: 0.2rem 0 0.5rem;
+        overflow: hidden;
+        fill: $white;
+        background: $baseD;
+        @include flexCenR;
+        border-radius: 50px;
     }
 }
 
@@ -140,7 +145,7 @@
 @media(min-width:480px){
     .cardArea_{
         &container{
-            width: 370px;
+            width: 400px;
         }
         &button{
             font-size: 1.4rem;
@@ -168,6 +173,7 @@
         &container{
             flex-direction: row;
             justify-content: center;
+            align-items: flex-start;
             width: 70%;
             gap: 5vw;
         }
@@ -176,11 +182,14 @@
 @media(min-width:1200px){
     .cardArea_{
         &container{
-            margin: 5rem 0;
+            margin: 5rem 0 5rem 8rem;
             gap: 3vw;
         }
-        &button, &comingSoon{
+        &button{
             margin: 2rem 0 0;
+        }
+        &comingSoon{
+            margin: 1rem 0 0;
         }
     }
     .card_{

@@ -4,7 +4,17 @@
     &container{
         @include flexCol();
         width: 100%;
-        background: $baseL;
+    }
+    &topContainer{
+        width: 100%;
+        @include flexCol();
+        background: $base;
+        padding: 0 0 2rem;
+    }
+    &contentContainer{
+        width: 100%;
+        @include flexCol();
+        background: linear-gradient(to bottom, $white, $lGray);
     }
     &hdr{
         font-size: 2rem;

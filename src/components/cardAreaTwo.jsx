@@ -4,7 +4,7 @@ import CardComponent from './cardComponent'
 import MatchingImage from '../img/ai-matching.jpg';
 import ArchImage from '../img/ai-arch.jpg';
 import { ReactComponent as Chevron } from '../svg/chevron.svg';
-import ComingSoon from '../img/comingSoon.jpg';
+import { ReactComponent as ComingSoon } from '../svg/coming-soon.svg';
 
 const CardAreaTwo = () => {
 
@@ -24,7 +24,9 @@ const CardAreaTwo = () => {
             title={'AI Architecting'}
             text={'Architect your blockchain business idea with ease. Blockarch will architect your solution enabling you to quickly launch, grow and test your ideas.'}
             />    
-        <img src={ComingSoon} alt='coming soon' className='cardArea_comingSoon'/>
+        <div className='cardArea_comingSoon'>
+          <ComingSoon width='100%' height='100%'/>
+        </div>
     </div>
     </div>
   )

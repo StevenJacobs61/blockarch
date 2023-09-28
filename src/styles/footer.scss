@@ -11,17 +11,11 @@
         margin: 1rem 0 2rem;
     }
     &iconContainer{
-        width: 120px;
+        width: 60px;
         height: inherit;
         margin: 0 0 1.5rem;
         overflow: hidden;
-    }
-}
-@media(min-width:480px){
-    .footer_{
-        &iconContainer{
-            width: 130px;
-        }
+        fill: $base;
     }
 }
 @media(min-width:769px){
@@ -31,7 +25,7 @@
             margin: 1rem 0 2rem;
         }
         &iconContainer{
-            width: 170px;
+            width: 70px;
         }
    }
 }
@@ -41,14 +35,7 @@
             margin: 1rem 0 3rem;
         }
         &iconContainer{
-           width: 190px;
-        }
-   }
-}
-@media(min-width:1200px){
-   .footer_{
-        &iconContainer{
-            width: 200px;
+           width: 75px;
         }
    }
 }
