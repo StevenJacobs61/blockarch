@@ -9,4 +9,15 @@
     &gridContainer{
         @include flexCol();
     }
+    &topContainer{
+        width: 100%;
+        @include flexCol();
+        padding: 0 0 1rem;
+        background: linear-gradient(to bottom, $base, $baseL);
+    }
+    &contentContainer{
+        width: 100%;
+        @include flexCol();
+        background: $baseL;
+    }
 }
