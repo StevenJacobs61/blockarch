@@ -3,106 +3,118 @@
 .aboutHero_{
     &container{
         @include flexCol();
-        margin: 0 0 2rem;
-        gap: 3rem;
-        @media (min-width:480px){
-            margin: 1rem 0 3.5rem;
-        }
-        @media (min-width:769px){
-            margin: 4.5rem 0 3rem;
-            gap: 1rem;
-        }
-        @media (min-width:1024px){
-            margin: 6rem 0 3rem;
-            flex-direction: row;
-            width: 90%;
-            gap: 0;
-        }
-        @media (min-width:1200px){
-            width: 90%;
-        }
-        @media (min-width:1350px){
-            width: 80vw;
-        }
+        margin: 0 0 1rem;
     }
-    &left{
-        @include flexCol();
-        @media(min-width:1024px){
-            align-items: flex-start;
-            flex: 1;
-        }
-        @media(min-width:1350px){
-            width: 100%;
-        }
+    &captureContainer{
+        width: 60%;
     }
     &hdr{
         font-size: 3rem;
         text-align: center;
         font-weight: 400;
-        @media(min-width:480px){
-            font-size: 3.3rem;
-        }
-        @media(min-width:1024px){
-            text-align: left;
-            font-size: 4.5rem;
-            margin: 2rem 0;
-        }
-        @media(min-width:1350px){
-            text-align: left;
-            font-size: 5.5rem;
-            margin: 4rem 0 3rem;
-        }
+        width: 90%;
     }
     &subtext{
-        width: 80%;
+        width: 90%;
         margin: 2rem 0;
         font-size: 1.5rem;
-        @media(min-width:1024px){
-            font-size: 2rem;
+        text-align: center;
+    }
+    &button{
+        margin: 2rem 0 1rem;
+        font-size: 1rem;
+        padding: 0.3rem 0.7rem;
+        border-radius: 3px;
+        box-shadow: $shadow;
+        border: none;
+        background: $base;
+        color: $white;
+        font-weight: 500;
+        cursor: pointer;
+        &:hover{
+            box-shadow: none;
+            color: $base;
+            background: none;
+            font-weight: 600;
         }
-        @media(min-width:1350px){
-            font-size: 2.5rem;
+    }
+}
+@media (min-width:480px){
+    .aboutHero_{
+        &container{
+            margin: 1rem 0 2.5rem;
+        }
+        &captureContainer{
+            max-width: 350px;
+        }
+        &hdr{
+            font-size: 3.3rem;
+        }
+        &button{
+            font-size: 1.2rem;
+        }
+    }   
+}
+@media (min-width:769px){
+    .aboutHero_{
+        &container{
+            margin: 4rem 0 3rem;
+        }
+        &hdr{
+            width: 60%;
+        }
+        &subtext{
+            margin: 2rem 0 3.5rem;
+            font-size: 2rem;
+            width: 70%;
+        }
+        &button{
+            font-size: 1.5rem;
+        }
+    }   
+}
+@media (min-width:1024px){
+    .aboutHero_{
+        &container{
+            margin: 5rem 0 4rem;
+        }
+        &captureContainer{
+            // width: 60%;
+        }
+        &hdr{
+            font-size: 4.5rem;
+            margin: 0;
+        }
+        &subtext{
+            font-size: 2.2rem;
+            margin: 3rem 0 4rem;
+        }
+        &button{
+            margin: 3rem 0 0.5rem;
+        }
+    }
+}
+@media (min-width:1200px){
+    .aboutHero_{
+     &captureContainer{
+        max-width: 480px;
+     }
+    }   
+}
+@media (min-width:1350px){
+    .aboutHero_{
+        &captureContainer{
+            // width: 60%;
+        }
+        &hdr{
+            font-size: 5rem;
+        }
+        &subtext{
+            font-size: 2.2rem;
             margin: 3rem 0;
         }
-    }
-    &right{
-        @include flexCol();
-        @media(min-width:1024px){
-            flex: 1;
-            align-items: flex-end;
-        }
-        @media(min-width:1350px){
-            flex: 1;
-            align-items: center;
-        }
-    }
-    &imgContainer{
-        width: 260px;
-        height: fit-content;
-        @include flexCol();
-        justify-content: center;
-        @media(min-width: 480px){
-            width: 60%;
-            max-width: 500px;
-        }
-        @media(min-width: 1024px){
-            width: 100%;
-            padding: 0;
-            background: none;
-            border-radius: 10px;
-        }
-        @media(min-width: 1350px){
-            min-width: 700px;
-        }
-        img{
-            border-radius: 3px;
-            @media(min-width:1024px){
-                // border: 1.5px solid $base;
-                border-radius: 3px;
-            }
-            @media(min-width:1350px){
-                border: 1px solid $base;
-            }
+        &button{
+            font-size: 1.7rem;
         }
     }
 }

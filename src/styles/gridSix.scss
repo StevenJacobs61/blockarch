@@ -16,7 +16,9 @@
     &card{
         width: 280px;
         height: 200px;
-        background: $backgroundPink;
+        background: linear-gradient(to bottom, $baseL, $backgroundPink);
+        border-radius: 3px;
+        border: 2px solid $base;
         @include flex();
         padding: 1.5rem;
         gap: 1.5rem;
@@ -24,7 +26,7 @@
             width: 350px;
             height: 270px;
             padding: 2rem;
-            gap: 3rem;
+            gap: 1rem;
         }
     }
     &left{
@@ -54,12 +56,14 @@
     }
     &hdr{
         font-weight: 400;
+        overflow: hidden;
         @media(min-width:1350px){
             font-size: 2.4rem;
         }
     }
     &text{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        overflow: hidden;
         @media(min-width:1350px){
             font-size: 1.7rem;
         }

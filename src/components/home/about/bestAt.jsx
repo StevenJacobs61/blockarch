@@ -29,7 +29,7 @@ const BestAt = () => {
         {
             icon: Trusted,
             hdr: "Trusted Partnership",
-            text: 'All of our services come from layers of expertise, where we will act as your guiding partner in harnessing Web3 solutions throughout the(MORE)'
+            text: 'All of our services come from layers of expertise, where we will act as your guiding partner in harnessing Web3 solutions throughout the end-to-end journey.'
         },
         {
             icon: Integration,
@@ -39,12 +39,13 @@ const BestAt = () => {
         {
             icon: Interface,
             hdr: "Intuitive Interface",
-            text: 'No extensive coding knowledge is required.(MORE)'
+            text: 'No extensive coding knowledge is required.'
         },
     ]
 
   return (
     <div className='bestAt_container'>
+        <h2 className='bestAt_subhdr'>Our promise to founders</h2>
         <h1 className='about_hdr'>
             What We Are Best At
         </h1>

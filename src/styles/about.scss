@@ -3,7 +3,7 @@
 .about_{
     &container{
         @include flexCol();
-        padding: 2rem 0 0;
+        padding: 1rem 0 0;
     }
     &hdr{
         text-align: center;
@@ -20,6 +20,13 @@
         @media(min-width:1350px){
             font-size: 3.2rem;
             margin: 0 0 3rem;
+        }
+    }
+}
+@media (min-width:480px){
+    .about_{
+        &container{
+            padding: 3rem 0 0;
         }
     }
 }

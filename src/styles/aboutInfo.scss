@@ -2,35 +2,66 @@
 
 .aboutInfo_{
     &container{
+        background: $baseL;
         @include flexCol();
+    }
+    &contentContainer{
         margin: 2rem 0;
-        width: 95%;
-        @media(min-width:769px){
-            width: 85%;
-        }
-        @media(min-width:1024px){
-            width: 75%;
-            margin: 3rem 0;
-        }
-        @media(min-width:1350px){
-            width: 60%;
-            margin: 4rem 0;
-        }
+        @include flexCol();        
+        width: 90%;
     }
     &text{
         text-align: center;
         margin: 1rem 0;
         font-size: 1.2rem;
-        @media(min-width:769px){
+        @media(min-width:1350px){
+         
+        }
+    }
+}
+@media(min-width:769px){
+    .aboutInfo_{
+        &container{
+            background: $white;
+        }
+        &contentContainer{
+            width: 90%;
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 2px solid $base;
+            background: $baseL;
+            margin: 0 0 1rem;
+        }
+        &text{
             font-size: 1.5rem;
         }
-        @media(min-width:1024px){
-            font-size: 1.7rem;
-            margin: 2rem;
+    }
+}
+@media(min-width:1024px){
+    .aboutInfo_{
+        &contentContainer{
+            width: 90%;
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 2px solid $base;
+            background: $baseL;
+            margin: 0 0 1rem;
         }
-        @media(min-width:1350px){
-            font-size: 2rem;
-            margin: 2.5rem;
+        &text{
+            font-size: 1.7rem;
+            margin: 0 0 2rem;
+            width: 80%;
+        }
+    }
+}
+@media(min-width:1350px){
+    .aboutInfo_{
+        &contentContainer{
+            padding: 2rem;
+        }
+        &text{
+            font-size: 1.8rem;
+            margin: 0 0 2.5rem;
         }
     }
 }
