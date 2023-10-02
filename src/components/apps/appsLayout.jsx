@@ -1,11 +1,12 @@
+import { Outbound } from '@mui/icons-material'
 import AppsBar from '../apps/appsBar'
 
-const AppsLayout = ({children}) => {
+const AppsLayout = () => {
   return (
     <div>
       <AppsBar/>
       <main>
-        {children}
+        <Outbound/>
       </main>
     </div>
   )

@@ -9,6 +9,7 @@ import AppsLayout from './components/apps/appsLayout';
 import About from './pages/home/about.jsx'
 import Blog from './pages/home/blog.jsx'
 import {theme} from './styles/themes'
+import Test from './pages/test';
 
 
 const router = createBrowserRouter(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
     <Route path='/apps' element={<AppsLayout/>}>
       <Route index element={<Questions/>}/>
     </Route>
+    <Route path='/test' element={<Test/>}/>
     </>
   )
 )

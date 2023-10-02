@@ -3,10 +3,12 @@
 .blog_{
     &container{
         @include flexCol();
-        margin: 0.5rem 1rem 0;
-        width: 90vw;
-        @media(min-width:1024px){
-            width: 100%;
+        margin: 1rem 1rem 0;
+        @media(min-width:480px){
+            margin: 3rem 0;
+        }
+        @media(min-width:600px){
+            margin: 6rem 0 3rem;
         }
     }
     &hdr{
@@ -26,6 +28,7 @@
     &subtext{
         text-align: center;
         font-size: 1.4rem;
+        // width: 60vw;
         @media(min-width:1024px){
             font-size: 2rem;
             margin: 1rem 0;
@@ -37,37 +40,79 @@
 }
 .blogGrid_{
     &container{
-        display: grid;
-        grid-template-columns: 1fr;
-        margin: 3rem 0;
-        gap: 3rem;
-        @media(min-width:480px){
-            grid-template-columns: 1fr 1fr;
-            gap: 5vw;
-        }
+        @include flexCenR();
+        overflow: hidden;
+        margin: 3rem 0 1rem;
+        // width: 400px;
+        // width: 80vw;
+        // @media(min-width:480px){
+        //     grid-template-columns: 1fr 1fr;
+        //     gap: 5vw;
+        // }
+        // @media(min-width:769px){
+        //     grid-template-columns: repeat(3, 1fr);
+        //     gap: 5vw;
+        // }
+        // @media(min-width:1024px){
+        //     grid-template-columns: repeat(4, 1fr);
+        //     gap: 2vw;
+        // }
+        // @media(min-width:1350px){
+        //     gap: 2.8vw;
+        // }
+    }
+    &innerContainer{
+        @include flex();
+        transition: transform 0.5s;
+        width: 250px;
+        // gap: 20px
+        overflow: unset;
         @media(min-width:769px){
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5vw;
+            width: 540px;
+            gap: 20px;
         }
         @media(min-width:1024px){
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2vw;
+            width: 810px;
         }
-        @media(min-width:1350px){
-            gap: 2.8vw;
+        @media(min-width:1200px){
+            width: 1080px;
         }
+    }
+    &buttonsContainer{
+        @include flex();
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 0 0 2rem;
+        width: 300px;
+    }
+    &radioContainer{
+        @include flexCenR();
+        gap: 1rem;
+        max-width: 100%;
+        overflow: scroll;
+    }
+    &radioIconContainer{
+        width: 25px;
+        height: 25px;
+        overflow: hidden;
+    }
+    &iconContainer{
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
     }
     &card{
         @include flexCol();
-        width: 250px;
+        min-width: 250px;
+        width: 100%;
         height: 375px;
-        background: $backgroundPink;
+        background: linear-gradient(to bottom, $baseL, $backgroundPink);
         cursor: pointer;
         border: 0.5px solid $baseL;
         border-radius: 1px;
         @media(min-width:480px){
             width: 210px;
-            height: 300px;
+            height: 330px;
         }
         @media(min-width:1024px){
             height: 310px;
@@ -145,10 +190,11 @@
 .blogAudio_{
     &container{
         @include flexCol();
-        margin: 2rem 0 1.5rem;
+        background-color: $baseL;
+        width: 100%;
         @media (min-width:480px){
             flex-direction: row;
-            margin: 2rem 2.2rem 1.5rem;
+            padding: 2rem 2.2rem 1.5rem;
             gap: 1rem;
             align-items: flex-start;
         }
@@ -177,28 +223,27 @@
     &audiosContainer{
         width: fit-content;
         @include flexCol();
-        border: 1px solid $base;
+        border: 1px solid $offBlack;
         margin: 2rem 0;
         padding: 1rem 2rem;
         border-radius: 10px;
         background: $backgroundPink;
         overflow-y: scroll;
         max-height: 250px;
-        background: none;
-            border: none;
+        background: $backgroundPink;
             scrollbar-width: thin; // for non-webkit browsers
-            scrollbar-color: $base $backgroundPink;
+            scrollbar-color: $baseD $baseL;
             &::-webkit-scrollbar {
                 width: 8px; // width of the scrollbar
             }
         
             &::-webkit-scrollbar-track {
-                background-color: $backgroundPink; // color of the track
+                background-color: $baseL; // color of the track
                 border-radius: 0px; // radius of the track
             }
         
             &::-webkit-scrollbar-thumb {
-                background-color: $baseL; // color of the thumb
+                background-color: $baseD; // color of the thumb
                 border-radius: 0px; // radius of the thumb
             }
 
