@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { add, getById } from '../../functions/userAPI';
 import axios from 'axios';
 
-const ProjectQuestions = () => {
+const ProjectQuestions = ({setBlock, block}) => {
 
     const [qIndex, setQIndex] = useState(0);
     const endpoint = projectQuestions[qIndex].endpoint;
@@ -134,40 +134,52 @@ const ProjectQuestions = () => {
         
         
         try{
-            const userRes = await getById(2, '/user');
-            const data = {
-                // "id": 1,
-                "version": 1,
-                "project_name": "Project B",
-                "outsourced_build": true,
-                "budget_currency": "USD",
-                "budget_amount": 100000,
-                "transactions_per_month": 100,
-                "transactions_per_second": 10,
-                "transaction_size": 1024,
-                "invite_only_access": true,
-                "identity_mandatory": false,
-                "solution_controller_participant_view": true,
-                "operate_in_regulatory_environment": true,
-                "meet_legal_requirements": false,
-                "require_physical_devices": true,
-                "user_id": userRes,
-                "industry_usage_id": 1,
-                // "network_participants_id": 1,
-                // "development_languages_id": 1
-            }
-            const addRes = await add(data, '/user-project')
+            // const userRes = await getById(2, '/user');
+            // const data = {
+            //     // "id": 1,
+            //     "version": 2,
+            //     "projectName": "Project Test2",
+            //     "outsourcedBuild": true,
+            //     "budgetCurrency": "USD",
+            //     "budgetAmount": 100000,
+            //     "transactionsPerMonth": 100,
+            //     "transactionsPerSecond": 10,
+            //     "transactionSize": 1024,
+            //     "inviteOnlyAccess": true,
+            //     "identityMandatory": false,
+            //     "solutionControllerParticipantView": true,
+            //     "operateInRegulatoryEnvironment": true,
+            //     "meetLegalRequirements": false,
+            //     "requirePhysicalDevices": true,
+            //     "user": null,
+            //     "industryUsage": null,
+            //     "networkParticipants": null,
+            //     "developmentLanguages": null,
+            //     "purpose" : null
+            // }
+            const addRes = await add(userProject, '/user-project');
+            localStorage.setItem('block', projectQuestions[qIndex].block);
+            console.log(localStorage.getItem('block'));
             console.log(addRes);
         }catch(error){
             console.error(error)
         }
     }
     console.log('user-project: ', userProject);
-    console.log('user-project-network-participants: ', userProjectNetworkParticipants);
-    console.log('user-project-industry: ', userProjectIndustry);
-    console.log('dlt-solution-purpose: ', dltSolutionPurpose);
-    console.log('user-project-langauges ', userProjectLanguages);
-    console.log(userProject[projectQuestions[qIndex].field]);
+    // console.log('user-project-network-participants: ', userProjectNetworkParticipants);
+    // console.log('user-project-industry: ', userProjectIndustry);
+    // console.log('dlt-solution-purpose: ', dltSolutionPurpose);
+    // console.log('user-project-langauges ', userProjectLanguages);
+    // console.log(userProject[projectQuestions[qIndex].field]);
+
+    const handleIndex = () =>{
+        setQIndex((prev)=> prev === projectQuestions.length - 1 ? 0 : prev+1);
+        setBlock(projectQuestions[qIndex].block);
+        console.log(projectQuestions[qIndex].block);
+        console.log(projectQuestions[qIndex]);
+        // console.log(block);
+    }
+
   return (
     <div className='projectQuestions_container'>
         <h1 className='projectQuestions_hdr'>Project Questions</h1>
@@ -220,7 +232,7 @@ const ProjectQuestions = () => {
         }
             <button 
                 className='projectQuestions_button' 
-                onClick={()=>setQIndex((prev)=> prev === projectQuestions.length - 1 ? 0 : prev+1)}
+                onClick={()=>handleIndex()}
                 >Next</button>
             <button 
                 className='projectQuestions_button'

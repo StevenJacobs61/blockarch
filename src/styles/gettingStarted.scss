@@ -8,13 +8,13 @@
     &topContainer{
         width: 100%;
         @include flexCol();
-        background: $baseL;
+        background: linear-gradient(to bottom, $base, $baseL);
         padding: 0 0 2rem;
     }
     &contentContainer{
         width: 100%;
         @include flexCol();
-        background: linear-gradient(to bottom, $offWhite, $gray);
+        background: $baseL;
     }
     &hdr{
         font-size: 2rem;

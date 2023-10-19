@@ -1,10 +1,25 @@
 export const userQuestions = [
     {
+        title: 'What is your name?',
+        input: [
+            {
+                title: 'first name',
+                field: 'firstName',
+                type: 'text'
+            },
+            {
+                title: 'last name',
+                field: 'lastName',
+                type: 'text'
+            }
+        ]
+    },
+    {
         title: 'Create a free account',
         input: [
             {
                 title: 'email address',
-                field: 'email_address',
+                field: 'emailAddress',
                 type: 'email'
             },
             {
@@ -15,29 +30,13 @@ export const userQuestions = [
         ]
     },
     {
-        title: 'What is your name?',
-        input: [
-            {
-                title: 'first name',
-                field: 'first_name',
-                type: 'text'
-            },
-            {
-                title: 'last name',
-                field: 'last_name',
-                type: 'text'
-            }
-        ]
-    },
-    {
         title: 'What is your phone number?',
         input: [
             {
                 title: 'phone number',
-                field: 'phone_number',
+                field: 'phoneNumber',
                 type: 'number'
             },
-
         ]
     },
     {
@@ -45,10 +44,9 @@ export const userQuestions = [
         input: [
             {
                 title: 'account type',
-                field: 'account_type',
+                field: 'accountType',
                 type: 'text'
             },
-
         ]
     },
     {
@@ -56,7 +54,7 @@ export const userQuestions = [
         input: [
             {
                 title: 'job role',
-                field: 'job_role',
+                field: 'jobRole',
                 type: 'text'
             }
         ]
@@ -66,7 +64,7 @@ export const userQuestions = [
         input: [
             {
                 title: 'company name',
-                field: 'company_name',
+                field: 'companyName',
                 type: 'text'
             }
         ]
@@ -76,7 +74,7 @@ export const userQuestions = [
         input: [
             {
                 title: 'company size',
-                field: 'company_size',
+                field: 'companySize',
                 type: 'number'
             }
         ]

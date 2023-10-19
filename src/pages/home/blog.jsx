@@ -3,7 +3,7 @@ import '../../styles/blog.scss'
 import Img from '../../img/ai-arch.jpg'
 import Separator from '../../components/separator'
 import AudioCard from '../../components/home/blog/audioCard'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ReactComponent as Arrow } from '../../svg/arrow.svg'
 import { ReactComponent as RadioChecked } from '../../svg/radio-checked.svg'
 import { ReactComponent as RadioUnchecked } from '../../svg/radio-unchecked.svg'
@@ -107,8 +107,31 @@ const Blog = () => {
     } 
     setActiveIndex(newIndex);
   }
-  console.log(data.length);
-  console.log(activeIndex);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [displayLength, setDisplayLength] = useState(
+    screenWidth < 769 ? data.length 
+    : screenWidth >=769 && screenWidth < 1024 ? Math.ceil(data.length / 2) 
+    : 
+    // screenWidth >= 1024 ?
+     Math.ceil(data.length / 3)
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+      setDisplayLength(()=>window.innerWidth < 769 ? data.length 
+        : window.innerWidth >=769 && window.innerWidth < 1024 ? Math.ceil(data.length / 2) 
+        : 
+        // screenWidth >= 1024 ?)
+        Math.ceil(data.length / 3))
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+console.log(screenWidth);
+console.log(displayLength);
   return (
     <div className='blog_container'>
       <h1 className='blog_hdr'
@@ -142,7 +165,7 @@ const Blog = () => {
             onClick={()=>updateIndex(activeIndex - 1)}/>
             </div>
             <div className='blogGrid_radioContainer'>
-              {data.map((item, i)=> 
+              {data.slice(0, displayLength).map((item, i)=> 
               <div key={i} className='blogGrid_radioIconContainer' onClick={()=>setActiveIndex(i)}>
                 {i === activeIndex ? <RadioChecked width='100%' height='100%'/> : <RadioUnchecked width='100%' height='100%'/>}
               </div>

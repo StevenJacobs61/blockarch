@@ -3,21 +3,11 @@ import '../../styles/userQuestions.scss'
 import { add, getById, getUserByEmail } from '../../functions/userAPI';
 import { userQuestions } from '../../data/userQuestions';
 
-const UserQuestionsComp = () => {
+const UserQuestionsComp = ({setBlock}) => {
     const [buttonText, setButtonText] = useState('Submit');
     const [qIndex, setQIndex] = useState(0);
   
-    const [user, setUser] = useState({
-      first_name: null,
-      last_name: null,
-      email_address: null,
-      password: null,
-      phone_number: null,
-      account_type: null,
-      company_name: null,
-      job_role: null,
-      company_size: null
-    })
+    const [user, setUser] = useState({});
   
     const handleSubmit = async () => {
       setButtonText("Sending")
@@ -28,24 +18,21 @@ const UserQuestionsComp = () => {
         // const responseUser = await updateUser({company_size: 1000}, response.id)
         // const responsedel = await deleteUserById(response.id)
         setButtonText('Success');
+
+        console.log(response);
+        console.log(response.data);
         localStorage.setItem('user', JSON.stringify(response.data));
-        setUser({
-          first_name: null,
-          last_name: null,
-          email_address: null,
-          password: null,
-          phone_number: null,
-          account_type: null,
-          company_name: null,
-          job_role: null,
-          company_size: null
-        })
+        localStorage.setItem('block', 1)
+        setBlock(1)
+        setUser({});
       } catch (error) {
         setButtonText('Error')
       }
       setButtonText('Submit')
     };
-
+    const handleIndex = () => {
+      setQIndex((prev)=> prev === userQuestions.length - 1 ? 0 : prev+1);
+    }
   return (
     <div className='userQuestions_container'>
     <h1>User Questions</h1>
@@ -58,7 +45,7 @@ const UserQuestionsComp = () => {
       </div>
       )}
     </div>
-    <button className='userQuestions_button' onClick={()=>setQIndex((prev)=> prev === userQuestions.length - 1 ? 0 : prev+1)}>Next</button>
+    <button className='userQuestions_button' onClick={()=>handleIndex()}>Next</button>
     <button className='userQuestions_button' onClick={()=>handleSubmit()}>{buttonText}</button>
   </div>
   )
