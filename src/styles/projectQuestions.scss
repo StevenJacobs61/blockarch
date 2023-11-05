@@ -3,28 +3,17 @@
 .projectQuestions_{
     &container{
         @include flexCol;
-    }
-    &button{
-        margin: 1rem;
-        background: $white;
-        border: 1px solid;
-        padding: 0.7rem;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-    &questionsContainer{
-        @include flexCol();
-    }
-    &questionsTitle{
-        margin: 1rem 0;
-        font-weight: 400;
+        overflow: visible;
     }
     &inputContainer{
         @include flexCol();
+        overflow: visible;
     }
-    &checkbox{
-        margin: 0.5rem 0 1rem;
-    }
-    &label{
+    &questionsContainer{
+        width: 75vw;
+        padding: 1rem 2rem 1rem;
+        @include flexCol();
+        justify-content: flex-start;
+        // margin-top: -1rem;
     }
 }

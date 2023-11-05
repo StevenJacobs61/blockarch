@@ -10,6 +10,8 @@ import About from './pages/home/about.jsx'
 import Blog from './pages/home/blog.jsx'
 import {theme} from './styles/themes'
 import Test from './pages/test';
+import Login from './components/questions/login';
+import Apps from './pages/apps/apps';
 
 
 const router = createBrowserRouter(
@@ -22,9 +24,10 @@ const router = createBrowserRouter(
     </Route>
     <Route path='/questions' element={<QuestionsLayout/>}>
       <Route index element={<Questions/>}/>
+      <Route path='/questions/login' element={<Login/>}/>
     </Route>
     <Route path='/apps' element={<AppsLayout/>}>
-      <Route index element={<Questions/>}/>
+      <Route index element={<Apps/>}/>
     </Route>
     <Route path='/test' element={<Test/>}/>
     </>

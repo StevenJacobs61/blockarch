@@ -55,3 +55,12 @@ $textShadow: 0 0 0.2px $base;
     // }
 
 }
+.fadeEffect{
+   opacity: 1;
+   transition: all 0.2s ease-in-out; 
+//    transform: translateY(0);
+}
+.fadeEffect.hidden{
+    opacity: 0;
+    // transform: translateY(100%);
+}

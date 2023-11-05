@@ -4,28 +4,205 @@
     &container{
         @include flexCol();
     }
-    &button{
-        margin: 1rem;
-        background: $white;
-        border: 1px solid;
-        padding: 0.7rem;
+    &questionsContainer{
+        width: 80vw;
+        padding: 1.5rem 2rem;
+        background: $lGray;
+        @include flexCol();
+    }
+    &progressContainer{
+        margin: 2rem 0 2rem;
+    }
+    &progressBar{
+        gap: 0.5rem;
+        width: 70vw;
+        height: 15px;
+        @include flex;
+        // gap: 0.2rem;
+        // background: #02e044;
+    }
+    &progressBarSection{
+        width: 100%;
+        height: 100%;
+        border: 1px solid #04d844;
+        cursor: pointer;
+        &:hover{
+            border: 1px solid #03b539;
+        }
+    }
+    &textInput{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
+        border-bottom: 1px solid $base;
         border-radius: 3px;
+        padding: 0.2rem;
+        margin: 0 0 1rem;
+        &:focus{
+        border-bottom: 1px solid;
+         -webkit-appearance: none;
+         -moz-appearance: none;
+         outline: none;
+        }
+    }
+    &topContainer{
+        width: 100%;
+        @include flex();
+        justify-content: flex-start;
+        gap: 0.8rem;
+        margin: 0 0 1rem;
+    }
+    &arrowContainer{
+        width: 28px;
+        height: inherit;
+        fill: $base;
         cursor: pointer;
     }
-    &questionsContainer{
-        @include flexCol();
+    &back{
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: gray;
+        margin-top: 0.5rem;
+        cursor: pointer;
+        text-transform: capitalize;
+        // color: $base;
     }
-    &inputContainer{
-        @include flexCol();
-        margin: 0 0 0.5rem;
-    }
-    &question{
-        text-align: center;
+    &questionsTitle{
+        margin: 1rem 0 2rem;
         font-weight: 400;
-        margin: 1rem 0;
+    }
+    &hdr{
+        font-size: 2rem;
+        width: 80%;
+        margin: 0.2rem 0 0.5rem;
+        overflow: visible;
     }
     &label{
+        font-size: 1.5rem;
+        margin: 0.7rem 0 0.5rem;
         text-transform: capitalize;
-        margin: 0.5rem 0;
+    }
+    &checkbox {
+        margin: 0.5rem 0 1rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: 1px solid;
+        width: 25px;
+        height: 25px;
+        position: relative;
+        vertical-align: middle;
+        display: inline-block;
+        overflow: visible;
+        cursor: pointer;
+        background: $offWhite;
+      
+        &::before {
+          content: '\2713';
+          position: absolute;
+          font-size: 50px;
+          line-height: 25px;
+          transform: scale(0);
+          transition: transform 0.3s ease; /* Add a transition for smooth animation */
+        }
+      
+        &:checked::before {
+          transform: scale(1);
+         color: #03b539;
+        }
+      }
+      &changeContainer{
+        @include flexCenR();
+        gap: 1rem;
+        margin: 2rem 0 0.5rem;
+        width: 80%;
+    }
+    &buttonChange{
+        background: $base;
+        color: $white;
+        border: 1px solid $base;
+        padding: 0.5rem 0.7rem;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 100%;
+        font-weight: 700;
+        transition: all 0.2s;
+        &:hover{
+            background: $white;
+            color: $base;
+            border: 1px solid $base;
+        }
+    }
+    &buttonSubmit{
+        width: 82%;
+        font-weight: 700;
+        margin: 1rem;
+        font-size: 1.2rem;
+        background: $white;
+        color: $baseD;
+        border: 1px solid;
+        padding: 0.5rem 0.7rem;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover{
+            background: $base;
+            color: $white;
+            border: 1px solid $base;
+        }
+    }
+    // Login page
+    &loginContainer{
+        @include flexCol();
+    }
+    &loginTitle{
+        font-size: 2.5rem;
+        text-align: center;
+        margin: 1rem 0;
+        color: $gray;
+    }
+    &alertMessage{
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0 1rem 0.5rem;
+        color: $baseD;
+    }
+    &loginHdr{
+        font-size: 2rem;
+        text-align: center;
+        margin: 1rem 0 1.5rem;
+    }
+    &createAccount{
+        margin: 1rem 1rem 0.5rem;
+        cursor: pointer;
+        transition: color 0.15s;
+        width: 80%;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        &:hover{
+            color: $base;
+        }
+    }
+    &btnContainer{
+        margin: 0.5rem 0 0;
+    }
+    &buttonLogin{
+        width: 82%;
+        font-weight: 700;
+        margin: 1rem;
+        font-size: 1.2rem;
+        background: $base;
+        color: $white;
+        padding: 0.5rem 0.7rem;
+        border-radius: 3px;
+        border: 1px solid $base;
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover{
+            background: $white;
+            color: $baseD;
+            border: 1px solid;
+        }
     }
 }

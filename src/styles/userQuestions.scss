@@ -5,6 +5,14 @@
         @include flexCol();
         margin: 0 0 2rem;
     }
+    &hdr{
+        margin: 0 0 1rem;
+    }
+    &subtext{
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin: 0.5rem 0;
+    }
     &button{
         margin: 1rem;
         background: $white;
@@ -19,6 +27,7 @@
     &inputContainer{
         @include flexCol();
         margin: 0 0 0.5rem;
+        overflow: visible;
     }
     &question{
         text-align: center;
@@ -28,5 +37,17 @@
     &label{
         text-transform: capitalize;
         margin: 0.5rem 0;
+    }
+    &login{
+        margin: 0 0 1rem;
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-align: center;
+        color: $offBlack;
+        transition: all 0.2s;
+        cursor: pointer;
+        &:hover{
+            color: $baseD;
+        }
     }
 }

@@ -1,0 +1,24 @@
+@import './variables.scss';
+
+.questionsBar_{
+    &container{
+        width: 100%;
+        height: fit-content;
+        background: $white;
+        position: fixed;
+        z-index: 999;
+        @include flexCenR();
+    }
+    &logoContainer{
+        width: 150px;
+        height: inherit;
+        margin: 0.5rem 1rem;
+        fill: $base;
+        transition: all 0.2s;
+        cursor: pointer;
+        &:hover{
+            fill: $black;
+            transform: scale(1.01);
+        }
+    }
+}

@@ -1,13 +1,11 @@
 import '../../styles/projectQuestions.scss'
 import {projectQuestions} from '../../data/projectQuestions'
-import { useState } from 'react'
-import { add, getById } from '../../functions/userAPI';
-import axios from 'axios';
+import { useEffect, useState } from 'react'
+import { add, updateById } from '../../functions/userAPI';
+import { ReactComponent as Arrow } from '../../svg/arrow-back.svg';
 
 const ProjectQuestions = ({setBlock, block}) => {
 
-    const [qIndex, setQIndex] = useState(0);
-    const endpoint = projectQuestions[qIndex].endpoint;
     function initializeUserProjectFields(questions) {
         return questions
           .filter((question) => question.endpoint === 'user-project')
@@ -16,229 +14,189 @@ const ProjectQuestions = ({setBlock, block}) => {
             return obj;
           }, {});
       }
-    const [userProject, setUserProject] = useState(initializeUserProjectFields(projectQuestions))
-    const [dltSolutionPurpose, setDltSolutionPurpose] = useState({});
-    const [dltValue, setDltValue] = useState('')
+    
+    const [qIndex, setQIndex] = useState(0);
+    const [userProject, setUserProject] = useState(initializeUserProjectFields(projectQuestions));
+    const [userProjectPurpose, setUserProjectPurpose] = useState({});
+    const [purposeValue, setPurposeValue] = useState('');
     const [userProjectLanguages, setUserProjectLanguages] = useState({});
-    const [languagesValue, setLanguagesValue] = useState('')
+    const [languagesValue, setLanguagesValue] = useState('');
     const [userProjectIndustry, setUserProjectIndustry] = useState({});
-    const [industryValue, setIndustryValue] = useState('')
+    const [industryValue, setIndustryValue] = useState('');
     const [userProjectNetworkParticipants, setUserProjectNetworkParticipants] = useState({});
-    const [networkValue, setNetworkValue] = useState('')
+    const [networkValue, setNetworkValue] = useState('');
+    const [user, setUser] = useState({});
 
-
-    // This function is not saving the value as a boolean for true and I have no idea why!!!! grrr
-    const handleUserProject = (e) => {
-        e.preventDefault()
-        if(e.target.value === 'true'){
-            setUserProject((prev) => ({...prev, [projectQuestions[qIndex].field]: true}))
-        } else if (e.target.value === 'false'){
-            setUserProject((prev) => ({...prev, [projectQuestions[qIndex].field]: false}))
-        } else{
-            setUserProject((prev) => ({...prev, [projectQuestions[qIndex].field]: e.target.value}))
+    useEffect(()=>{
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(user){
+            setUserProject((prev) => ({...prev, user:user}));
         }
-    }
+    }, [])
 
+    const handleIndex = (direction) =>{
+        if(direction === 1){
+            setQIndex((prev)=> prev === projectQuestions.length - 1 ? 0 : prev+1);
+        }else if(direction === 0){
+            setQIndex((prev)=> prev === 0 ? projectQuestions.length - 1 : prev-1);
+        }
+        setBlock(projectQuestions[qIndex].block);
+    }
+   
     const handleChecked = (e) => {
-        const selectedValue = e.target.value;
-        const answersArray = projectQuestions[qIndex].answers;
-        const result = answersArray.reduce((obj, value) => {
-          obj[value] = false;
-          return obj;
-        }, {});
-        
-        result[selectedValue] = true;
-        
-         if(endpoint === 'user-project-network-participants'){
+    const selectedValue = e.target.value;
+    const answersArray = projectQuestions[qIndex].entries;
+    const result = answersArray.reduce((obj, value) => {
+        obj[value] = false;
+        return obj;
+    }, {});
+    result[selectedValue] = true;
+
+    switch (projectQuestions[qIndex].endpoint) {
+        case 'user-project-network-participants':
             setUserProjectNetworkParticipants(result);
-            setNetworkValue(selectedValue);          
-         };
-         if(endpoint === 'user-project-industry'){
+            setNetworkValue(selectedValue);
+            break;
+        case 'user-project-industry':
             setUserProjectIndustry(result);
             setIndustryValue(selectedValue);
-         };
-         if(endpoint === 'dlt-solution-purpose'){
-            setDltSolutionPurpose(result);
-            setDltValue(selectedValue);
-         };
-         if(endpoint === 'user-project-languages'){
+            break;
+        case 'user-project-purpose':
+            setUserProjectPurpose(result);
+            setPurposeValue(selectedValue);
+            break;
+        case 'user-project-languages':
             setUserProjectLanguages(result);
             setLanguagesValue(selectedValue);
-         };
-         if(endpoint === 'user-project'){
-            setUserProject((prev)=> ({...prev, [projectQuestions[qIndex].field]:e.target.value}))
-         }
+            break;
+        case 'user-project':
+            setUserProject((prev) => ({ ...prev, [projectQuestions[qIndex].field]: selectedValue }));
+            break;
+        default:
+            break;
     }
-    const isChecked = (ans) => {
-        const endpoint = projectQuestions[qIndex].endpoint;
-        if(endpoint === 'user-project-network-participants'){
-            if(userProjectNetworkParticipants[ans] === true){
-                return true
-            } else {
-                return false
-            }
-        }
-        if(endpoint === 'user-project-languages'){
-            if(userProjectLanguages[ans] === true){
-                return true
-            } else {
-                return false
-            }
-        }
-        if(endpoint === 'user-project-industry'){
-            if(userProjectIndustry[ans] === true){
-                return true
-            } else {
-                return false
-            }
-        }
-    }
-    const handleGet = async () => {
+};
+
+    const handleSubmit = async () => {
+        let userProjectId = null;
+        
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_BASE_URL}/user-project`)
-            console.log(response.data);
+            const addRes = await add(userProject, '/user-project');
+            userProjectId = addRes.data.id;
         } catch (error) {
             console.error(error)
         }
-    }
 
-    const handleSumbit = async () => {
-        // const user = JSON.parse(localStorage.getItem('user'));
-        // const userProjectPlusId = {
-        //     ...userProject,
-        //     user_id: user.id
-        // } 
-        // const data = {
-        //     id: 3,
-        //     version: null,
-        //     project_name: null,
-        //     outsourced_build: null,
-        //     budget_currency: null,
-        //     budget_amount: null,
-        //     generalist_specialist: null,
-        //     transactions_per_month: null,
-        //     transactions_per_second: null,
-        //     transaction_size: null,
-        //     invite_only_access: null,
-        //     identity_mandatory: null,
-        //     solution_controller_participant_view: null,
-        //     operate_in_regulatory_environment: null,
-        //     meet_legal_requirements: null,
-        //     require_physical_devices: null,
-        //     esg_relevant: null,
-        //     // user_id: 1,
-        //     industry_usage: null,
-        //     network_participants: null,
-        //     development_languages: null
-        //   }
-        
-        
         try{
-            // const userRes = await getById(2, '/user');
-            // const data = {
-            //     // "id": 1,
-            //     "version": 2,
-            //     "projectName": "Project Test2",
-            //     "outsourcedBuild": true,
-            //     "budgetCurrency": "USD",
-            //     "budgetAmount": 100000,
-            //     "transactionsPerMonth": 100,
-            //     "transactionsPerSecond": 10,
-            //     "transactionSize": 1024,
-            //     "inviteOnlyAccess": true,
-            //     "identityMandatory": false,
-            //     "solutionControllerParticipantView": true,
-            //     "operateInRegulatoryEnvironment": true,
-            //     "meetLegalRequirements": false,
-            //     "requirePhysicalDevices": true,
-            //     "user": null,
-            //     "industryUsage": null,
-            //     "networkParticipants": null,
-            //     "developmentLanguages": null,
-            //     "purpose" : null
-            // }
-            const addRes = await add(userProject, '/user-project');
-            localStorage.setItem('block', projectQuestions[qIndex].block);
-            console.log(localStorage.getItem('block'));
-            console.log(addRes);
+            const languageRes = await add({...userProjectLanguages, userProjectId}, '/user-project-languages');
+            const industryRes = await add({...userProjectIndustry, userProjectId}, '/user-project-industry');
+            const participantsRes = await add({...userProjectNetworkParticipants, userProjectId}, '/user-project-network-participants');
+            const purposeRes = await add({...userProjectPurpose, userProjectId}, '/user-project-purpose');
+
+            let newData = {
+                developmentLanguages: languageRes.data,
+                industryUsage: industryRes.data,
+                networkParticipants:participantsRes.data,
+                purpose: purposeRes.data
+            }
+
+            const projectRes = await updateById(newData, '/user-project', userProjectId);
+            console.log(projectRes.data);
         }catch(error){
             console.error(error)
         }
     }
-    console.log('user-project: ', userProject);
-    // console.log('user-project-network-participants: ', userProjectNetworkParticipants);
-    // console.log('user-project-industry: ', userProjectIndustry);
-    // console.log('dlt-solution-purpose: ', dltSolutionPurpose);
-    // console.log('user-project-langauges ', userProjectLanguages);
-    // console.log(userProject[projectQuestions[qIndex].field]);
 
-    const handleIndex = () =>{
-        setQIndex((prev)=> prev === projectQuestions.length - 1 ? 0 : prev+1);
-        setBlock(projectQuestions[qIndex].block);
-        console.log(projectQuestions[qIndex].block);
-        console.log(projectQuestions[qIndex]);
-        // console.log(block);
-    }
+    console.log('user-project: ', userProject);
+    console.log('user-project-network-participants: ', userProjectNetworkParticipants);
+    console.log('user-project-industry: ', userProjectIndustry);
+    console.log('user-project-purpose: ', userProjectPurpose);
+    console.log('user-project-langauges ', userProjectLanguages);
 
   return (
-    <div className='projectQuestions_container'>
-        <h1 className='projectQuestions_hdr'>Project Questions</h1>
+    <div className='questions_container'>
+        <div className="questions_topContainer">
+        <div className="questions_arrowContainer" onClick={()=>handleIndex(0)}>
+        <Arrow width='100%' height='100%'/>
+        </div>
+        <h3 className='questions_back' onClick={()=>handleIndex(0)}>Back</h3>
+      </div>
+        <h1 className='questions_hdr'>{projectQuestions[qIndex].title}</h1>
         <div className='projectQuestions_questionsContainer'>
-            <h2 className='projectQuestions_questionsTitle'>
-                {projectQuestions[qIndex].title}
+            {projectQuestions[qIndex].subtext ?
+            <h2 className='questions_questionsTitle'>
+                {projectQuestions[qIndex].subtext}
             </h2>
-            {projectQuestions[qIndex].type === 'text' ? 
+            : null
+            }
+            {projectQuestions[qIndex].type === 'text' || projectQuestions[qIndex].type === 'number' ? 
             <input 
-                type='text' 
-                onChange={(e)=>handleUserProject(e)}
+                type={projectQuestions[qIndex].type} 
+                className='questions_textInput'
+                onChange={(e) => {
+                    const value = projectQuestions[qIndex].type === 'number' ? parseInt(e.target.value, 10) : e.target.value;
+                    setUserProject((prev) => ({
+                      ...prev,
+                      [projectQuestions[qIndex].field]: value
+                    }));
+                  }}
                 value={userProject[projectQuestions[qIndex].field] || ''}/>
-            : projectQuestions[qIndex].type === 'radio' ? projectQuestions[qIndex].answers.map((ans, i) => 
-            <div className='projectQuestions_inputContainer' key={i}>
-            <label className='projectQuestions_label'>{ans}
+            : projectQuestions[qIndex].type === 'radio' ? projectQuestions[qIndex].answers.map((ans, i) => {
+                let val = projectQuestions[qIndex].entries[i];
+            
+    return <div className='projectQuestions_inputContainer' key={i}>
+            <label className='questions_label' htmlFor={`answer-${qIndex}`}>{ans}
             </label>
             <input 
                 type='radio' 
                 name={`answer-${qIndex}`} 
-                className='projectQuestions_checkbox' 
-                value={ans} 
-                onChange={(e)=>handleChecked(e)}
+                className='questions_checkbox' 
+                value={val} 
+                onChange={(e)=> handleChecked(e)}
                 checked={
-                    endpoint === 'user-project-network-participants' ? ans === networkValue :
-                    endpoint === 'user-project-industry' ? ans === industryValue :
-                    endpoint === 'dlt-solution-purpose' ? ans === dltValue :
-                    endpoint === 'user-project' ? userProject[projectQuestions[qIndex].field] === ans :
+                    projectQuestions[qIndex].endpoint === 'user-project-network-participants' ? val === networkValue :
+                    projectQuestions[qIndex].endpoint === 'user-project-industry' ? val === industryValue :
+                    projectQuestions[qIndex].endpoint === 'user-project-purpose' ? val === purposeValue :
+                    projectQuestions[qIndex].endpoint === 'user-project-languages' ? val === languagesValue :
+                    projectQuestions[qIndex].endpoint === 'user-project' ? userProject[projectQuestions[qIndex].field] === val :
                     false
                 }/>
-            </div>) 
+            </div>}) 
             : 
             <div className="projectQuestions_container">
-                <label>Yes</label>
+                <label className='questions_label'>Yes</label>
                 <input 
                     type='radio'
                     name={`answer-${qIndex}`}
-                    className='projectQuestions_checkbox'
+                    className='questions_checkbox'
                     value={true}
-                    onChange={(e)=>handleChecked(e)}
-                    checked={userProject[projectQuestions[qIndex].field] === 'true'}/>
-                <label>No</label>
+                    onChange={()=>setUserProject((prev) => ({ ...prev, [projectQuestions[qIndex].field]: true }))}
+                    checked={userProject[projectQuestions[qIndex].field] === true ? true : false}/>
+                <label className='questions_label'>No</label>
                 <input 
                     type='radio'
                     name={`answer-${qIndex}`}
-                    className='projectQuestions_checkbox'
+                    className='questions_checkbox'
                     value={false}
-                    onChange={(e)=>handleUserProject(e)}
-                    checked={userProject[projectQuestions[qIndex].field] === false}/>
+                    onChange={()=>setUserProject((prev) => ({ ...prev, [projectQuestions[qIndex].field]: false }))}
+                    checked={userProject[projectQuestions[qIndex].field] === false ? true : false}/>
             </div>
         }
+        <div className="questions_changeContainer">
             <button 
-                className='projectQuestions_button' 
-                onClick={()=>handleIndex()}
-                >Next</button>
+                className='questions_buttonChange' 
+                onClick={()=>handleIndex(1)}>
+                Next
+            </button>
+
+        </div>
+        {Object.values(userProject).every(value => value !== null) &&
             <button 
-                className='projectQuestions_button'
-                onClick={()=>handleSumbit()}
-                // onClick={()=>handleGet()}
-                >Submit</button>
+                className='questions_buttonSubmit'
+                onClick={()=>handleSubmit()}>
+                Submit
+            </button>
+        }
         </div>
     </div>
   )

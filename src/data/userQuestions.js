@@ -1,5 +1,25 @@
 export const userQuestions = [
     {
+        title: 'Email and Password',
+        input: [
+            {
+                title: 'email address',
+                field: 'emailAddress',
+                type: 'email'
+            },
+            {
+                title: 'password',
+                field: 'password',
+                type: 'text'
+            },
+            {
+                title: 'Confirm Password',
+                field: 'password',
+                type: 'text'
+            }
+        ]
+    },
+    {
         title: 'What is your name?',
         input: [
             {
@@ -10,21 +30,6 @@ export const userQuestions = [
             {
                 title: 'last name',
                 field: 'lastName',
-                type: 'text'
-            }
-        ]
-    },
-    {
-        title: 'Create a free account',
-        input: [
-            {
-                title: 'email address',
-                field: 'emailAddress',
-                type: 'email'
-            },
-            {
-                title: 'password',
-                field: 'password',
                 type: 'text'
             }
         ]
@@ -41,6 +46,7 @@ export const userQuestions = [
     },
     {
         title: 'What is your account type?',
+        subtext: 'Personal, Professional, Corporate etc',
         input: [
             {
                 title: 'account type',
@@ -51,6 +57,7 @@ export const userQuestions = [
     },
     {
         title: 'What is your job role?',
+        // subtext: '...Developer, CEO, CTO, Tech Lead etc',
         input: [
             {
                 title: 'job role',
