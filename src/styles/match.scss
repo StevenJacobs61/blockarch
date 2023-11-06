@@ -1,0 +1,78 @@
+@import './variables.scss';
+
+.match_{
+    &container{
+        width: 180px;
+        height: 100px;
+        background: $lGray;
+        @include flexCol();
+        padding: 0.5rem 0.5rem 0.8rem;
+        overflow: hidden;
+        border-top: 3px solid $baseD;
+
+    }
+    &topContainer{
+        @include flex();
+        width: 90%;
+        height: 80%;
+        overflow: hidden
+
+    }
+    &left{
+        width: 40%;
+        @include flexCenR();
+        overflow: hidden
+
+    }
+    &logoContainer{
+        width: 60px;
+        height: 60px;
+        @include flexCenR();
+        overflow: hidden;
+    }
+    &right{
+        width: 60%;
+        @include flexCol();
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        height: 80%;
+        overflow: hidden
+
+
+    }
+    &hdr{
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0.5rem 0;
+        overflow: hidden
+
+    }
+    &text{
+        font-size: 1rem;
+        overflow: hidden
+
+    }
+    &bottomContainer{
+        width: 100%;
+        @include flexCenR();
+        padding: 0.5rem;
+        overflow: hidden
+    }
+    &button{
+        padding: 0.2rem 0.3rem;
+        font-size: 1.1rem;
+        width: 70%;
+        font-weight: 600;
+        text-transform: capitalize;
+        color: $white;
+        background: $base;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        cursor: pointer;
+        &:hover{
+            color: $base;
+            background: none;
+        }
+    }
+}

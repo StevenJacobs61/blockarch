@@ -1,0 +1,11 @@
+@import './variables.scss';
+
+.resultComp_{
+    &container{
+        border: 1px solid;
+        @include flexCol();
+        margin: 1rem 0;
+        width: 100%;
+    }
+}
+

@@ -12,6 +12,7 @@ import {theme} from './styles/themes'
 import Test from './pages/test';
 import Login from './components/questions/login';
 import Apps from './pages/apps/apps';
+import Result from './pages/apps/result';
 
 
 const router = createBrowserRouter(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
     </Route>
     <Route path='/apps' element={<AppsLayout/>}>
       <Route index element={<Apps/>}/>
+      <Route path='/apps/result' element={<Result/>}/>
     </Route>
     <Route path='/test' element={<Test/>}/>
     </>

@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+.apps_{
+    &container{
+        @include flexCol();
+    }
+    &hdr{
+        font-size: 1.6rem;
+    }
+    &matchesContainer{
+        width: 100%;
+        margin: 1rem 0;
+        @include flexCol();
+        gap: 1rem;
+    }
+}

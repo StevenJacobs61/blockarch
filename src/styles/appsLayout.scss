@@ -1,0 +1,76 @@
+@import './variables.scss';
+
+.appsLayout_{
+    &container{
+        position: relative;
+        transition: all 0.2s ease-out;
+    }
+    &sideBar{
+        transition: all 0.3s ease-in-out;
+        position: absolute;
+        width: 100px;
+        height: 100vh;
+        z-index: 999;
+        padding: 5rem 0.5rem 1rem;
+        // transform: translateX(-100%);
+        background: rgba(255, 255, 255, 0.8);
+        @include flexCol();
+        align-items: flex-start;
+    }
+    &title{
+        font-size: 1.5rem;
+        margin: 0.5rem 0;
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover{
+            color: $base
+        }
+    }
+    &sideBarMatches{
+        margin: 1rem 0;
+        @include flexCol();
+        gap: 0.8rem;
+    }
+    &matchTitle{
+        font-size: 1.2rem;
+        text-decoration:underline $baseD;
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover{
+            text-decoration: none;
+            color: $base
+        }
+    }
+
+}
+
+.appsBar_{
+    &container{
+        @include flex();
+        background: $white;
+    }
+    &wrapper{
+        width: 100%;
+        height: 100%;
+        @include flex();
+    }
+    &sideContainer{
+        width: 30%;
+    }
+    &centralContainer{
+        width: 40%;
+        @include flexCenR();
+    }
+    &hdr{
+        font-size: 1.5rem;
+        padding: 0.2rem 0.8rem;
+        margin: 0 0 0 1rem;
+        border-radius: 2px;
+        cursor: pointer;
+        border: 1px solid $base;
+        width: fit-content;
+        &hover{
+            color: $base;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+@import './variables.scss';
+
+.result_{
+    &container{
+        width: 100%;
+        @include flexCol();
+    }
+    &hdr{
+        text-transform: capitalize;
+        margin: 0.2rem 0 1rem;
+    }
+}
+.resultsComp_{
+    &container{
+        background: $lGray;
+        width: 100%;
+        @include flexCol();
+        padding: 0.8rem;
+        border-radius: 2px;
+
+    }
+    &hdr{
+        font-size: 2rem;
+        color: $gray;
+        font-weight: 300;
+    }
+}

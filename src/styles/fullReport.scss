@@ -1,0 +1,25 @@
+@import './variables.scss';
+
+.fullReport_{
+    &container{
+        padding: 0.8rem;
+        width: 100%;
+        @include flexCol();
+        gap: 0.7rem;
+    }
+    &hdr{
+        font-size: 1.5rem;
+        color: $base;
+    }
+    &contentContainer{
+        border: 1px solid;
+        width: 90%;
+        height: 120px;
+        border-radius: 2px;
+        margin: 0.5rem 0 1rem;
+        padding: 0.5rem;
+    }
+    &text{
+        font-size: 1.1rem;
+    }
+}
