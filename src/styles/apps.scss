@@ -13,4 +13,8 @@
         @include flexCol();
         gap: 1rem;
     }
+    &matchContainer{
+        width: 180px;
+        height: 100px;
+    }
 }

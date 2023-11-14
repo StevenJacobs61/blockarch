@@ -3,6 +3,7 @@
 .questions_{
     &container{
         @include flexCol();
+        gap: 1rem;
     }
     &questionsContainer{
         width: 80vw;
@@ -11,24 +12,7 @@
         @include flexCol();
     }
     &progressContainer{
-        margin: 2rem 0 2rem;
-    }
-    &progressBar{
-        gap: 0.5rem;
-        width: 70vw;
-        height: 15px;
-        @include flex;
-        // gap: 0.2rem;
-        // background: #02e044;
-    }
-    &progressBarSection{
-        width: 100%;
-        height: 100%;
-        border: 1px solid #04d844;
-        cursor: pointer;
-        &:hover{
-            border: 1px solid #03b539;
-        }
+        margin: 1rem 0;
     }
     &textInput{
         -webkit-appearance: none;
@@ -76,6 +60,7 @@
         width: 80%;
         margin: 0.2rem 0 0.5rem;
         overflow: visible;
+        // text-align: center;
     }
     &label{
         font-size: 1.5rem;
@@ -135,7 +120,7 @@
     &buttonSubmit{
         width: 82%;
         font-weight: 700;
-        margin: 1rem;
+        margin: 1rem 0 0;
         font-size: 1.2rem;
         background: $white;
         color: $baseD;
@@ -204,5 +189,9 @@
             color: $baseD;
             border: 1px solid;
         }
+    }
+    &answersContainer{
+        width: 100%;
+        @include flexCenR();
     }
 }

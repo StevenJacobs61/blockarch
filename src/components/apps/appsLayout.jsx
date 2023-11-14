@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AppsBar from '../apps/appsBar'
 import { Outlet, useNavigate } from 'react-router-dom'
 
@@ -7,11 +7,28 @@ const AppsLayout = () => {
   const navigate = useNavigate();
   const [hide, setHide] = useState(true);
 
+
+/* eslint-disable no-restricted-globals */
+  const handleLogout = () => {
+    console.log("Before confirm");
+    if (confirm('Are you sure you wish to logout?')) {
+        localStorage.setItem('user', JSON.stringify({}));
+        navigate('/');
+    }
+}
+/* eslint-enable no-restricted-globals */
+
+useEffect(()=>{
+  if(!localStorage.getItem('user')){
+    navigate('/questions/login')
+  }
+},[window.pathname])
+
   return (
     <div className='appsLayout_container'>
       <div className="appsLayout_sideBar" style={{transform: hide ? "translateX(-100%)" : "", opacity: hide ? '0' : '1'}}>
-        <h1 className='appsLayout_title'>Profile</h1>
-        <h1 className='appsLayout_title'>Logout</h1>
+        <h1 className='appsLayout_title' onClick={()=>navigate('/apps') + setHide(true)}>Profile</h1>
+        <h1 className='appsLayout_title' onClick={()=>handleLogout()}>Logout</h1>
         <div className="appsLayout_sideBarMatches">
           <h2 className='appsLayout_matchTitle'
           onClick={()=>navigate('/apps/result') + setHide(true)}

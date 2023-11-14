@@ -3,8 +3,9 @@ import {projectQuestions} from '../../data/projectQuestions'
 import { useEffect, useState } from 'react'
 import { add, updateById } from '../../functions/userAPI';
 import { ReactComponent as Arrow } from '../../svg/arrow-back.svg';
+import { useNavigate } from 'react-router-dom';
 
-const ProjectQuestions = ({setBlock, block}) => {
+const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
 
     function initializeUserProjectFields(questions) {
         return questions
@@ -15,7 +16,6 @@ const ProjectQuestions = ({setBlock, block}) => {
           }, {});
       }
     
-    const [qIndex, setQIndex] = useState(0);
     const [userProject, setUserProject] = useState(initializeUserProjectFields(projectQuestions));
     const [userProjectPurpose, setUserProjectPurpose] = useState({});
     const [purposeValue, setPurposeValue] = useState('');
@@ -26,23 +26,66 @@ const ProjectQuestions = ({setBlock, block}) => {
     const [userProjectNetworkParticipants, setUserProjectNetworkParticipants] = useState({});
     const [networkValue, setNetworkValue] = useState('');
     const [user, setUser] = useState({});
+    const [showSubmit, setShowSubmit] = useState(false);
+    const navigate = useNavigate();
+
+    const findValue = (obj) => {
+        const selectedValue = Object.keys(obj).find((key) => obj[key])
+        return selectedValue;
+
+    }
 
     useEffect(()=>{
         const user = JSON.parse(localStorage.getItem('user'));
         if(user){
             setUserProject((prev) => ({...prev, user:user}));
         }
+        if(!localStorage.getItem('project')){
+            localStorage.setItem('project', JSON.stringify({...userProject, userProjectIndustry, userProjectLanguages, userProjectNetworkParticipants, userProjectPurpose}))
+            setAnswers({...userProject, userProjectIndustry, userProjectLanguages, userProjectNetworkParticipants, userProjectPurpose});
+        }else{
+            const project = JSON.parse(localStorage.getItem('project'));
+            setUserProjectIndustry({...project.userProjectIndustry});
+            setIndustryValue(findValue({...project.userProjectIndustry}))
+            setUserProjectLanguages({...project.userProjectLanguages});
+            setLanguagesValue(findValue({...project.userProjectLanguages}))
+            setUserProjectNetworkParticipants({...project.userProjectNetworkParticipants});
+            setNetworkValue(findValue({...project.userProjectNetworkParticipants}))
+            setUserProjectPurpose({...project.userProjectPurpose});
+            setPurposeValue(findValue({...project.userProjectPurpose}))
+            delete project.userProjectIndustry;
+            delete project.userProjectLanguages;
+            delete project.userProjectNetworkParticipants;
+            delete project.userProjectPurpose;
+            setUserProject({...project});
+        }
+        if(!localStorage.getItem('qIndex')){
+            localStorage.setItem('qIndex', qIndex);
+        }else{
+            setQIndex(parseInt(localStorage.getItem('qIndex')))
+        }
     }, [])
 
     const handleIndex = (direction) =>{
+        if(Object.values(userProject).every(value => value !== null)){
+            setShowSubmit(true)
+          }
+        setAnswers({...userProject, userProjectIndustry, userProjectLanguages, userProjectNetworkParticipants, userProjectPurpose});
+        localStorage.setItem('project', JSON.stringify({...userProject, userProjectIndustry, userProjectLanguages, userProjectNetworkParticipants, userProjectPurpose}))
+        let newIndex = null;
         if(direction === 1){
-            setQIndex((prev)=> prev === projectQuestions.length - 1 ? 0 : prev+1);
+            newIndex = qIndex === projectQuestions.length - 1 ? 0 : qIndex + 1;
+            localStorage.setItem('qIndex', JSON.stringify(newIndex));
+            setQIndex(newIndex);
         }else if(direction === 0){
-            setQIndex((prev)=> prev === 0 ? projectQuestions.length - 1 : prev-1);
+            newIndex = qIndex ===  0 ? projectQuestions.length - 1 : qIndex - 1;
+            localStorage.setItem('qIndex', JSON.stringify(newIndex));
+            setQIndex(newIndex);
         }
-        setBlock(projectQuestions[qIndex].block);
+        setBlock(projectQuestions[newIndex].block);
+        localStorage.setItem('block', JSON.stringify(projectQuestions[newIndex].block))
     }
-   
+
     const handleChecked = (e) => {
     const selectedValue = e.target.value;
     const answersArray = projectQuestions[qIndex].entries;
@@ -75,6 +118,7 @@ const ProjectQuestions = ({setBlock, block}) => {
         default:
             break;
     }
+    // localStorage.setItem('project', JSON.stringify({...userProject, userProjectIndustry, userProjectLanguages, userProjectNetworkParticipants, userProjectPurpose}));
 };
 
     const handleSubmit = async () => {
@@ -101,17 +145,21 @@ const ProjectQuestions = ({setBlock, block}) => {
             }
 
             const projectRes = await updateById(newData, '/user-project', userProjectId);
-            console.log(projectRes.data);
+            // console.log(projectRes.data);
+            localStorage.setItem('block', 1);
+            localStorage.removeItem('project');
+            localStorage.removeItem('qIndex');
+            navigate('/apps/result')
         }catch(error){
             console.error(error)
         }
     }
 
-    console.log('user-project: ', userProject);
-    console.log('user-project-network-participants: ', userProjectNetworkParticipants);
-    console.log('user-project-industry: ', userProjectIndustry);
-    console.log('user-project-purpose: ', userProjectPurpose);
-    console.log('user-project-langauges ', userProjectLanguages);
+    // console.log('user-project: ', userProject);
+    // console.log('user-project-network-participants: ', userProjectNetworkParticipants);
+    // console.log('user-project-industry: ', userProjectIndustry);
+    // console.log('user-project-purpose: ', userProjectPurpose);
+    // console.log('user-project-langauges ', userProjectLanguages);
 
   return (
     <div className='questions_container'>
@@ -163,7 +211,7 @@ const ProjectQuestions = ({setBlock, block}) => {
                 }/>
             </div>}) 
             : 
-            <div className="projectQuestions_container">
+           ( projectQuestions[qIndex].field !== 'finish' && <div className="projectQuestions_container">
                 <label className='questions_label'>Yes</label>
                 <input 
                     type='radio'
@@ -180,8 +228,15 @@ const ProjectQuestions = ({setBlock, block}) => {
                     value={false}
                     onChange={()=>setUserProject((prev) => ({ ...prev, [projectQuestions[qIndex].field]: false }))}
                     checked={userProject[projectQuestions[qIndex].field] === false ? true : false}/>
-            </div>
+            </div>)
         }
+            {showSubmit &&
+                <button 
+                    className='questions_buttonSubmit'
+                    onClick={()=>handleSubmit()}>
+                    Submit
+                </button>
+            }
         <div className="questions_changeContainer">
             <button 
                 className='questions_buttonChange' 
@@ -190,13 +245,6 @@ const ProjectQuestions = ({setBlock, block}) => {
             </button>
 
         </div>
-        {Object.values(userProject).every(value => value !== null) &&
-            <button 
-                className='questions_buttonSubmit'
-                onClick={()=>handleSubmit()}>
-                Submit
-            </button>
-        }
         </div>
     </div>
   )

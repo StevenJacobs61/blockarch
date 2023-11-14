@@ -10,12 +10,12 @@ export const userQuestions = [
             {
                 title: 'password',
                 field: 'password',
-                type: 'text'
+                type: 'password'
             },
             {
                 title: 'Confirm Password',
-                field: 'password',
-                type: 'text'
+                field: 'confirmPassword',
+                type: 'password'
             }
         ]
     },
@@ -83,6 +83,16 @@ export const userQuestions = [
                 title: 'company size',
                 field: 'companySize',
                 type: 'number'
+            }
+        ]
+    },
+    {
+        title: 'Submit your answers',
+        input: [
+            {
+                title: null,
+                field: 'finish',
+                type: null
             }
         ]
     }

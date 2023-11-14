@@ -1,25 +1,42 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '../../styles/userQuestions.scss'
 import { add, getUserByEmail } from '../../functions/userAPI';
 import { userQuestions } from '../../data/userQuestions';
 import { ReactComponent as Arrow } from '../../svg/arrow-back.svg';
 import { useNavigate } from 'react-router-dom';
 
-const UserQuestionsComp = ({setBlock, isHidden, setIsHidden}) => {
+const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex, setQIndex}) => {
+
     const navigate = useNavigate();
+    
     const [buttonText, setButtonText] = useState('Submit');
-    const [qIndex, setQIndex] = useState(0);
+    const [alertMessage, setAlertMessage] = useState(null);
     const other = useRef(null);
+    const[showSubmit, setShowSubmit] = useState(false)
+    const [confirmPassword, setConfirmPassword] = useState();
+    const [finish, setFinish] = useState(false)
     const [user, setUser] = useState(()=>{
       const result = {};
      userQuestions.forEach(question => {
       question.input.forEach(inputField => {
-        result[inputField.field] = null
+        if(inputField.field !== 'confirmPassword' && inputField.field !== 'finish'){
+          result[inputField.field] = null
+        }
       })
      })
      return result;
     });
-    const [alertMessage, setAlertMessage] = useState('');
+
+    useEffect(()=>{
+      setAnswers(user)
+    }, [user])
+
+    useEffect(()=>{
+      let localUser = JSON.parse(localStorage.getItem('user'));
+      if(localUser){
+        setUser(localUser);
+      }
+    }, [])
 
     const handleSubmit = async () => {
       setButtonText("Sending")
@@ -27,7 +44,8 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden}) => {
       try {
         const emailRes = await getUserByEmail(user.emailAddress);
         if(emailRes){
-          setAlertMessage('Email Address alreasy in use.')
+          setAlertMessage('Email Address alreasy in use.');
+          setQIndex(0)
           alert = true;
         }
       } catch (error) {
@@ -45,6 +63,7 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden}) => {
           localStorage.setItem('block', 1)
           setBlock(1)
           setUser({});
+          setQIndex(0)
       } catch (error) {
         setButtonText('Error')
       }
@@ -53,26 +72,35 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden}) => {
     };
 
     const handleIndex = (direction) => {
-      setIsHidden(true);
-      localStorage.setItem('user', JSON.stringify(user))
-      setTimeout(()=>{
-        if(direction === 1){
-          setQIndex((prev)=> prev === userQuestions.length - 1 ? 0 : prev+1);
-        }else if(direction === 0){
-          setQIndex((prev)=> prev === 0 ? userQuestions.length - 1 : prev-1);
-        }
-        setIsHidden(false)
-      }, [200])
+      if(finish){
+        setFinish(false)
+      }
+      if(qIndex === 0 && direction === 1 && confirmPassword !== user.password){
+        return setAlertMessage("Confirm password does not match!");
+      }else{
+        setAlertMessage(null)
+      }
+      if(Object.values(user).every(value => value !== null)){
+        setShowSubmit(true)
+      }
+        setIsHidden(true);
+        localStorage.setItem('user', JSON.stringify(user))
+        setAnswers(user);
+        setTimeout(()=>{
+          if(direction === 1){
+            setQIndex((prev)=> prev === userQuestions.length - 1 ? 0 : prev+1);
+          }else if(direction === 0){
+            setQIndex((prev)=> prev === 0 ? userQuestions.length - 1 : prev-1);
+          }
+          setIsHidden(false)
+        }, [200])
     }
 
     const handleLogin = () => {
       localStorage.setItem('user', JSON.stringify({}));
       navigate('/questions/login');
     }
-    // const handleChecked = (e) => {
-    //   e.preventDefault();
-    //   setUser((prev)=> ({...prev, [userQuestions[qIndex].input[0].field]:e.target.value}));
-    // }
+
     const handleClear = () => {
       other.current.value = '';
     }
@@ -87,7 +115,10 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden}) => {
       </div>
     <h1 className='userQuestions_hdr'>Create a user account</h1>
     {alertMessage ? <h3 className='questions_alertMessage'>{alertMessage}</h3> : null}
+
     <div className='userQuestions_questionsContainer' >
+      {!finish ? 
+      <>
       <h2 className='userQuestions_question'>{userQuestions[qIndex].title}</h2>
       <h3 className='userQuestions_subtext'>{userQuestions[qIndex].subtext}</h3>
       {qIndex === 3 ?
@@ -160,17 +191,36 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden}) => {
       />
       </div>
       </>
-       :
+       : userQuestions[qIndex].title !== 'Submit your answers' ?
       userQuestions[qIndex].input.map((input, i) => 
+
       <div className='userQuestions_inputContainer' key={i}>
       <label className='questions_label'>{input.title}</label>
+      {input.field === 'confirmPassword' ? 
+       <input 
+        type={input.type} 
+        className='questions_textInput' 
+        onChange={(e)=> setConfirmPassword(e.target.value)}
+      /> : 
       <input type={input.type} className='questions_textInput' value={user[input.field] || ''} onChange={(e)=> setUser((prev) => ({...prev, [input.field]:e.target.value}))}/>
+    }
       </div>
-      )}
+      ) : null
+      }
       {qIndex === 0 ?
       <p className='userQuestions_login' onClick={()=> handleLogin()}>Already have an account?<br/> Login here!</p>
     : null}
+    </>: 
+    <h1>finish</h1>
+    }
     </div>
+      {showSubmit &&
+          <button 
+              className='questions_buttonSubmit'
+              onClick={()=>handleSubmit()}>
+              {buttonText}
+          </button>
+      }
     <div className="questions_changeContainer">
             <button 
                 className='questions_buttonChange' 
@@ -179,13 +229,6 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden}) => {
             </button>
 
         </div>
-        {Object.values(user).every(value => value !== null) &&
-            <button 
-                className='questions_buttonSubmit'
-                onClick={()=>handleSubmit()}>
-                {buttonText}
-            </button>
-        }
   </div>
   )
 }
