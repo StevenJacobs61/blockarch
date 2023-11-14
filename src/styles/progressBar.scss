@@ -8,6 +8,7 @@
         @include flex;
         // gap: 0.2rem;
         // background: #02e044;
+        max-width: 250px;
     }
     &section{
         width: 100%;
@@ -16,6 +17,16 @@
         cursor: pointer;
         &:hover{
             border: 1px solid #03b539;
+        }
+    }
+    @media (min-width:480px){
+        &container{
+            width: 250px;
+        }
+    }
+    @media (min-width:769px){
+        &container{
+            width: 230px;
         }
     }
 }

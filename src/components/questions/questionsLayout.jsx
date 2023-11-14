@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import QuestionsBar from './questionsBar'
+import '../../styles/layout.scss'
 
 const QuestionsLayout = () => {
   return (

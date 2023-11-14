@@ -162,7 +162,7 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
     // console.log('user-project-langauges ', userProjectLanguages);
 
   return (
-    <div className='questions_container'>
+    <div className='projectQuestions_container'>
         <div className="questions_topContainer">
         <div className="questions_arrowContainer" onClick={()=>handleIndex(0)}>
         <Arrow width='100%' height='100%'/>

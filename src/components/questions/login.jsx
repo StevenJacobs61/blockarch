@@ -41,7 +41,7 @@ const Login = () => {
   return (
     <div className="questions_loginTitleContainer">
         <h1 className="questions_loginTitle">Login</h1>
-    <div className='questions_questionsContainer'>
+    <div className='questions_loginContainer'>
         <h2 className='questions_loginHdr'>Confirm your<br/>Email & Password</h2>
         <h3 className='questions_alertMessage'>{alertMessage}</h3>
         <label className='questions_label'>Email Address</label>

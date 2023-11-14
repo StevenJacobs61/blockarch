@@ -25,25 +25,29 @@ const Questions = () => {
 
   return (
     <div className='questions_container'>
-      <div className={`questions_questionsContainer ${isHidden ? 'fadeEffect hidden' : 'fadeEffect'}`}>
-        {
-          !block ?
-          <UserQuestionsComp 
-            setBlock={setBlock} 
-            isHidden={isHidden} 
-            setIsHidden={setIsHidden} 
-            setAnswers={setAnswers}
-            qIndex={qIndex}
-            setQIndex={setQIndex}/>
-          :
-          <ProjectQuestions 
-            setBlock={setBlock} 
-            block={block}
-            qIndex={qIndex}
-            setQIndex={setQIndex}
-            setAnswers={setAnswers}/>
-        }
-      </div>
+        <div className="questions_left">
+        <div className={`questions_questionsContainer ${isHidden ? 'fadeEffect hidden' : 'fadeEffect'}`}>
+          {
+            !block ?
+            <UserQuestionsComp
+              setBlock={setBlock}
+              isHidden={isHidden}
+              setIsHidden={setIsHidden}
+              setAnswers={setAnswers}
+              qIndex={qIndex}
+              setQIndex={setQIndex}/>
+            :
+            <ProjectQuestions
+              setBlock={setBlock}
+              block={block}
+              qIndex={qIndex}
+              setQIndex={setQIndex}
+              setAnswers={setAnswers}/>
+          }
+        </div>
+    </div>
+
+      <div className='questions_right'>
       <div className="questions_progressContainer">
         <ProgressBar 
         block={block} 
@@ -59,6 +63,7 @@ const Questions = () => {
             setQIndex={setQIndex}
             block={block}
             setBlock={setBlock}/>
+      </div>
       </div>
     </div>
   )

@@ -17,4 +17,33 @@
         width: 180px;
         height: 100px;
     }
+    @media(min-width: 480px){
+        &matchContainer{
+            width: 200px;
+            height: 130px;
+        }
+        &matchesContainer{
+            gap: 2rem;
+        }
+        &hdr{
+            font-size: 1.8rem;
+            margin: 0 0 1rem;
+        }
+    }
+    @media(min-width:769px){
+        &matchesContainer{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media(min-width:1024px){
+        &matchesContainer{
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    @media(min-width:1200px){
+        &matchesContainer{
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
 }

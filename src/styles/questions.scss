@@ -4,12 +4,14 @@
     &container{
         @include flexCol();
         gap: 1rem;
+        max-width: 300px;
     }
-    &questionsContainer{
+    &questionsContainer, &loginContainer{
         width: 80vw;
         padding: 1.5rem 2rem;
         background: $lGray;
         @include flexCol();
+        max-width: 300px;
     }
     &progressContainer{
         margin: 1rem 0;
@@ -194,4 +196,37 @@
         width: 100%;
         @include flexCenR();
     }
+    &right{
+        width: 100%;
+        @include flexCol();
+    }
+    &left{
+        width: 100%;
+        @include flexCol();
+    }
+    @media (min-width:480px){
+        &container{
+            width: 300px;
+        }
+    }
+    @media (min-width:769px){
+        &left{
+            width: 40%;
+        }
+        &container{
+            @include flexCenR();
+            width: 100%;
+            max-width: 900px;
+            align-items: flex-start;
+            justify-content: center;
+            margin: 2rem 0 0;
+        }
+        &right{
+            width: 35%;
+        }
+        &buttonSubmit{
+            width: 60%;
+        }
+    }
 }
+

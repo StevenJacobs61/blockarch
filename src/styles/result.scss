@@ -24,4 +24,9 @@
         color: $gray;
         font-weight: 300;
     }
+    @media(min-width:480px){
+        &container{
+            width: 70%;
+        }
+    }
 }

@@ -3,17 +3,17 @@
 .projectQuestions_{
     &container{
         @include flexCol;
-        overflow: visible;
+        width: 90%;
+        max-width: 300px
     }
     &inputContainer{
         @include flexCol();
         overflow: visible;
     }
     &questionsContainer{
-        width: 75vw;
         padding: 1rem 2rem 1rem;
         @include flexCol();
         justify-content: flex-start;
-        // margin-top: -1rem;
+        width: 90%;
     }
 }

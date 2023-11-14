@@ -35,6 +35,8 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
       let localUser = JSON.parse(localStorage.getItem('user'));
       if(localUser){
         setUser(localUser);
+      }else{
+        localStorage.setItem('user', JSON.stringify(user));
       }
     }, [])
 

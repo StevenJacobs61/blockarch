@@ -41,6 +41,14 @@
             color: $base
         }
     }
+    @media(min-width:480px){
+        &matchTitle{
+            font-size: 1.8rem;
+        }
+        &title{
+            font-size: 2rem;
+        }
+    }
 }
 
 .appsBar_{
@@ -70,6 +78,11 @@
         width: fit-content;
         &hover{
             color: $base;
+        }
+    }
+    @media(min-width:480px){
+        &hdr{
+            font-size: 2rem;
         }
     }
 }
