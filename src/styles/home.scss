@@ -81,49 +81,27 @@
 .landingPage_{
     &container{
         width: 100vw;
-        // @include flexCol();
-    }
-    &heroContainer{
-        // @include flexCol();
-    }
-    &heroRight{
-        display: none;
-        animation: slideRight 0.5s ease-in-out 1;
     }
     &heroLeft{
         @include flexCol();
     }
     &hdr{
         font-size: 2.7rem;
-        margin: 1rem 0;
+        margin: 2rem 0 1rem 15%;
         font-weight: 500;
-        width: 80%;
-        text-align: center;
+        width: 90%;
+        text-align: left;
         animation: slideTop 0.5s ease-out 1;
         overflow: hidden;
-
     }
     &listContainer{
         margin: 0.5rem 0 1.5rem;
-        width: 65%;
+        width: 75%;
         overflow: visible;
-
     }
     &listItem{
         text-align: left;
         font-size: 1.4rem;
-        &:first-child{
-            transform: translateX(-100%);
-            animation: slideLeft 0.6s ease-in 1 forwards;
-        }
-        &:nth-child(2){
-            transform: translateX(-100%);
-            animation: slideLeft 0.6s ease-in 0.2s 1 forwards;
-        }
-        &:nth-child(3){
-            transform: translateX(-100%);
-            animation: slideLeft 0.6s ease-in 0.4s 1 forwards;
-        }
         &::before{
             content: '✓   ';
             animation: green 1.8s ease-in-out 0.5s 1 forwards;
@@ -137,19 +115,46 @@
         text-align: center;
     }
     &captureContainer{
-        width: 60%;
+        width: 80%;
         @include flex();
         margin: 0.5rem 0 2.5rem;
+        overflow: hidden;
     }
     &captureWrapper{
+        overflow: hidden;
         @include flex();
         justify-content: flex-start;
         width: 100%;
         animation: slideBottom 0.5s ease-in-out 1 forwards;
     }
-    &captureContainerTwo{
+    &heroContainer{
+        @include flex();
+        justify-content: center;
+        position: relative;
         overflow: hidden;
-        display: none;
+        padding: 2rem;
+    }
+    &heroContainer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: url('../img/heroImg.jpg');
+        background-size: cover;
+        background-position: left;
+        background-blend-mode: color-dodge;
+        background-color: rgb(209, 35, 171);
+        animation: color 1.5s 1;
+      }
+    &heroLeft{
+        width: 90%;
+        z-index: 90;
+        height: fit-content;
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 0 10px 1px $lGray;
+        animation: opacity 1s 1 forwards;
     }
 }
 @media(min-width:480px){
@@ -160,51 +165,17 @@
     }
     .landingPage_{
         &heroContainer{
-            @include flex();
             justify-content: flex-start;
-            position: relative;
-            overflow: hidden;
-            padding: 2rem;
-        }
-        &heroContainer::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background-image: url('../img/heroImg.jpg');
-            background-size: cover;
-            background-position: left;
-            background-blend-mode: color-dodge;
-            background-color: rgb(209, 35, 171);
-            animation: color 1.5s 1;
-            // transform: rotate(deg) scale(1);
-            // margin-left: 10%;
-          }
-        // &heroImgContainer{
-        //     width: 100%;
-        //     height: 100%;
-        //     // width: 90%;
-        //     // height: 200px;
-        //     overflow: hidden;
-        // }
-        &heroRight{
-            display: unset;
         }
         &heroLeft{
-            width: 70%;
             margin: 10px 0 15px 30px;
-            z-index: 90;
-            height: fit-content;
-            background: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 0 10px 1px $lGray;
-            animation: opacity 1s 1 forwards;
+            width: 65%;
         }
         &hdr{
             font-size: 3rem;
             font-weight: 600;
             margin: 20px 0 0;
+            width: 80%;
             text-align: left;
             text-shadow: 0 0 5px $white;
             border-radius: 2px;
@@ -216,10 +187,23 @@
         }
         &listItem{
             list-style-type: circle;
-            text-align: left;
             font-size: 1.6rem;
             font-weight: 600;
             text-shadow: 0 0 5px $white;
+            &:first-child{
+                transform: translateX(-100%);
+                animation: slideLeft 0.6s ease-in 1 forwards;
+            }
+            &:nth-child(2){
+                transform: translateX(-100%);
+                animation: slideLeft 0.6s ease-in 0.2s 1 forwards;
+            }
+            &:nth-child(3){
+                transform: translateX(-100%);
+                animation: slideLeft 0.6s ease-in 0.4s 1 forwards;
+            }
+        }
+        &listItem{
         }
         &captureContainer{
             width: 90%;

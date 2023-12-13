@@ -1,7 +1,7 @@
 import '../../styles/projectQuestions.scss'
 import {projectQuestions} from '../../data/projectQuestions'
 import { useEffect, useState } from 'react'
-import { add, updateById } from '../../functions/userAPI';
+import { add, getUserByEmail, updateById } from '../../functions/userAPI';
 import { ReactComponent as Arrow } from '../../svg/arrow-back.svg';
 import { useNavigate } from 'react-router-dom';
 
@@ -123,29 +123,27 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
 
     const handleSubmit = async () => {
         let userProjectId = null;
-        
         try {
-            const addRes = await add(userProject, '/user-project');
+            const userRes = await getUserByEmail(JSON.parse(localStorage.getItem('user')).emailAddress);
+            let project = userProject;
+            project.user = userRes;
+            const addRes = await add(project, '/user-project');
             userProjectId = addRes.data.id;
         } catch (error) {
             console.error(error)
         }
-
         try{
             const languageRes = await add({...userProjectLanguages, userProjectId}, '/user-project-languages');
             const industryRes = await add({...userProjectIndustry, userProjectId}, '/user-project-industry');
             const participantsRes = await add({...userProjectNetworkParticipants, userProjectId}, '/user-project-network-participants');
             const purposeRes = await add({...userProjectPurpose, userProjectId}, '/user-project-purpose');
-
             let newData = {
                 developmentLanguages: languageRes.data,
                 industryUsage: industryRes.data,
                 networkParticipants:participantsRes.data,
                 purpose: purposeRes.data
             }
-
             const projectRes = await updateById(newData, '/user-project', userProjectId);
-            // console.log(projectRes.data);
             localStorage.setItem('block', 1);
             localStorage.removeItem('project');
             localStorage.removeItem('qIndex');
@@ -230,13 +228,13 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
                     checked={userProject[projectQuestions[qIndex].field] === false ? true : false}/>
             </div>)
         }
-            {showSubmit &&
+            {/* {showSubmit && */}
                 <button 
                     className='questions_buttonSubmit'
                     onClick={()=>handleSubmit()}>
                     Submit
                 </button>
-            }
+            {/* } */}
         <div className="questions_changeContainer">
             <button 
                 className='questions_buttonChange' 

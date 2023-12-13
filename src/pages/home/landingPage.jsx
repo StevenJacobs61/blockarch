@@ -4,11 +4,11 @@ import '../../styles/home.scss'
 import Info from "../../components/home/landingPage/info";
 import Separator from "../../components/separator";
 import Perks from "../../components/home/landingPage/perks";
-import Img from '../../img/heroImg.jpg'
 import GettingStarted from "../../components/home/landingPage/gettingStarted";
 import BlogComp from "../../components/home/landingPage/blogComp";
 
 const LandingPage = () => {
+
   return (
     <div className="landingPage_container">
 
@@ -23,36 +23,13 @@ const LandingPage = () => {
             <li className="landingPage_listItem">Reduce Knowledge Gaps</li>
             <li className="landingPage_listItem">Accelerate end-to-end design</li>
           </ul>
-          {/* <h2 className="landingPage_subtext">
-            Our AI Architect tool helps entrepreneurs quickly
-            launch and validate their business ideas.
-          </h2> */}
-          {/* <div className="landingPage_captureContainerTwo">
-            <div className="landingPage_captureWrapper">
-          <Capture/>
-            </div>
-          </div> */}
            <div className="landingPage_captureContainer">
              <div className="landingPage_captureWrapper">
            <Capture/> 
              </div>
            </div>
         </div>
-
-        {/* <div className="landingPage_heroRight"> */}
-          {/* <div className="landingPage_heroImgContainer">
-          <img src={Img} alt="hero"
-           width='100%'
-           height='100%'
-           style={{
-             objectFit: 'cover',
-         }} />
-          </div> */}
-        {/* </div> */}
-
       </div>
-
-      {/* <Separator/> */}
         <div className="home_container">
         <Sequence/>
         </div>

@@ -87,7 +87,7 @@ export const projectQuestions = [
     answers: ['0-1', '1 < x < 2', '2 < x < 5', '5 < x < 20', '20+', 'Not sure'],
     weight: 2,
     field: 'transactionSize',
-    entries: ['0-1', '1<x<2', '2<x<5', '5<x<20', '20+', 'notSure'],
+    entries: [1, 2, 5, 20, 30, 0],
   },
   {
     number: 17,
@@ -122,7 +122,7 @@ export const projectQuestions = [
     answers: ['1-10', '10-100', '100+'],
     weight: 3,
     field: 'transactionsPerSecond',
-    entries: ['1-10', '10-100', '100+'],
+    entries: [10, 100, 1000],
   },
   {
     number: 7,
@@ -133,7 +133,7 @@ export const projectQuestions = [
     answers: ['1-10', '10-100', '100+'],
     weight: 3,
     field: 'transactionsPerMonth',
-    entries: ['1-10', '10-100', '100+'],
+    entries: [10, 100, 1000],
   },
   {
     number: 16,
@@ -202,7 +202,7 @@ export const projectQuestions = [
     answers: ['$0-100', '$100-1000', '$1000+'],
     weight: 2,
     field: 'budgetAmount',
-    entries: ['$0-100', '$100-1000', '$1000+'],
+    entries: [100, 1000, 10000],
   },
   {
     number: 4,

@@ -6,6 +6,7 @@ import { ReactComponent as Menu } from '../../svg/menu.svg';
 import { ReactComponent as Cross } from '../../svg/cross.svg';
 import { ReactComponent as Linkedin } from '../../svg/linkedin.svg';
 import { ReactComponent as Twitter } from '../../svg/twitter.svg';
+import { clearLocalData } from '../../functions/utility';
 
 const HomeBar = () => {
   
@@ -23,6 +24,9 @@ const HomeBar = () => {
       }
     }
     window.addEventListener('resize', handleResize)
+
+    clearLocalData()
+
   },[])
 
   
