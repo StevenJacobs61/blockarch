@@ -10,15 +10,27 @@
         @include flexCenR();
     }
     &logoContainer{
-        width: 150px;
+        width: 170px;
         height: inherit;
-        margin: 0.5rem 1rem;
+        margin: 1rem 0;
         fill: $base;
         transition: all 0.2s;
         cursor: pointer;
         &:hover{
             fill: $black;
             transform: scale(1.01);
+        }
+    }
+    @media(min-width:480px){
+        &logoContainer{
+            margin: 1rem;
+            width: 160px;
+        }
+    }
+    @media(min-width:769px){
+        &logoContainer{
+            margin: 0.5rem;
+            width: 180px;
         }
     }
 }

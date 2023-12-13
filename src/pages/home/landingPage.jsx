@@ -27,48 +27,44 @@ const LandingPage = () => {
             Our AI Architect tool helps entrepreneurs quickly
             launch and validate their business ideas.
           </h2> */}
-          <div className="landingPage_captureContainerTwo">
+          {/* <div className="landingPage_captureContainerTwo">
             <div className="landingPage_captureWrapper">
           <Capture/>
             </div>
-          </div>
+          </div> */}
+           <div className="landingPage_captureContainer">
+             <div className="landingPage_captureWrapper">
+           <Capture/> 
+             </div>
+           </div>
         </div>
 
-        <div className="landingPage_heroRight">
-          <div className="landingPage_heroImgContainer">
+        {/* <div className="landingPage_heroRight"> */}
+          {/* <div className="landingPage_heroImgContainer">
           <img src={Img} alt="hero"
            width='100%'
            height='100%'
            style={{
              objectFit: 'cover',
          }} />
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
       </div>
 
-      <div className="landingPage_captureContainer">
-        <div className="landingPage_captureWrapper">
-      <Capture/> 
-        </div>
-      </div>
-      <Separator/>
+      {/* <Separator/> */}
         <div className="home_container">
         <Sequence/>
         </div>
-      <Separator/>
         <div className="home_container">
           <GettingStarted/>
         </div>
-        <Separator/>
         <div className="home_container">
           <Info/>
         </div>
-        <Separator/>
         <div className="home_container">
           <Perks/>
         </div>
-        <Separator/>
         <div className="home_container">
           <BlogComp/>
         </div>

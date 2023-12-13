@@ -45,8 +45,8 @@ const CardAreaThree = () => {
             </div>
           </div>
           <div className='cardThree_infoContainer'>
-            {data.map((item)=>
-            <div className="cardThree_infoCard">
+            {data.map((item, i)=>
+            <div className="cardThree_infoCard" key={i}>
               <p className='cardThree_infoText'>{item}</p>
             </div>
             )}
@@ -64,8 +64,8 @@ const CardAreaThree = () => {
             </div>
           </div>
           <div className='cardThree_infoGrid'>
-            {gridData.map((item)=>
-            <div className="cardThree_infoGridCard">
+            {gridData.map((item, i)=>
+            <div className="cardThree_infoGridCard" key={i}>
               {item}
             </div>
             )}

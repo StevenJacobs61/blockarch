@@ -5,14 +5,18 @@
         width: 100%;
         @include flexCol();
         gap: 0.5rem;
+        overflow: hidden;
     }
     &label{
         font-weight: 300;
         font-size: 0.8rem;
         text-align: left;
         width: 99%;
+        overflow: hidden;
+        text-shadow: 0 0 5px $white;
         @media(min-width:480px){
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
         @media(min-width:769px){
             font-size: 1.2rem;
@@ -26,6 +30,7 @@
     }
     &inputContainer{
         @include flex();
+        overflow: hidden;
         gap: 0.5rem;
         width: 100%;
         height: 2.3rem;
@@ -42,6 +47,7 @@
     }
     &input{
         width: 100%;
+        overflow: hidden;
         -webkit-appearance: none;
         border: 1.5px solid $lGray;
         border-radius: 3px;

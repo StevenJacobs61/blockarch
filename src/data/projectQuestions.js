@@ -192,6 +192,7 @@ export const projectQuestions = [
     field: 'activelyMaintained',
     entries: [],
   },
+  // Change to binary numbers`
   {
     number: 6,
     block: 6,
