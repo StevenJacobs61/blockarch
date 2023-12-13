@@ -36,7 +36,9 @@
     &text{
         text-align: left;
         width: 90%;
-        margin: 0.5rem 0 0 0.5rem;
+        font-style: italic;
+        text-shadow: 0 0 10px $lGray;
+        margin: 0.5rem 0 0 2rem;
         font-size: 0.8rem;
         font-weight: 400;
         @media (min-width:480px){

@@ -292,8 +292,27 @@
 }
 @media (min-width: 1350px) { 
     .landingPage_{
+        &heroContainer{
+        }
+        &heroLeft{
+            width: 45%;
+            margin: 70px 0 50px 90px;
+        }
         &hdr{
             font-size: 4rem;
+            margin: 3rem 0 4rem;
+            line-height: 5.5rem;
+        }
+        &listContainer{
+            margin: 1rem 0 2rem 25%;
+        }
+        &listItem{
+            margin-bottom: 2rem;
+        }
+        &captureContainer{
+            width: 75%;
+            margin: 1rem 0 5rem 0;
+            justify-content: flex-start;
         }
     }
 }
