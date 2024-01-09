@@ -7,17 +7,15 @@
         @include flexCol();
         gap: 0.7rem;
     }
-    &hdr{
-        font-size: 1.5rem;
-        color: $base;
-    }
     &contentContainer{
-        border: 1px solid;
+        border: 1px solid $grayBorder;
+        background: $offWhite;
         width: 90%;
         height: 120px;
-        border-radius: 2px;
-        margin: 0.5rem 0 1rem;
+        border-radius: 8px;
+        margin: 0 1rem 1rem;
         padding: 0.5rem;
+        box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
     }
     &text{
         font-size: 1.1rem;

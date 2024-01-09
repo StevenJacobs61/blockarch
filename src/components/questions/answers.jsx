@@ -55,7 +55,16 @@ const Answers = ({qIndex, setQIndex, block, setBlock}) => {
             <h1 
             className='answers_blockHdr' 
             onClick={()=> setShow((prev) => ({...prev, [k]:!show[k]}))}
-            >Block {b}</h1>
+            >{
+              b === 1 ? "Business Information" :
+              b === 2 ? "Participants" :
+              b === 3 ? "Data Sharing" :
+              b === 4 ? "Activity" :
+              b === 5 ? "Business Ecosystem" :
+              b === 6 ? "Development" :
+              "Regulation"
+            }
+            </h1>
             {
               show[k] ? 
               projectQuestions.map((qu, j) => {

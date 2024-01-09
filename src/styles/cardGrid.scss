@@ -4,8 +4,9 @@
     &container{
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1rem;
-        margin: 2rem 0;
+        gap: 2rem;
+        margin: 2.5rem 0 3rem;
+        padding: 0 0 1rem;
         @media(min-width:480px){
             margin: 3rem 0;
         }
@@ -16,11 +17,9 @@
 }
 .gridCard_{
     &card{
-        width: 240px;
         @include flexCol();
         gap: 0.7rem;
         border-radius: 2px;
-        padding: 0.8rem;
     }
     &iconContainer{
         width: 35px;
@@ -28,18 +27,21 @@
         overflow: hidden
     }
     &contentsContainer{
+        box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.4);
+        margin: 1rem;
         @include flexCol();
         gap: 2rem;
-        background: $offWhite;
+        background: $white;
         height: 180px;
         width: 180px;
         border: 2px solid $black;
         padding: 1rem;
+        border-radius: 8px;
     }
     &hdr{
         font-weight: 400;
         font-size: 1.6rem;
-        // color: $base;
+        color: $base;
         @media(min-width:769px){
             font-size: 1.8rem;
         }
@@ -62,7 +64,8 @@
     .cardGrid_{
         &container{
             grid-template-columns: repeat(4, 1fr);
-            gap: 0;
+            gap: 2rem;
+            margin-top: 3rem;
         }
     }
 }

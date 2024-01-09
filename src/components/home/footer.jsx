@@ -12,7 +12,8 @@ const Footer = () => {
         <span className='footer_iconContainer'>
             <Logo width='100%' height='100%'/>
         </span>
-        <p className='info_subtext'>Sign up for early access. Join hundreds of entrepreneurs today and start architecting.</p>
+        <p className='info_subtext' style={{color: "#3F3f3f", fontWeight: "600"}}>Sign up for early access. Join hundreds of entrepreneurs today and start architecting.</p>
+        <p className="footer_copyright">© 2023 BlockArch. All rights reserved.</p>
     </div>
   )
 }

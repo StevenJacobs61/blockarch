@@ -15,9 +15,18 @@ const ProgressBar = ({block, qIndex, setQIndex, setBlock}) => {
         6: 'untouched',
         7: 'untouched'
     });
+    // console.log(status);
+
+    function getBlockQuestions(key){
+        return projectQuestions.filter((q) => q.block == key);
+    }
+
+// console.log(projectQuestions[0].block === block);/
+
     const findBlockOneStatus = (answers) => {
-        Object.keys(status).map((block) => {
-            const blockQuestions = projectQuestions.filter((q) => q.block === block);
+        Object.keys(status).map((key) => {
+           const blockQuestions = getBlockQuestions(key);
+           console.log(blockQuestions);
             let count = 0;
              blockQuestions.forEach((q) => {
                 if(q.endpoint === 'user-project'){
@@ -34,11 +43,11 @@ const ProgressBar = ({block, qIndex, setQIndex, setBlock}) => {
                 }
             })
             if (count === 0) {
-                setStatus(prev => ({...prev, [block]:'untouched'}));
+                setStatus(prev => ({...prev, [key]:'untouched'}));
             } else if (count < blockQuestions.length) {
-                setStatus(prev => ({...prev, [block]:'incomplete'}));
+                setStatus(prev => ({...prev, [key]:'incomplete'}));
             } else if (count === blockQuestions.length) {
-                setStatus(prev => ({...prev, [block]:'complete'}));
+                setStatus(prev => ({...prev, [key]:'complete'}));
             }
         return null;
     })

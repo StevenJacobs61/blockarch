@@ -6,7 +6,7 @@
         height: 100%;
         display: flex;
         align-items: flex-start;
-        padding: 0.7rem;
+        padding: 1rem 0.7rem;
         gap: 1rem;
     }
     &left{
@@ -14,16 +14,20 @@
         @include flexCol();
     }
     &hdr{
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         text-align: center;
+        color: $gray;
+    }
+    &resultTitle{
         color: $base;
+        margin: 0.6rem 0 0;
+        font-size: 1.2rem;
     }
     &chartContainer{
-        border-radius: 50px;
+        margin: 0 0 0.5rem;
+        @include flexCenR;
         width: 70px;
         height: 70px;
-        background: $black;
-        margin: 0.5rem 0;
     }
     &right{
         width: 60%;
@@ -39,19 +43,26 @@
     &subHdr{
         font-size: 0.7rem;
         color: $base;
+        font-weight: 800;
     }
     &contentContainer{
         @include flexCol;
-        width: 100%;
-        gap: 0.2rem;
+        width: 90%;
+        overflow: visible;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
 
     }
     &content{
-        border: 1px solid;
+        border: 1px solid $grayBorder;
+        box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
+        background: $offWhite;
         width: 100%;
         height: fit-content;
         @include flex();
-        padding: 0.2rem 0.5rem;
+        justify-content: space-between;
+        padding: 0.2rem 8%;
+        border-radius: 8px;
     }
     &contentHdr{
         font-size: 1rem;
@@ -60,7 +71,8 @@
     }
     &blockchain{
         @include flexCenR();
-        width: 70%;
+        justify-content: flex-start;
+        width: 40%;
         gap: 0.5rem;
     }
     &logoContainer{
@@ -75,11 +87,9 @@
         width: 15%;
         @include flexCenR();
     }
-    &contentScore{
-        border-radius: 50px;
-        background: $black;
-        width: 15px;
-        height: 15px;
+    &score{
+        font-size: 1.2rem;
+        color: $baseD;
     }
     @media(min-width:480px){
         &hdr, &subHdr{
@@ -91,6 +101,28 @@
         &logoContainer{
             width: 15px;
             margin: 0 0.5rem 0 0;
+        }
+    }
+    @media(min-width:769px){
+        &hdr, &subHdr{
+            font-size: 1.8rem;
+        }
+        &blockchainTitle, &contentHdr{
+            font-size: 1.5rem;
+        }
+        &score{
+            font-size: 1.5rem;
+        }
+        &logoContainer{
+            width: 30px;
+            margin: 0 0.5rem 0 0;
+        }
+        &resultTitle{
+            font-size: 1.5rem;
+        }
+        &chartContainer{
+            width: 90px;
+            height: 90px;
         }
     }
 }

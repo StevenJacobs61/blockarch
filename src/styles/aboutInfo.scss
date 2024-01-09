@@ -4,6 +4,8 @@
     &container{
         background: $baseL;
         @include flexCol();
+        margin: 0.5rem;
+        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
     }
     &contentContainer{
         margin: 2rem 0;
@@ -14,6 +16,8 @@
         text-align: center;
         margin: 1rem 0;
         font-size: 1.2rem;
+        font-weight: 600;
+        color: $offWhite;
         @media(min-width:1350px){
          
         }

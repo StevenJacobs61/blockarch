@@ -4,7 +4,8 @@
     &container{
         width: 100%;
         @include flexCol();
-        background: $baseL;
+        box-shadow: 0px 1px 10px 0 rgba(0, 0, 0, 0.2);
+        margin: 1rem 0;
     }
     &gridContainer{
         @include flexCol();
@@ -13,11 +14,11 @@
         width: 100%;
         @include flexCol();
         padding: 0 0 1rem;
-        background: linear-gradient(to bottom, $base, $baseL);
+        background: linear-gradient(to bottom, $base,  $offWhite);
     }
     &contentContainer{
         width: 100%;
         @include flexCol();
-        background: $baseL;
+        background: $offWhite;
     }
 }

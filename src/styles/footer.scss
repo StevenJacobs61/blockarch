@@ -3,8 +3,9 @@
 .footer_{
     &container{
         @include flexCol();
-        margin: 2rem 0;
-        width: 90%;
+        padding: 2rem;
+        width: 100%;
+        background: $baseL;
     }
     &captureContainer{
         width: 70%;
@@ -15,7 +16,13 @@
         height: inherit;
         margin: 0 0 1.5rem;
         overflow: hidden;
-        fill: $base;
+        fill: $offWhite;
+    }
+    &copyright{
+        margin: 1.5rem 0 0;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: $offBlack;
     }
 }
 @media(min-width:769px){

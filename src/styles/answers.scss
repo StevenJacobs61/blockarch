@@ -3,20 +3,22 @@
 .answers_{
     &container{
         @include flexCol();
-        width: 95%;
-        gap: 0.5rem;
-        margin: 0.5rem 0 2rem;
-        max-width: 295px
+        width: 98%;
+        padding: 0.5rem 1rem 2rem;
+        max-width: 295px;
     }
     &questionContainer{
         @include flex();
         justify-content: space-between;
         width: 100%;
+        margin: 0.5rem;
         background: $lGray;
         padding: 0.8rem;
         cursor: pointer;
-        border-radius: 2px;
+        border-radius: 8px;
         border: 1px solid transparent;
+        box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+
         &:hover{
             border: 1px solid $base;
         }
@@ -35,11 +37,14 @@
     &blockContainer{
         width: 100%;
         @include flexCol();
+        padding: 1rem 0.4rem;
     }
     &blockHdr{
         font-size: 1.5rem;
         margin: 0.5rem 0;
         color: $base;
+        text-align: left;
+        width: 95%;
     }
     @media (min-width:480px){
         &container{

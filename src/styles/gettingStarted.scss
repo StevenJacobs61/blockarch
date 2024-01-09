@@ -4,17 +4,19 @@
     &container{
         @include flexCol();
         width: 100%;
+        box-shadow: 0px 1px 10px 0 rgba(0, 0, 0, 0.2);
+        margin: 0 0 1rem;
     }
     &topContainer{
         width: 100%;
         @include flexCol();
-        background: linear-gradient(to bottom, $base, $baseL);
+        background: linear-gradient(to bottom, $base,  $offWhite);
         padding: 0 0 2rem;
     }
     &contentContainer{
         width: 100%;
         @include flexCol();
-        background: $baseL;
+        background: $offWhite;
     }
     &hdr{
         font-size: 2rem;
@@ -22,6 +24,7 @@
         font-weight: 400;
         text-align: center;
         text-transform: capitalize;
+        color: $black;
     }
     &subtext{
         font-size: 1.5rem;
@@ -29,7 +32,7 @@
         text-align: center;
         width: 80%;
         font-weight: 300;
-
+        color: $offBlack;
     }
 }
 @media (min-width:480px){

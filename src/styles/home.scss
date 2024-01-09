@@ -74,7 +74,7 @@
         background-color: $white;
     }
     &container{
-        padding: 50px 20px 0;
+        padding: 20px 20px 0;
         @include flexCol();
     }
 }
@@ -84,19 +84,29 @@
     }
     &heroLeft{
         @include flexCol();
+        width: 90%;
+        z-index: 90;
+        height: fit-content;
+        // background: rgba(255, 255, 255, 0.5);
+        // box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        animation: opacity 1s 1 forwards;
+        // margin-top: 1rem;
+        margin-right: 3rem;
     }
     &hdr{
         font-size: 2.7rem;
-        margin: 2rem 0 1rem 15%;
+        margin: 1rem 0 1rem 13%;
         font-weight: 500;
         width: 90%;
         text-align: left;
         animation: slideTop 0.5s ease-out 1;
         overflow: hidden;
+        text-shadow: 5px 5px 3px rgba(255, 120, 225, 0.3);
     }
     &listContainer{
         margin: 0.5rem 0 1.5rem;
-        width: 75%;
+        width: 76%;
         overflow: visible;
     }
     &listItem{
@@ -143,19 +153,12 @@
         left: 0;
         background-image: url('../img/heroImg.jpg');
         background-size: cover;
-        background-position: left;
+        transform: scale(1) rotate(180deg);
+        background-position: -400px 0;
         background-blend-mode: color-dodge;
         background-color: rgb(209, 35, 171);
         animation: color 1.5s 1;
       }
-    &heroLeft{
-        width: 90%;
-        z-index: 90;
-        height: fit-content;
-        background: rgba(255, 255, 255, 0.7);
-        box-shadow: 0 0 10px 1px $lGray;
-        animation: opacity 1s 1 forwards;
-    }
 }
 @media(min-width:480px){
     .layout_{
@@ -168,17 +171,15 @@
             justify-content: flex-start;
         }
         &heroLeft{
-            margin: 10px 0 15px 30px;
+            margin: 0px 0 15px 60px;
             width: 65%;
         }
         &hdr{
             font-size: 3rem;
-            font-weight: 600;
+            font-weight: 500;
             margin: 20px 0 0;
             width: 80%;
             text-align: left;
-            text-shadow: 0 0 5px $white;
-            border-radius: 2px;
             padding: 1.5rem 1rem 0;
         }
         &listContainer{
@@ -254,15 +255,15 @@
             transform: rotate(180deg) scale(1.3);
         }
         &heroLeft{
-            margin: 40px 45px 25px;
+            margin: 65px 45px 40px 19%;
             padding-bottom: 20px;
         }
         &hdr{
-            margin: 2rem 0 1rem;
+            margin: 2rem 0 1rem 1rem;
             font-size: 3.3rem;
         }
         &listContainer{
-            margin: 1rem 0 2rem 9.5rem;
+            margin: 1rem 0 2rem 11rem;
         }
         &listItem{
             font-size: 1.8rem;
@@ -275,7 +276,7 @@
     }
     .landingPage_{
         &heroLeft{
-            margin: 60px 45px 50px;
+            margin: 65px 45px 40px 15%;
         }
         &hdr{
             margin: 2rem 0 3rem;
@@ -292,22 +293,30 @@
 }
 @media (min-width: 1350px) { 
     .landingPage_{
-        &heroContainer{
+        &heroContainer::before{
+            transform: scale(1) rotate(180deg);
+            background-position: -400px 100px;
         }
         &heroLeft{
-            width: 45%;
-            margin: 70px 0 50px 90px;
+            // width: 40%;
+            margin: 80px 0 70px 10%;
+            background: none;
         }
         &hdr{
-            font-size: 4rem;
+            font-size: 5rem;
             margin: 3rem 0 4rem;
+            font-weight: 600;
+            text-shadow: 13px 18px 6px rgba(255, 120, 225, 0.3);
+            color: $offBlack;
             line-height: 5.5rem;
+            overflow: visible;
         }
         &listContainer{
             margin: 1rem 0 2rem 25%;
         }
         &listItem{
             margin-bottom: 2rem;
+            color: $offBlack;
         }
         &captureContainer{
             width: 75%;

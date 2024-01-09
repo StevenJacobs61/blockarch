@@ -7,7 +7,7 @@ const BlogComp = () => {
   return (
     <div className='blogComp_container'>
       <h1 className='gettingStarted_hdr'>Our Blog</h1>
-      <h2 className='gettingStarted_subtext'>Latest from Blockarch</h2>
+      <h2 className='gettingStarted_subtext' style={{color: "#FF06D7"}}>Latest from Blockarch</h2>
       <div className="blogComp_blogsContainer">
         <div className='blogComp_blogContainer'>
           <div className="blogComp_imgContainer" onClick={()=>navigate('/blog') + window.scrollTo(0, 0)}>
@@ -19,7 +19,8 @@ const BlogComp = () => {
               objectFit: 'cover',
             }}/>
           </div>
-            <h3 className='blogComp_title'>Blog Title</h3>
+            <h3 className='blogComp_title'>Blockchain Trilemma</h3>
+            <button className="blogComp_button">Read</button>
         </div>
         <div className='blogComp_blogContainer'>
           <div className="blogComp_imgContainer">
@@ -31,7 +32,8 @@ const BlogComp = () => {
               objectFit: 'cover',
             }}/>
           </div>
-            <h3 className='blogComp_title'>Blog Title</h3>
+            <h3 className='blogComp_title'>Building an ecosystem</h3>
+            <button className="blogComp_button">Read</button>
         </div>
         <div className='blogComp_blogContainer'>
           <div className="blogComp_imgContainer">
@@ -43,7 +45,8 @@ const BlogComp = () => {
               objectFit: 'cover',
             }}/>
           </div>
-            <h3 className='blogComp_title'>Blog Title</h3>
+            <h3 className='blogComp_title'>public vs private</h3>
+            <button className="blogComp_button">Read</button>
         </div>
         <div className='blogComp_blogContainer'>
           <div className="blogComp_imgContainer">
@@ -55,7 +58,8 @@ const BlogComp = () => {
               objectFit: 'cover',
             }}/>
           </div>
-            <h3 className='blogComp_title'>Blog Title</h3>
+            <h3 className='blogComp_title'>Scaling solutions</h3>
+            <button className="blogComp_button">Read</button>
         </div>
       </div>
     </div>

@@ -4,41 +4,97 @@
     &container{
         position: relative;
         transition: all 0.2s ease-out;
+        overflow: hidden;
     }
     &sideBar{
+        height: 100vh;
         transition: all 0.3s ease-in-out;
         position: fixed;
-        width: 100px;
-        height: 100vh;
+        width: 150px;
         z-index: 999;
-        padding: 6rem 1rem 1rem 1.5rem;
+        padding: 5.5rem 1rem 1rem 1.5rem;
         background: rgba(255, 255, 255, 0.8);
         @include flexCol();
-        align-items: flex-start;
+    }
+    &titlesContainer{
+        width: 100%;
+        @include flexCol();
+        height: fit-content;
+        margin-top: 1rem;
     }
     &title{
-        font-size: 1.8rem;
-        margin: 0.5rem 0;
+        font-size: 1.7rem;
+        margin: 0.8rem 0;
+        box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+        background: $white;
+        color: $baseD;
+        width: 80%;
         cursor: pointer;
+        text-align: center;
         transition: all 0.2s;
+        border-radius: 3px;
+        padding: 0.5rem;
         &:hover{
-            color: $base
+            color: $base;
+            transform: scale(1.05);
         }
     }
     &sideBarMatches{
-        margin: 1rem 0;
+        // margin: 1rem 0;
         @include flexCol();
-        gap: 0.8rem;
+        flex: 1;
+        width: 90%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        gap: 0.7rem;
+        scrollbar-width: thin;
+            scrollbar-color: $baseD $baseL;
+            &::-webkit-scrollbar {
+                width: 8px; 
+            }
+        
+            &::-webkit-scrollbar-track {
+                background-color: $baseL; 
+                border-radius: 0px;
+            }
+        
+            &::-webkit-scrollbar-thumb {
+                background-color: $baseD; 
+                border-radius: 0px; 
+            }
+
+            &::-webkit-scrollbar-button:start:decrement {
+                background-image: url("../svg/up.svg");
+                background-size: 100%; 
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        
+            &::-webkit-scrollbar-button:end:increment {
+                background-image: url("../svg/down.svg");
+                background-size: 100%; 
+                background-repeat: no-repeat;
+                background-position: center;
+            }
     }
     &matchTitle{
-        font-size: 1.7rem;
-        text-decoration:underline $baseD;
-        text-underline-offset: 0.25rem;
+        min-height: 2.5rem;
+        font-size: 1.8rem;
+        text-transform: capitalize;
+        background: $base;
+        border-radius: 3px;
+        color: $offWhite;
+        width: 80%;
+        @include flexCenR();
+        padding: 1.5rem;
         cursor: pointer;
-        transition: all 0.2s;
+        text-align:  left;
+        transition: all 0.15s;
+        margin: 0.7rem 0;
+        // border: 1px solid $white;
+        box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
         &:hover{
-            text-decoration: none;
-            color: $base
+            color: $offBlack;
         }
     }
     @media(min-width:480px){
@@ -81,19 +137,37 @@
         @include flex();
     }
     &sideContainer{
-        width: 30%;
+        width: 25%;
+        @include flexCenR();
+        justify-content: flex-start;
+        overflow: hidden;
     }
     &centralContainer{
-        width: 40%;
+        width: 50%;
         @include flexCenR();
+    }
+    &svg{
+        width: 30px;
+        height: 30px;
+        overflow: hidden;
+        fill: $base;
+        margin-left: 20%;
+        cursor: pointer;
+        transition: transform 0.1s ease-in-out;
+        &:hover{
+            fill: $baseL;
+        }
     }
     &hdr{
         font-size: 1.8rem;
         padding: 0.5rem 0.8rem;
-        margin: 0 0 0 1rem;
+        margin: 1rem 0 1rem 15%;
         border-radius: 2px;
+        background: $baseL;
         cursor: pointer;
-        border: 1.5px solid $base;
+        color: $offWhite;
+        border: 1px solid $baseL;
+        box-shadow: 0 0 1px 1px $base;
         width: fit-content;
         z-index: 999;
         transition: all 0.2s ease-out;

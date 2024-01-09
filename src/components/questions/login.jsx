@@ -22,8 +22,10 @@ const Login = () => {
     try{
         const res = await getUserByEmail(loginDetails.emailAddress);
         if(loginDetails.password == res.password){
-            localStorage.setItem('user', JSON.stringify(res))
-            navigate('/apps')
+            await localStorage.setItem('user', JSON.stringify(res));
+            await localStorage.setItem('block', JSON.stringify(1));
+            await localStorage.setItem('qIndex', JSON.stringify(0));
+            navigate('/apps');
         }else{
             setAlertMessage('Password did not match. \n Please try again or create an account.')
         }
@@ -34,8 +36,8 @@ const Login = () => {
    }
 
    const handleNewAcount = () => {
-    localStorage.setItem('user', JSON.stringify({}));
-    navigate('/questions')
+    localStorage.removeItem('user');
+    navigate('/apps/questions')
    }
 
   return (

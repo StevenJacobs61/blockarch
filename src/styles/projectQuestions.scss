@@ -4,7 +4,8 @@
     &container{
         @include flexCol;
         width: 90%;
-        max-width: 300px
+        max-width: 300px;
+        overflow: hidden;
     }
     &inputContainer{
         @include flexCol();

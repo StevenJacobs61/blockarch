@@ -30,7 +30,7 @@ const LandingPage = () => {
            </div>
         </div>
       </div>
-        <div className="home_container">
+        <div className="home_container" >
         <Sequence/>
         </div>
         <div className="home_container">

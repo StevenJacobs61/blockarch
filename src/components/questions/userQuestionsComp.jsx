@@ -28,11 +28,12 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
     });
 
     useEffect(()=>{
+      JSON.parse(localStorage.getItem('user'));
       setAnswers(user)
     }, [user])
 
     useEffect(()=>{
-      let localUser = JSON.parse(localStorage.getItem('user'));
+      const localUser = JSON.parse(localStorage.getItem('user'));
       if(localUser){
         setUser(localUser);
       }else{
@@ -62,16 +63,26 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
           const response = await add(user, '/user')
           setButtonText('Success');
           localStorage.setItem('user', JSON.stringify(response.data));
-          localStorage.setItem('block', 1)
-          setBlock(1)
-          setUser({});
-          setQIndex(0)
+          localStorage.setItem('block', JSON.stringify(1));
+          localStorage.setItem('qIndex', JSON.stringify(0));
+          // setBlock(1)
+          // setUser({});
+          // setQIndex(0)
+          window.location.reload();
       } catch (error) {
         setButtonText('Error')
       }
     }
     setButtonText('Submit')
     };
+    
+    useEffect(()=>{
+      if(!Object.values(user).includes(value => value == null || value == "")){
+        setShowSubmit(false);
+      }else{
+        setShowSubmit(true);
+      }
+    },[user])
 
     const handleIndex = (direction) => {
       if(finish){
@@ -82,7 +93,7 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
       }else{
         setAlertMessage(null)
       }
-      if(Object.values(user).every(value => value !== null)){
+      if(Object.values(user).every(value => value !== null && value !== "")){
         setShowSubmit(true)
       }
         setIsHidden(true);
@@ -98,11 +109,6 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
         }, [200])
     }
 
-    const handleLogin = () => {
-      localStorage.setItem('user', JSON.stringify({}));
-      navigate('/questions/login');
-    }
-
     const handleClear = () => {
       other.current.value = '';
     }
@@ -113,7 +119,7 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
         <div className="questions_arrowContainer" onClick={()=>handleIndex(0)}>
         <Arrow width='100%' height='100%'/>
         </div>
-        <h3 className='questions_back' onClick={()=>handleIndex(0)}>Back</h3>
+        {/* <h3 className='questions_back' onClick={()=>handleIndex(0)}>Back</h3> */}
       </div>
     <h1 className='userQuestions_hdr'>Create a user account</h1>
     {alertMessage ? <h3 className='questions_alertMessage'>{alertMessage}</h3> : null}
@@ -210,7 +216,7 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
       ) : null
       }
       {qIndex === 0 ?
-      <p className='userQuestions_login' onClick={()=> handleLogin()}>Already have an account?<br/> Login here!</p>
+      <p className='userQuestions_login' onClick={()=> navigate('/apps/questions/login')}>Already have an account?<br/> Login here!</p>
     : null}
     </>: 
     <h1>finish</h1>

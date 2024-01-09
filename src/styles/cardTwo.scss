@@ -5,9 +5,12 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 270px;
+        width: 300px;
         margin: 2rem 0;
         gap: 1rem;
+        @media(min-width:1024px){
+            width: 100vw;
+        }
     }
     &cardContainer{
         @include flexCol();
@@ -23,6 +26,7 @@
         @include flex();
         margin: 1.5rem 0 2rem;
         cursor: pointer;
+        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
     &:hover{
         background: $white;
         color: $base;
@@ -50,6 +54,7 @@
         background: $baseD;
         @include flexCenR;
         border-radius: 50px;
+        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
     }
 }
 
@@ -58,7 +63,6 @@
         width: 100%;
         @include flex();
         overflow: hidden;
-        // background: $offWhite;
         @media(min-width:1200px){
             width: 380px;
             height: 150px;
@@ -72,17 +76,20 @@
         flex-direction: row-reverse;
     }
     &imgContainer{
-        width: 450px;
-        height: 105px;
+        width: 100%;
+        height: 90px;
         overflow: hidden;
-        min-height: 100%;
+        margin: 0.5rem;
+        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
         @media(min-width:480px){
-            height: 135px;
+            height: 120px;
         }
         @media(min-width:769px){
+            height: 140px;
+            width: 80%;
         }
         @media(min-width:1024px){
-            height: 140px;
         }
         @media(min-width:1200px){
             width: 450px;
@@ -111,7 +118,7 @@
     &hdr{
         font-weight: 400;
         font-size: 1.5rem;
-        color: $black;
+        color: $base;
         @media(min-width:480px){
             font-size: 1.7rem;
         }
@@ -174,7 +181,7 @@
             flex-direction: row;
             justify-content: center;
             align-items: flex-start;
-            width: 70%;
+            width: 90%;
             gap: 5vw;
         }
     }
@@ -186,10 +193,10 @@
             gap: 3vw;
         }
         &button{
-            margin: 2rem 0 0;
+            margin: 2rem 0 1rem;
         }
         &comingSoon{
-            margin: 1rem 0 0;
+            margin: 1rem 0 1rem;
         }
     }
     .card_{

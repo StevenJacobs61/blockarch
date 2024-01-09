@@ -4,7 +4,7 @@
     &container{
         display: grid;
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1rem;
         @media(min-width:620px){
             grid-template-columns: 1fr 1fr;
         }
@@ -18,9 +18,11 @@
         height: 200px;
         background: linear-gradient(to bottom, $baseL, $backgroundPink);
         border-radius: 3px;
+        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.4);
         border: 2px solid $base;
         @include flex();
         padding: 1.5rem;
+        margin: 1rem 0;
         gap: 1.5rem;
         @media(min-width: 1350px){
             width: 350px;
@@ -57,6 +59,8 @@
     &hdr{
         font-weight: 400;
         overflow: hidden;
+        font-weight: 600;
+        color: $offWhite;
         @media(min-width:1350px){
             font-size: 2.4rem;
         }

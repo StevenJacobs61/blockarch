@@ -10,6 +10,7 @@ const Questions = () => {
   const [block, setBlock] = useState();
   const [answers, setAnswers] = useState();
   const [qIndex, setQIndex] = useState(0);
+  const [isHidden, setIsHidden] = useState(false);
 
   useEffect(()=>{
     function configBlock(){
@@ -20,7 +21,6 @@ const Questions = () => {
     }
     configBlock();
   },[])
-  const [isHidden, setIsHidden] = useState(false);
   
 
   return (

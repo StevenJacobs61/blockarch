@@ -3,7 +3,6 @@
 .about_{
     &container{
         @include flexCol();
-        padding: 1rem 0 0;
     }
     &hdr{
         text-align: center;

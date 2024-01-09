@@ -50,23 +50,31 @@
     &actionContainer{
         @include flex();
         overflow: hidden;
+        @media(min-width:480px){
+        flex-direction: row-reverse;
+        }
+        @media(min-width:769px){
+            margin: 0 1rem 0 0;
+        }
     }
     &socialsContainer{
         display: none;
         @media(min-width:480px){
             display: unset;
             @include flex();
+            flex-direction: row-reverse;
             gap: 1rem;
         }
     }
     &linksContainer{
         @include flex();
         overflow: hidden;
-        gap: 1.5rem;
+        gap: 0.5rem;
         margin: 0 2rem;
         display: none;
         @media(min-width:480px){
             display: flex;
+            margin: 0 1.2rem;
         }
         @media(min-width:1200px){
             margin: 0 3rem;
@@ -84,7 +92,8 @@
         padding: 0.5rem 0.5rem 0;
         border-radius: 5px;
         @media(min-width:480px){
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            font-weight: 600;
         }
         @media(min-width:1200px){
             font-size: 1.8rem;
@@ -96,7 +105,6 @@
         }
     }
     &tryNow{
-        margin-right: 1.3rem;
         border: none;
         background: $base;
         padding: 0.4rem 0.5rem;
@@ -105,10 +113,13 @@
         box-shadow: $shadow;
         font-weight: 600;
         font-size: 1.5rem;
+        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+        margin: 0.5rem 1.3rem;
         cursor: pointer;
         transition: all 0.1s ease-out;
         @media(min-width:480px){
-            font-size: 1.5rem;
+            font-size: 1.7rem;
+            margin: 0.2rem 0;
         }
         @media(min-width:1024px){
             font-size: 1.7rem;

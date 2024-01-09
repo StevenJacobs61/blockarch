@@ -1,9 +1,11 @@
 import '../../styles/projectQuestions.scss'
 import {projectQuestions} from '../../data/projectQuestions'
 import { useEffect, useState } from 'react'
-import { add, getUserByEmail, updateById } from '../../functions/userAPI';
+import { add, getById, getUserByEmail, updateById } from '../../functions/userAPI';
 import { ReactComponent as Arrow } from '../../svg/arrow-back.svg';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { isNull } from '../../functions/utility';
 
 const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
 
@@ -25,7 +27,6 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
     const [industryValue, setIndustryValue] = useState('');
     const [userProjectNetworkParticipants, setUserProjectNetworkParticipants] = useState({});
     const [networkValue, setNetworkValue] = useState('');
-    const [user, setUser] = useState({});
     const [showSubmit, setShowSubmit] = useState(false);
     const navigate = useNavigate();
 
@@ -34,7 +35,8 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
         return selectedValue;
 
     }
-
+console.log(userProject);
+console.log(showSubmit);
     useEffect(()=>{
         const user = JSON.parse(localStorage.getItem('user'));
         if(user){
@@ -66,10 +68,20 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
         }
     }, [])
 
+        useEffect(()=>{
+            if(!isNull(userProject)){
+            setShowSubmit(true);
+            }else{
+            setShowSubmit(false);
+            }
+        },[userProject])
+
     const handleIndex = (direction) =>{
-        if(Object.values(userProject).every(value => value !== null)){
-            setShowSubmit(true)
-          }
+        if(!Object.values(userProject).includes(value => value == null || value == "")){
+            setShowSubmit(false);
+            }else{
+            setShowSubmit(true);
+            }
         setAnswers({...userProject, userProjectIndustry, userProjectLanguages, userProjectNetworkParticipants, userProjectPurpose});
         localStorage.setItem('project', JSON.stringify({...userProject, userProjectIndustry, userProjectLanguages, userProjectNetworkParticipants, userProjectPurpose}))
         let newIndex = null;
@@ -87,7 +99,7 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
     }
 
     const handleChecked = (e) => {
-    const selectedValue = e.target.value;
+    let selectedValue = e.target.value;
     const answersArray = projectQuestions[qIndex].entries;
     const result = answersArray.reduce((obj, value) => {
         obj[value] = false;
@@ -113,6 +125,10 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
             setLanguagesValue(selectedValue);
             break;
         case 'user-project':
+            console.log(e.target.type);
+            if(["transactionSize", "transactionsPerSecond", "transactionsPerMonth", "budgetAmount"].includes(projectQuestions[qIndex].field)){
+                selectedValue = parseInt(selectedValue);
+            }
             setUserProject((prev) => ({ ...prev, [projectQuestions[qIndex].field]: selectedValue }));
             break;
         default:
@@ -123,11 +139,13 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
 
     const handleSubmit = async () => {
         let userProjectId = null;
+        let newProject = null;
         try {
             const userRes = await getUserByEmail(JSON.parse(localStorage.getItem('user')).emailAddress);
             let project = userProject;
             project.user = userRes;
             const addRes = await add(project, '/user-project');
+            newProject = addRes.data;
             userProjectId = addRes.data.id;
         } catch (error) {
             console.error(error)
@@ -143,21 +161,18 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
                 networkParticipants:participantsRes.data,
                 purpose: purposeRes.data
             }
-            const projectRes = await updateById(newData, '/user-project', userProjectId);
+            const projectRes = await updateById({...newProject, ...newData}, '/user-project', userProjectId);
+            const calcRes = await axios.post(`${process.env.REACT_APP_BACKEND_BASE_URL}/project-blockchain-result`, projectRes.data);
+            const resultsRes = await getById(projectRes.data.id, '/project-blockchain-result');
+            localStorage.setItem('project', JSON.stringify({...newProject, ...newData})); 
+            localStorage.setItem('results', JSON.stringify(resultsRes)); 
             localStorage.setItem('block', 1);
-            localStorage.removeItem('project');
             localStorage.removeItem('qIndex');
-            navigate('/apps/result')
+            navigate('/apps/result');
         }catch(error){
             console.error(error)
         }
     }
-
-    // console.log('user-project: ', userProject);
-    // console.log('user-project-network-participants: ', userProjectNetworkParticipants);
-    // console.log('user-project-industry: ', userProjectIndustry);
-    // console.log('user-project-purpose: ', userProjectPurpose);
-    // console.log('user-project-langauges ', userProjectLanguages);
 
   return (
     <div className='projectQuestions_container'>
@@ -165,7 +180,7 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
         <div className="questions_arrowContainer" onClick={()=>handleIndex(0)}>
         <Arrow width='100%' height='100%'/>
         </div>
-        <h3 className='questions_back' onClick={()=>handleIndex(0)}>Back</h3>
+        {/* <h3 className='questions_back' onClick={()=>handleIndex(0)}>Back</h3> */}
       </div>
         <h1 className='questions_hdr'>{projectQuestions[qIndex].title}</h1>
         <div className='projectQuestions_questionsContainer'>
@@ -228,13 +243,13 @@ const ProjectQuestions = ({setBlock, block, qIndex, setQIndex, setAnswers}) => {
                     checked={userProject[projectQuestions[qIndex].field] === false ? true : false}/>
             </div>)
         }
-            {/* {showSubmit && */}
+            {showSubmit &&
                 <button 
                     className='questions_buttonSubmit'
                     onClick={()=>handleSubmit()}>
                     Submit
                 </button>
-            {/* } */}
+            } 
         <div className="questions_changeContainer">
             <button 
                 className='questions_buttonChange' 

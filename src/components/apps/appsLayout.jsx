@@ -1,17 +1,45 @@
 import { useEffect, useState } from 'react'
 import AppsBar from '../apps/appsBar'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { clearLocalData } from '../../functions/utility';
+import { clearLocalData, handleAddProject, naviagteToResult } from '../../functions/utility';
+import { useProjects } from '../../hooks/useUserProjects';
+import '../../styles/appsLayout.scss'
+import { userQuestions } from '../../data/userQuestions';
 
 const AppsLayout = () => {
 
   const navigate = useNavigate();
   const [hide, setHide] = useState(true);
+  const { userProjects } = useProjects();
+  const [showProjects, setShowProjects] = useState(false);
+  const [user, setUser] = useState(()=>
+    !JSON.parse(localStorage.getItem('user')) 
+    ? nullUserFields() : JSON.parse(localStorage.getItem('user'))
+    );
+  
+  function nullUserFields(){
+    const result = {};
+   userQuestions.forEach(question => {
+    question.input.forEach(inputField => {
+      if(inputField.field !== 'confirmPassword' && inputField.field !== 'finish'){
+        result[inputField.field] = null
+      }
+    })
+   })
+   return result;
+  }
 
+  useEffect(()=>{
+    const localUser = JSON.parse(localStorage.getItem('user'));
+    if(localUser){
+      setUser(localUser);
+    }else{
+      localStorage.setItem('user', JSON.stringify(nullUserFields()));
+    }
+  }, [window.location.pathname])
 
 /* eslint-disable no-restricted-globals */
   const handleLogout = () => {
-    console.log("Before confirm");
     if (confirm('Are you sure you wish to logout?')) {
         clearLocalData();
         navigate('/');
@@ -20,38 +48,49 @@ const AppsLayout = () => {
 
 /* eslint-enable no-restricted-globals */
 
-const handleAddProject = () => {
-  localStorage.setItem('block', JSON.stringify(1))
-  navigate('/questions');
-
+const addProject = () => {
+  handleAddProject();
+  setHide(true);
 }
 
-useEffect(()=>{
-  if(!localStorage.getItem('user')){
-    navigate('/questions/login')
-  }
-},[window.pathname])
+const handleNavigateToResult = async (project) => {
+  const res = await naviagteToResult(project);
+  if(res) setHide(true);
+}
+
+const handleShow = () => {
+  setShowProjects(!showProjects)
+}
 
   return (
     <div className='appsLayout_container'>
+      {user ? 
       <div className="appsLayout_sideBar" style={{transform: hide ? "translateX(-100%)" : "", opacity: hide ? '0' : '1'}}>
-        <h2 className='appsLayout_title' onClick={()=>navigate('/apps') + setHide(true)}>Profile</h2>
-        <h2 className='appsLayout_title' onClick={()=>handleLogout()}>Logout</h2>
-        <h2 className='appsLayout_title' onClick={()=>handleAddProject()}>Add Project</h2>
+          <div className="appsLayout_titlesContainer">
+            <h2 className='appsLayout_title' onClick={()=>navigate('/apps') + setHide(true)}>Profile</h2>
+            <h2 className='appsLayout_title' onClick={()=>handleLogout()}>Logout</h2>
+            <h2 className='appsLayout_title' onClick={()=>addProject()}>New</h2>
+            <h2 
+              className='appsLayout_title' 
+              onClick={()=>handleShow()}
+              style={{background: showProjects ? '#FF06D7' : "", color: showProjects ? '#fff' : ""}}
+              >Projects</h2>
+          </div>
+          {showProjects &&
         <div className="appsLayout_sideBarMatches">
-          <h2 className='appsLayout_matchTitle'
-          onClick={()=>navigate('/apps/result') + setHide(true)}
-          >Match 1</h2>
-          <h2 className='appsLayout_matchTitle'
-          onClick={()=>navigate('/apps/result') + setHide(true)}
-          >Match 2</h2>
-          <h2 className='appsLayout_matchTitle'
-          onClick={()=>navigate('/apps/result') + setHide(true)}
-          >Match 3</h2>
+          {userProjects?.map((project, i) => 
+          <h2 className='appsLayout_matchTitle' key={i}
+          onClick={()=>handleNavigateToResult(project)}>
+            {project.projectName}
+          </h2>
+          )}
         </div>
+          }
       </div>
-      <AppsBar setHide={setHide}/>
-      <main className="layout_container">
+      : null
+      }
+        <AppsBar setHide={setHide} hide={hide} user={user}/>
+      <main className="apps_layoutContainer">
         <Outlet/>
       </main>
     </div>

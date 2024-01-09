@@ -69,7 +69,7 @@ const HomeBar = () => {
               Blog
           </p>
         </div>
-        <button className='homeBar_tryNow' onClick={()=> navigate("/questions")}>Try It!</button>
+        <button className='homeBar_tryNow' onClick={()=> navigate("/apps/questions")}>Try It!</button>
         <div className='homeBar_menuIconContainer' onClick={()=>setClick(!click)}>
           {!click ? 
             <Menu width='100%' height='100%'/> :
