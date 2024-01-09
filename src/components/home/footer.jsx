@@ -3,6 +3,7 @@ import Capture from './capture'
 import { ReactComponent as Logo } from '../../svg/logo-no-text.svg'
 
 const Footer = () => {
+  
   return (
     <div className='footer_container'>
         <h1 className='info_hdr'>Start Bridging The Startup Technology Gap Today</h1>
