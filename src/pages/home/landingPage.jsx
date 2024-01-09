@@ -45,7 +45,6 @@ const LandingPage = () => {
         <div className="home_container">
           <BlogComp/>
         </div>
-        <Separator/>
       </div> 
   )
 }
