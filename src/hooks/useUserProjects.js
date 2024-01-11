@@ -14,6 +14,9 @@ export function useProjects () {
         const fetchData = async () => {
           try {
             const user = JSON.parse(localStorage.getItem('user'));
+            if(Object.values(user).some((val) => val === null || val === undefined || val == NaN || val === "" || val.toString().trim() === "")){
+              return
+            }
             const projects = await getProjects(user);
             setUserProjects(projects)
           } catch (error) {

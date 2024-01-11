@@ -21,18 +21,25 @@
         overflow-y: visible;
         background-color: #fff;
         @media(min-width:769px){
-            padding: 1rem 3rem;
-        }
-        @media(min-width:1024px){
             padding: 0.8rem 3rem;
         }
+        @media(min-width:1024px){
+        }
         @media(min-width:1350px){
+            padding: 0.7rem 2rem;
         }
     }
     &logoContainer{
         width: 130px;
         cursor: pointer;
         fill: $base;
+        @media(min-width:480px){
+            width: 130px;
+        }
+        @media(min-width:769px){
+            width: 170px;
+            margin-left: 2rem;
+        }
         @media(min-width:1024px){
             width: 170px;
         }
@@ -40,7 +47,6 @@
             width: 190px;
         }
         @media(min-width:1350px){
-            width: 160px;
         }
         &:hover{
             transform: scale(1.02);
@@ -53,9 +59,6 @@
         @media(min-width:480px){
         flex-direction: row-reverse;
         }
-        @media(min-width:769px){
-            margin: 0 1rem 0 0;
-        }
     }
     &socialsContainer{
         display: none;
@@ -63,7 +66,8 @@
             display: unset;
             @include flex();
             flex-direction: row-reverse;
-            gap: 1rem;
+            gap: 2rem;
+            margin-right: 1rem;
         }
     }
     &linksContainer{
@@ -74,7 +78,7 @@
         display: none;
         @media(min-width:480px){
             display: flex;
-            margin: 0 1.2rem;
+            margin: 0 2rem;
         }
         @media(min-width:1200px){
             margin: 0 3rem;

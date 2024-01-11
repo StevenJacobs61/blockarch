@@ -8,7 +8,6 @@ import ProgressBar from '../../components/questions/progressBar';
 const Questions = () => {
 
   const [block, setBlock] = useState();
-  const [answers, setAnswers] = useState();
   const [qIndex, setQIndex] = useState(0);
   const [isHidden, setIsHidden] = useState(false);
 
@@ -20,9 +19,12 @@ const Questions = () => {
       setBlock(parseInt(localStorage.getItem('block')))
     }
     configBlock();
+    const localIndex = parseInt(localStorage.getItem('qIndex'));
+    if(localIndex){
+      setQIndex(localIndex);
+    }
   },[])
   
-
   return (
     <div className='questions_container'>
         <div className="questions_left">
@@ -33,7 +35,6 @@ const Questions = () => {
               setBlock={setBlock}
               isHidden={isHidden}
               setIsHidden={setIsHidden}
-              setAnswers={setAnswers}
               qIndex={qIndex}
               setQIndex={setQIndex}/>
             :
@@ -41,8 +42,7 @@ const Questions = () => {
               setBlock={setBlock}
               block={block}
               qIndex={qIndex}
-              setQIndex={setQIndex}
-              setAnswers={setAnswers}/>
+              setQIndex={setQIndex}/>
           }
         </div>
     </div>
@@ -52,13 +52,11 @@ const Questions = () => {
         <ProgressBar 
         block={block} 
         setBlock={setBlock}
-        answers={answers} 
         qIndex={qIndex} 
         setQIndex={setQIndex}/>
       </div>
       <div className="questions_answersContainer">
           <Answers 
-            answers={answers}
             qIndex={qIndex}
             setQIndex={setQIndex}
             block={block}

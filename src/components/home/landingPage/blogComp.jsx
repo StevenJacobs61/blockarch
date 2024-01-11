@@ -9,8 +9,8 @@ const BlogComp = () => {
       <h1 className='gettingStarted_hdr'>Our Blog</h1>
       <h2 className='gettingStarted_subtext' style={{color: "#FF06D7"}}>Latest from Blockarch</h2>
       <div className="blogComp_blogsContainer">
-        <div className='blogComp_blogContainer'>
-          <div className="blogComp_imgContainer" onClick={()=>navigate('/blog') + window.scrollTo(0, 0)}>
+        <div className='blogComp_blogContainer' onClick={()=>navigate('/blog') + window.scrollTo(0, 0)}>
+          <div className="blogComp_imgContainer">
             <img src={Img}
             width='100%'
             height='100%'
@@ -22,7 +22,7 @@ const BlogComp = () => {
             <h3 className='blogComp_title'>Blockchain Trilemma</h3>
             <button className="blogComp_button">Read</button>
         </div>
-        <div className='blogComp_blogContainer'>
+        <div className='blogComp_blogContainer' onClick={()=>navigate('/blog') + window.scrollTo(0, 0)}>
           <div className="blogComp_imgContainer">
             <img src={Img}
             width='100%'
@@ -35,7 +35,7 @@ const BlogComp = () => {
             <h3 className='blogComp_title'>Building an ecosystem</h3>
             <button className="blogComp_button">Read</button>
         </div>
-        <div className='blogComp_blogContainer'>
+        <div className='blogComp_blogContainer' onClick={()=>navigate('/blog') + window.scrollTo(0, 0)}>
           <div className="blogComp_imgContainer">
             <img src={Img}
             width='100%'

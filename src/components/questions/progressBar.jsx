@@ -15,18 +15,14 @@ const ProgressBar = ({block, qIndex, setQIndex, setBlock}) => {
         6: 'untouched',
         7: 'untouched'
     });
-    // console.log(status);
 
     function getBlockQuestions(key){
         return projectQuestions.filter((q) => q.block == key);
     }
 
-// console.log(projectQuestions[0].block === block);/
-
     const findBlockOneStatus = (answers) => {
         Object.keys(status).map((key) => {
            const blockQuestions = getBlockQuestions(key);
-           console.log(blockQuestions);
             let count = 0;
              blockQuestions.forEach((q) => {
                 if(q.endpoint === 'user-project'){
@@ -70,7 +66,6 @@ const ProgressBar = ({block, qIndex, setQIndex, setBlock}) => {
             let found = false
             projectQuestions.map((q, j) => {
                 if(q.block == i && !found){
-                    console.log(j);
                     index = j;
                     found = true;
                 }

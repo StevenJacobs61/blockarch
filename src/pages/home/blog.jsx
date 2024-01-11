@@ -130,12 +130,10 @@ const Blog = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-console.log(screenWidth);
-console.log(displayLength);
+
   return (
     <div className='blog_container'>
-      <h1 className='blog_hdr'
-      >Blockarch Blog</h1>
+      <h1 className='blog_hdr'>Blockarch Blog</h1>
       <p className='blog_subtext'>Keep up-to-date with Blockarch's latest expert insights and resources</p>
       <div 
         className='blogGrid_container' 
@@ -182,7 +180,9 @@ console.log(displayLength);
           </div>
       <Separator/>
       <div className='blogAudio_container'>
+        <div className="blogAudio_topContainer">
           <h2 className='blogAudio_hdr'>Catch up with the BlockCast</h2>
+        </div>
           <div className='blogAudio_audiosContainer'>
             <AudioCard title={'episode 1'}/>
             <AudioCard title={'episode 1'}/>
@@ -193,7 +193,6 @@ console.log(displayLength);
             <AudioCard title={'episode 1'}/>
           </div>
       </div>
-      <Separator/>
     </div>
   )
 }

@@ -8,11 +8,13 @@
     }
     &hdr{
         margin: 0 0 1rem;
+        text-align: center;
     }
     &subtext{
         font-size: 1.2rem;
         font-weight: 400;
         margin: 0.5rem 0;
+        text-align: center;
     }
     &button{
         margin: 1rem;
@@ -24,6 +26,7 @@
     }
     &questionsContainer{
         @include flexCol();
+        overflow: hidden
     }
     &inputContainer{
         @include flexCol();

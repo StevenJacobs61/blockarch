@@ -61,13 +61,14 @@
     &questionsTitle{
         margin: 1rem 0 2rem;
         font-weight: 400;
+        text-align: center;
     }
     &hdr{
         font-size: 2rem;
         width: 80%;
         margin: 0.2rem 0 0.5rem;
         overflow: visible;
-        // text-align: center;
+        text-align: center;
     }
     &label{
         font-size: 1.5rem;
@@ -130,11 +131,12 @@
     }
     &buttonSubmit{
         font-weight: 700;
-        margin: 1rem 0.5rem 0;
+        margin: 2rem 0.5rem 0;
         font-size: 1.2rem;
         background: $white;
         color: $baseD;
         width: 55%;
+        @include flexCenR();
         border: 1px solid;
         padding: 0.5rem 0.7rem;
         border-radius: 3px;
@@ -146,6 +148,11 @@
             color: $white;
             border: 1px solid $base;
         }
+    }
+    &success{
+        font-size: 1.8rem;
+        color: $base;
+        font-weight: 600;
     }
     // Login page
     &loginContainer{
@@ -236,7 +243,7 @@
             width: 35%;
         }
         &buttonSubmit{
-            width: 60%;
+            margin: 2rem 0.5rem 0;
         }
     }
 }

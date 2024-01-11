@@ -4,7 +4,7 @@ import { userQuestions } from '../../data/userQuestions';
 import { projectQuestions } from '../../data/projectQuestions';
 import { convertCamelToCapitalized } from '../../functions/covert';
 
-const Answers = ({qIndex, setQIndex, block, setBlock}) => {
+const Answers = ({qIndex, setQIndex, block, setBlock, }) => {
 
   const [answers, setAnswers] = useState();
   const [projectFields, setProjecFields] = useState(projectQuestions.map((question) => convertCamelToCapitalized(question.field)));
@@ -24,14 +24,12 @@ const Answers = ({qIndex, setQIndex, block, setBlock}) => {
     if(parseInt(localStorage.getItem('block')) > 0){
       setShow(prev => ({...prev, [projectQuestions[qIndex].block - 1]: true}))
       const localProjectAns = JSON.parse(localStorage.getItem('project'));
-      localAns = localProjectAns;
+      setAnswers(localProjectAns);
     }else{
-      const localUserAns = JSON.parse(localStorage.getItem('user'));
-      localAns = localUserAns;
+      setAnswers(JSON.parse(localStorage.getItem('user')));
     }
-    setAnswers(localAns);
-  }, [qIndex])
-
+  }, [qIndex]);
+  
   return (
     <div className='answers_container'>
         {block == 0 ?

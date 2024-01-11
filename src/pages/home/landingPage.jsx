@@ -6,8 +6,14 @@ import Separator from "../../components/separator";
 import Perks from "../../components/home/landingPage/perks";
 import GettingStarted from "../../components/home/landingPage/gettingStarted";
 import BlogComp from "../../components/home/landingPage/blogComp";
+import { useEffect } from "react";
+import { clearLocalData } from "../../functions/utility";
 
 const LandingPage = () => {
+
+  useEffect(() => {
+    clearLocalData();
+  }, []);
 
   return (
     <div className="landingPage_container">

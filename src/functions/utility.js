@@ -1,8 +1,7 @@
 import { getById } from "./userAPI";
 
 export const isNull = (obj) =>{
-    console.log(Object.values(obj).some((val) => val === null || val === ""));
-    return Object.values(obj).some((val) => val === null);
+    return Object.values(obj).some((val) => val === null || val === "" || val === NaN);
 }
 export const clearLocalData = () => {
     localStorage.removeItem('user');
@@ -38,4 +37,20 @@ export const handleAddProject = () => {
       window.location.reload();
     }
     window.location.href =  '/apps/questions';
+  }
+
+  export const calculateAndSortResults = (results) => {
+    results.forEach((result)=>{
+      let total = 
+        result.block_1_score + 
+        result.block_2_score + 
+        result.block_3_score + 
+        result.block_4_score + 
+        result.block_5_score + 
+        result.block_6_score + 
+        result.block_7_score; 
+      result.total = total;
+    }
+    )
+    return results.sort((a, b) => b.total - a.total)
   }

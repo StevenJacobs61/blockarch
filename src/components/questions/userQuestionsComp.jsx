@@ -5,16 +5,16 @@ import { userQuestions } from '../../data/userQuestions';
 import { ReactComponent as Arrow } from '../../svg/arrow-back.svg';
 import { useNavigate } from 'react-router-dom';
 
-const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex, setQIndex}) => {
+const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
 
     const navigate = useNavigate();
     
-    const [buttonText, setButtonText] = useState('Submit');
     const [alertMessage, setAlertMessage] = useState(null);
     const other = useRef(null);
-    const[showSubmit, setShowSubmit] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState();
-    const [finish, setFinish] = useState(false)
+    const [finish, setFinish] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
     const [user, setUser] = useState(()=>{
       const result = {};
      userQuestions.forEach(question => {
@@ -27,10 +27,14 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
      return result;
     });
 
-    useEffect(()=>{
-      JSON.parse(localStorage.getItem('user'));
-      setAnswers(user)
-    }, [user])
+    // useEffect(()=>{
+    //   const localUser = JSON.parse(localStorage.getItem("user"))
+    //   if(localUser){
+    //     setUser(localUser)
+    //   }else{
+    //     localStorage.setItem('user', JSON.stringify(user));
+    //   }
+    // }, [user])
 
     useEffect(()=>{
       const localUser = JSON.parse(localStorage.getItem('user'));
@@ -42,7 +46,12 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
     }, [])
 
     const handleSubmit = async () => {
-      setButtonText("Sending")
+      if(qIndex !== userQuestions.length - 1){
+        setQIndex(userQuestions.length - 1);
+        localStorage.setItem("user", JSON.stringify(user))
+        return
+      }
+      setLoading(true);
       let alert = false;
       try {
         const emailRes = await getUserByEmail(user.emailAddress);
@@ -61,28 +70,19 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
       if(!alert){
       try {
           const response = await add(user, '/user')
-          setButtonText('Success');
           localStorage.setItem('user', JSON.stringify(response.data));
           localStorage.setItem('block', JSON.stringify(1));
           localStorage.setItem('qIndex', JSON.stringify(0));
           // setBlock(1)
           // setUser({});
           // setQIndex(0)
+          setSuccess(true);
+          setTimeout(()=>{}, 2000);
           window.location.reload();
       } catch (error) {
-        setButtonText('Error')
       }
     }
-    setButtonText('Submit')
     };
-    
-    useEffect(()=>{
-      if(!Object.values(user).includes(value => value == null || value == "")){
-        setShowSubmit(false);
-      }else{
-        setShowSubmit(true);
-      }
-    },[user])
 
     const handleIndex = (direction) => {
       if(finish){
@@ -93,12 +93,8 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
       }else{
         setAlertMessage(null)
       }
-      if(Object.values(user).every(value => value !== null && value !== "")){
-        setShowSubmit(true)
-      }
         setIsHidden(true);
         localStorage.setItem('user', JSON.stringify(user))
-        setAnswers(user);
         setTimeout(()=>{
           if(direction === 1){
             setQIndex((prev)=> prev === userQuestions.length - 1 ? 0 : prev+1);
@@ -107,6 +103,7 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
           }
           setIsHidden(false)
         }, [200])
+        localStorage.setItem('qIndex', JSON.stringify(qIndex));
     }
 
     const handleClear = () => {
@@ -119,7 +116,6 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
         <div className="questions_arrowContainer" onClick={()=>handleIndex(0)}>
         <Arrow width='100%' height='100%'/>
         </div>
-        {/* <h3 className='questions_back' onClick={()=>handleIndex(0)}>Back</h3> */}
       </div>
     <h1 className='userQuestions_hdr'>Create a user account</h1>
     {alertMessage ? <h3 className='questions_alertMessage'>{alertMessage}</h3> : null}
@@ -210,7 +206,13 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
         className='questions_textInput' 
         onChange={(e)=> setConfirmPassword(e.target.value)}
       /> : 
-      <input type={input.type} className='questions_textInput' value={user[input.field] || ''} onChange={(e)=> setUser((prev) => ({...prev, [input.field]:e.target.value}))}/>
+      <input 
+      type={input.type} 
+      className='questions_textInput' value={user[input.field] || ''} 
+      onChange={(e)=> {
+        const value = input.type === 'number' ? parseInt(e.target.value) : e.target.value;
+        setUser((prev) => ({...prev, [input.field]:value}))
+      }}/>
     }
       </div>
       ) : null
@@ -222,19 +224,27 @@ const UserQuestionsComp = ({setBlock, isHidden, setIsHidden, setAnswers, qIndex,
     <h1>finish</h1>
     }
     </div>
-      {showSubmit &&
-          <button 
-              className='questions_buttonSubmit'
-              onClick={()=>handleSubmit()}>
-              {buttonText}
-          </button>
-      }
+    { !Object.values(user).some((val) => val === null || val === undefined || val == NaN || val === "" || val.toString().trim() === "")
+            ?
+                !success ? <button 
+                    className='questions_buttonSubmit'
+                    onClick={()=>handleSubmit()}
+                    style={{opacity: loading ? "0.4" : "", pointerEvents: loading ? "none" : "auto"}}
+                    >
+                    {qIndex !== userQuestions.length - 1 && !loading ? "Finish" : qIndex == userQuestions.length - 1 && !loading ? "Submit" : 
+                        <div className="spinner"/>
+                    }
+                </button> : <p className='questions_success'>Success!</p>
+           :null } 
     <div className="questions_changeContainer">
+            {qIndex !== userQuestions.length - 1 ?
             <button 
                 className='questions_buttonChange' 
                 onClick={()=>handleIndex(1)}>
                   Next
             </button>
+            :null
+            }
 
         </div>
   </div>

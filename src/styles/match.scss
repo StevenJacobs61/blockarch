@@ -8,7 +8,6 @@
         @include flexCol();
         padding: 0.5rem 0.5rem 0.5rem;
         overflow: hidden;
-        // border: 1.5px solid $baseL;
         border-radius: 2px;
         overflow: hidden;
     }
@@ -17,7 +16,6 @@
         width: 90%;
         height: 80%;
         overflow: hidden
-
     }
     &left{
         width: 40%;
@@ -39,27 +37,24 @@
         text-align: center;
         height: 80%;
         overflow: hidden
-
-
     }
     &hdr{
         font-size: 1.7rem;
         font-weight: 600;
         text-transform: capitalize;
         margin: auto;
-        overflow: hidden
-
+        overflow: hidden;
     }
     &text{
         font-size: 1rem;
-        overflow: hidden
+        overflow: hidden;
 
     }
     &bottomContainer{
         width: 100%;
         @include flexCenR();
         padding: 0.5rem;
-        overflow: hidden
+        overflow: hidden;
     }
     &button{
         padding: 0.3rem 0.3rem;
@@ -75,9 +70,12 @@
         cursor: pointer;
         transition: all 0.3s;
         box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
+        transition: all 0.15s ease-in-out;
         &:hover{
-            box-shadow: 0 0.5px 2px 0 rgba(0, 0, 0, 0.2);
-            color: $offWhite;
+            box-shadow: none;
+            color: $base;
+            transform: scale(1.2);
+            background: none;
         }
     }
     @media(min-width: 480px){
