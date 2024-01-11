@@ -80,6 +80,7 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
           setTimeout(()=>{}, 2000);
           window.location.reload();
       } catch (error) {
+        console.error(error);
       }
     }
     };
