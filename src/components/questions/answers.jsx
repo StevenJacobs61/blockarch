@@ -4,7 +4,7 @@ import { userQuestions } from '../../data/userQuestions';
 import { projectQuestions } from '../../data/projectQuestions';
 import { convertCamelToCapitalized } from '../../functions/covert';
 
-const Answers = ({qIndex, setQIndex, block, setBlock, }) => {
+const Answers = ({qIndex, setQIndex, block, setBlock, setAlertMessage}) => {
 
   const [answers, setAnswers] = useState();
   const [projectFields, setProjecFields] = useState(projectQuestions.map((question) => convertCamelToCapitalized(question.field)));
@@ -37,8 +37,21 @@ const Answers = ({qIndex, setQIndex, block, setBlock, }) => {
         { return question.input.map((item, i) => {
           if(item.title === 'Confirm Password' || item.field === 'finish') return null;
           else return <div className="answers_questionContainer" key={i} 
-          onClick={()=> 
-          setQIndex(k) + localStorage.setItem('qIndex', JSON.stringify(k)) + setBlock(0) + localStorage.setItem('block', JSON.stringify(0))
+          onClick={async()=> {
+            setAnswers(JSON.parse(localStorage.getItem('user')));
+            const localAns = await JSON.parse(localStorage.getItem('user'))
+            console.log(localAns);
+            if(localAns.confirmPassword === localAns.password){
+            setQIndex(k);
+            localStorage.setItem('qIndex', JSON.stringify(k));
+            setBlock(0);
+            localStorage.setItem('block', JSON.stringify(0));
+            setAlertMessage("")
+            }else{
+              setAlertMessage("Confirm password does not match!");
+            }
+            return
+          }
           }>
           <h1 className='answers_questionTitle'>{item.title}:</h1>
           <h2 className='answers_answer'>{answers && Object.keys(answers).filter((key) => key == item.field).map((filteredKey) => (

@@ -11,6 +11,8 @@ const Login = () => {
     })
    const [activeSubmit, setActiveSubmit] = useState(false)
    const [alertMessage, setAlertMessage] = useState('');
+   const [loading, setLoading] = useState(false);
+   const [success, setSuccess] = useState(false);
 
    useEffect(() => {
     Object.values(loginDetails).every((value) => value) ?
@@ -19,13 +21,19 @@ const Login = () => {
 
    const handleSubmit = async () => {
     if(!activeSubmit) return;
+    setLoading(true);
     try{
         const res = await getUserByEmail(loginDetails.emailAddress);
         if(loginDetails.password == res.password){
             await localStorage.setItem('user', JSON.stringify(res));
             await localStorage.setItem('block', JSON.stringify(1));
             await localStorage.setItem('qIndex', JSON.stringify(0));
-            navigate('/apps');
+            setSuccess(true);
+            setLoading(false);
+            setTimeout(()=>{
+                navigate('/apps');
+            }, 1500)
+
         }else{
             setAlertMessage('Password did not match. \n Please try again or create an account.')
         }
@@ -48,21 +56,27 @@ const Login = () => {
         <h3 className='questions_alertMessage'>{alertMessage}</h3>
         <label className='questions_label'>Email Address</label>
         <input type="text" className='questions_textInput' 
-        onChange={(e)=> setLoginDetails((prev)=> ({...prev, emailAddress: e.target.value}))}/>
+            onChange={(e)=> setLoginDetails((prev)=> ({...prev, emailAddress: e.target.value}))}/>
         <label className='questions_label'>Password</label>
         <input type="password" className='questions_textInput'
-        onChange={(e)=> setLoginDetails((prev)=> ({...prev, password: e.target.value}))}/>
+            onChange={(e)=> setLoginDetails((prev)=> ({...prev, password: e.target.value}))}/>
            <h3 className='questions_createAccount' onClick={()=>handleNewAcount()}>Don't have an account yet? Create one here!</h3>
         <div className='questions_btnContainer'>
-        <button className='questions_buttonLogin'
-        style={{
-            opacity: activeSubmit ? '' : '0.3', 
-            cursor: activeSubmit ? '' : 'unset',
-            color: activeSubmit ? '' : '#FF06D7',
-            background : activeSubmit ? '' : '#fff'
-         }}
-         onClick={()=>handleSubmit()}
-        >Submit</button>
+        {success ? 
+            <p className='questions_success'>Success!</p>
+            : <button className='questions_buttonLogin'
+            style={{
+                opacity: activeSubmit && !loading ? '' : '0.3', 
+                cursor: activeSubmit && !loading ? '' : 'unset',
+                color: activeSubmit && !loading ? '' : '#FF06D7',
+                background : activeSubmit && !loading ? '' : '#fff',
+                pointerEvents: loading ? "none" : "auto"
+            }}
+            onClick={()=>handleSubmit()}>
+            {loading ? 
+             <div className="spinner"/>
+            : "Submit"}
+        </button>}
         </div>
     </div>
     </div>

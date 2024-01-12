@@ -2,7 +2,6 @@ import Capture from "../../components/home/capture";
 import Sequence from "../../components/home/landingPage/sequence";
 import '../../styles/home.scss'
 import Info from "../../components/home/landingPage/info";
-import Separator from "../../components/separator";
 import Perks from "../../components/home/landingPage/perks";
 import GettingStarted from "../../components/home/landingPage/gettingStarted";
 import BlogComp from "../../components/home/landingPage/blogComp";
@@ -35,9 +34,9 @@ const LandingPage = () => {
              </div>
            </div>
         </div>
+        <Sequence/>
       </div>
         <div className="home_container" >
-        <Sequence/>
         </div>
         <div className="home_container">
           <GettingStarted/>

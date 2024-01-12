@@ -10,6 +10,7 @@ const Questions = () => {
   const [block, setBlock] = useState();
   const [qIndex, setQIndex] = useState(0);
   const [isHidden, setIsHidden] = useState(false);
+  const [alertMessage, setAlertMessage] = useState(null);
 
   useEffect(()=>{
     function configBlock(){
@@ -36,7 +37,10 @@ const Questions = () => {
               isHidden={isHidden}
               setIsHidden={setIsHidden}
               qIndex={qIndex}
-              setQIndex={setQIndex}/>
+              setQIndex={setQIndex}
+              alertMessage={alertMessage}
+              setAlertMessage={setAlertMessage}
+              />
             :
             <ProjectQuestions
               setBlock={setBlock}
@@ -60,7 +64,9 @@ const Questions = () => {
             qIndex={qIndex}
             setQIndex={setQIndex}
             block={block}
-            setBlock={setBlock}/>
+            setBlock={setBlock}
+            alertMessage={alertMessage}
+            setAlertMessage={setAlertMessage}/>
       </div>
       </div>
     </div>

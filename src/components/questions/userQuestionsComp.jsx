@@ -5,11 +5,10 @@ import { userQuestions } from '../../data/userQuestions';
 import { ReactComponent as Arrow } from '../../svg/arrow-back.svg';
 import { useNavigate } from 'react-router-dom';
 
-const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
+const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex, alertMessage, setAlertMessage}) => {
 
     const navigate = useNavigate();
     
-    const [alertMessage, setAlertMessage] = useState(null);
     const other = useRef(null);
     const [confirmPassword, setConfirmPassword] = useState();
     const [finish, setFinish] = useState(false);
@@ -19,22 +18,13 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
       const result = {};
      userQuestions.forEach(question => {
       question.input.forEach(inputField => {
-        if(inputField.field !== 'confirmPassword' && inputField.field !== 'finish'){
+        if(inputField.field !== 'finish'){
           result[inputField.field] = null
         }
       })
      })
      return result;
     });
-
-    // useEffect(()=>{
-    //   const localUser = JSON.parse(localStorage.getItem("user"))
-    //   if(localUser){
-    //     setUser(localUser)
-    //   }else{
-    //     localStorage.setItem('user', JSON.stringify(user));
-    //   }
-    // }, [user])
 
     useEffect(()=>{
       const localUser = JSON.parse(localStorage.getItem('user'));
@@ -46,6 +36,11 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
     }, [])
 
     const handleSubmit = async () => {
+      if(user.confirmPassword !== user.password){
+        setAlertMessage("Confirm password does not match!");
+        setQIndex(0);
+        return
+      }
       if(qIndex !== userQuestions.length - 1){
         setQIndex(userQuestions.length - 1);
         localStorage.setItem("user", JSON.stringify(user))
@@ -69,13 +64,11 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
       }
       if(!alert){
       try {
-          const response = await add(user, '/user')
+        const {confirmPassword, ...otherUserProperties} = user;
+          const response = await add(otherUserProperties, '/user')
           localStorage.setItem('user', JSON.stringify(response.data));
           localStorage.setItem('block', JSON.stringify(1));
           localStorage.setItem('qIndex', JSON.stringify(0));
-          // setBlock(1)
-          // setUser({});
-          // setQIndex(0)
           setSuccess(true);
           setTimeout(()=>{}, 2000);
           window.location.reload();
@@ -89,10 +82,10 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
       if(finish){
         setFinish(false)
       }
-      if(qIndex === 0 && direction === 1 && confirmPassword !== user.password){
+      if(qIndex === 0 && direction === 1 && user.confirmPassword !== user.password){
         return setAlertMessage("Confirm password does not match!");
       }else{
-        setAlertMessage(null)
+        setAlertMessage("");
       }
         setIsHidden(true);
         localStorage.setItem('user', JSON.stringify(user))
@@ -110,7 +103,7 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
     const handleClear = () => {
       other.current.value = '';
     }
-
+    
   return (
     <div className={`userQuestions_container`}>
       <div className='questions_topContainer'>
@@ -201,20 +194,19 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
 
       <div className='userQuestions_inputContainer' key={i}>
       <label className='questions_label'>{input.title}</label>
-      {input.field === 'confirmPassword' ? 
-       <input 
-        type={input.type} 
-        className='questions_textInput' 
-        onChange={(e)=> setConfirmPassword(e.target.value)}
-      /> : 
       <input 
-      type={input.type} 
-      className='questions_textInput' value={user[input.field] || ''} 
+      type={input.type}
+      className='questions_textInput' 
+      value={user[input.field] || ''} 
       onChange={(e)=> {
-        const value = input.type === 'number' ? parseInt(e.target.value) : e.target.value;
-        setUser((prev) => ({...prev, [input.field]:value}))
+        const newValue = e.target.value;
+        if (((newValue === '' || /^\+?\d*$/.test(newValue)) && qIndex === 2) || qIndex !== 2) {
+          const value = input.type === 'number' ? parseInt(newValue) : newValue;
+          setUser((prev) => ({ ...prev, [input.field]: value }));
+          let newUser = {...user, [input.field]: value}
+          localStorage.setItem("user", JSON.stringify(newUser));
+        }
       }}/>
-    }
       </div>
       ) : null
       }
@@ -225,6 +217,7 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
     <h1>finish</h1>
     }
     </div>
+    {loading && !success ? <p className='questions_loading'>Your Account is being created, do not leave the page...</p> : null}
     { !Object.values(user).some((val) => val === null || val === undefined || val == NaN || val === "" || val.toString().trim() === "")
             ?
                 !success ? <button 
@@ -236,7 +229,7 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
                         <div className="spinner"/>
                     }
                 </button> : <p className='questions_success'>Success!</p>
-           :null } 
+           : null } 
     <div className="questions_changeContainer">
             {qIndex !== userQuestions.length - 1 ?
             <button 
@@ -246,7 +239,6 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex}) => {
             </button>
             :null
             }
-
         </div>
   </div>
   )

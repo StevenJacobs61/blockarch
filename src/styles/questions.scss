@@ -198,6 +198,7 @@
         font-size: 1.2rem;
         background: $base;
         color: $white;
+        @include flexCenR();
         box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.5);
         padding: 0.5rem 0.7rem;
         border-radius: 3px;
@@ -209,6 +210,13 @@
             color: $baseD;
             border: 1px solid;
         }
+    }
+    &loading{
+        font-size: 1.5rem;
+        text-align: center;
+        width: 80%;
+        color: $baseD;
+        margin: 1rem 0;
     }
     &answersContainer{
         width: 100%;

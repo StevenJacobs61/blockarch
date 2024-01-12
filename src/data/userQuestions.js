@@ -40,7 +40,7 @@ export const userQuestions = [
             {
                 title: 'phone number',
                 field: 'phoneNumber',
-                type: 'number'
+                type: 'text'
             },
         ]
     },

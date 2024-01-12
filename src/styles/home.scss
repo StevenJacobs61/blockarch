@@ -84,30 +84,29 @@
     }
     &heroLeft{
         @include flexCol();
-        width: 90%;
+        align-items: flex-start;
+        width: 100%;
         z-index: 90;
         height: fit-content;
-        // background: rgba(255, 255, 255, 0.5);
-        // box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1);
         border-radius: 3px;
         animation: opacity 1s 1 forwards;
-        // margin-top: 1rem;
-        margin-right: 3rem;
     }
     &hdr{
-        font-size: 2.7rem;
-        margin: 1rem 0 1rem 13%;
-        font-weight: 500;
-        width: 90%;
+        font-size: 3.5rem;
+        margin: 1rem 0 2rem 1rem;
+        font-weight: 600;
+        text-shadow: 0 0 7px $white;
+        width: 80%;
         text-align: left;
         animation: slideTop 0.5s ease-out 1;
-        overflow: hidden;
-        text-shadow: 5px 5px 3px rgba(255, 120, 225, 0.3);
+        font-family: 'Anton', sans-serif;
     }
     &listContainer{
         margin: 0.5rem 0 1.5rem;
         width: 76%;
         overflow: visible;
+        display: none;
+
     }
     &listItem{
         text-align: left;
@@ -125,21 +124,23 @@
         text-align: center;
     }
     &captureContainer{
-        width: 80%;
+        width: 100%;
         @include flex();
-        margin: 0.5rem 0 2.5rem;
+        justify-content: flex-start;
+        margin: 0 0 0 1rem;
         overflow: hidden;
     }
     &captureWrapper{
         overflow: hidden;
         @include flex();
         justify-content: flex-start;
-        width: 100%;
+        width: 60%;
         animation: slideBottom 0.5s ease-in-out 1 forwards;
     }
     &heroContainer{
-        @include flex();
-        justify-content: center;
+        @include flexCol();
+        align-items: flex-start;
+        width: 100%;
         position: relative;
         overflow: hidden;
         padding: 2rem;
@@ -155,15 +156,17 @@
         background-size: cover;
         transform: scale(1) rotate(180deg);
         background-position: -400px 0;
+        background-position: -260px center;
         background-blend-mode: color-dodge;
-        background-color: rgb(209, 35, 171);
+        background-color: rgb(221, 2, 188);
         animation: color 1.5s 1;
+        background-attachment: fixed;
       }
 }
 @media(min-width:480px){
     .layout_{
         &container{
-            padding: 20px 0 0;
+            padding: 0px 0 0;
         }
     }
     .landingPage_{
@@ -171,16 +174,12 @@
             justify-content: flex-start;
         }
         &heroLeft{
-            margin: 0px 0 15px 60px;
-            width: 65%;
+            margin: 3rem 0 0 5%;
+            width: 90%;
         }
         &hdr{
-            font-size: 3rem;
-            font-weight: 500;
-            margin: 20px 0 0;
-            width: 80%;
-            text-align: left;
-            padding: 1.5rem 1rem 0;
+            font-size: 5rem;
+            margin-bottom: 3rem;
         }
         &listContainer{
             margin: 2rem 1rem 1rem 25%;
@@ -207,42 +206,15 @@
         &listItem{
         }
         &captureContainer{
-            width: 90%;
-            justify-content: center;
-            margin: 1rem 5rem 2.5rem 3.5rem;
-            overflow: hidden;
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 1.5rem;
         }
         &captureWrapper{
             width: 80%;
             overflow: hidden;
         }
 }
-}
-@media(min-width:600px){
-    .layout_{
-        &container{
-            padding-top: 10px;
-        }
-    }
-    .landingPage_{
-        &heroContainer::before{
-            transform: scale(1.2);
-        }
-        &heroLeft{
-            width: 50%;
-        }
-        &hdr{
-            margin-top: 10px;
-        }
-        &captureContainer{
-            width: 80%;
-            margin-left: 4rem;
-        }
-        &captureWrapper{
-            width: 90%;
-            // margin-right: 1.5rem;
-        }
-    }
 }
 @media (min-width: 769px) { 
     .layout_{
@@ -252,40 +224,68 @@
     }
     .landingPage_{
         &heroContainer::before{
-            transform: rotate(180deg) scale(1.3);
+            transform: rotate(180deg) scale(1.1);
         }
         &heroLeft{
-            margin: 65px 45px 40px 19%;
-            padding-bottom: 20px;
+            width: 70%;
+            margin-left: 7%;
         }
         &hdr{
-            margin: 2rem 0 1rem 1rem;
-            font-size: 3.3rem;
+            font-size: 5.5rem;
         }
-        &listContainer{
-            margin: 1rem 0 2rem 11rem;
+        // &listContainer{
+        //     margin: 1rem 0 2rem 11rem;
+        //     display: none;
+        // }
+        // &listItem{
+        //     font-size: 1.8rem;
+        // }
+        &captureWrapper{
+            width: 100%;
         }
-        &listItem{
-            font-size: 1.8rem;
+        &captureContainer{
+            max-width: 450px;
         }
 }
 }
 @media (min-width: 1024px) { 
     .landingPage_{
         &heroLeft{
-            margin: 65px 45px 40px 15%;
+            // margin: 65px 45px 40px 15%;
         }
         &hdr{
-            margin: 2rem 0 3rem;
-            line-height: 4.5rem;
-            font-size: 3.8rem;
+            margin: 2.8rem 0 5rem 2%;
+            font-size: 7rem;
         }
-        &listContainer{
-            margin: 1rem 0 3.5rem 25%;
+        // &listContainer{
+        //     margin: 1rem 0 3.5rem 25%;
+        // }
+        // &listItem{
+        //     font-size: 2.2rem;
+        // }
+    }
+}
+@media (min-width: 1200px) { 
+    .landingPage_{
+        &heroLeft{
+            width: 60%;
         }
-        &listItem{
-            font-size: 2.2rem;
+        &hdr{
+            margin: 2.8rem 0 5rem 2%;
+            font-size: 8.5rem;
         }
+        &captureWrapper{
+            width: 100%;
+        }
+        &captureContainer{
+            max-width: 500px;
+        }
+        // &listContainer{
+        //     margin: 1rem 0 3.5rem 25%;
+        // }
+        // &listItem{
+        //     font-size: 2.2rem;
+        // }
     }
 }
 @media (min-width: 1350px) { 
@@ -295,30 +295,27 @@
             background-position: -400px 100px;
         }
         &heroLeft{
-            // width: 40%;
-            margin: 80px 0 70px 10%;
-            background: none;
+            margin: 3.5rem 0  0 10%;
         }
         &hdr{
-            font-size: 5rem;
-            margin: 3rem 0 4rem;
-            font-weight: 600;
-            text-shadow: 13px 18px 6px rgba(255, 120, 225, 0.3);
-            color: $offBlack;
-            line-height: 5.5rem;
-            overflow: visible;
-        }
-        &listContainer{
-            margin: 1rem 0 2rem 25%;
-        }
-        &listItem{
-            margin-bottom: 2rem;
-            color: $offBlack;
+            font-size: 8rem;
+            margin-bottom: 2.5rem;
         }
         &captureContainer{
-            width: 75%;
-            margin: 1rem 0 5rem 0;
-            justify-content: flex-start;
+            margin: 1.5rem 0;
+            max-width: 650px;
         }
+        // &listContainer{
+        //     margin: 1rem 0 2rem 25%;
+        // }
+        // &listItem{
+        //     margin-bottom: 2rem;
+        //     color: $offBlack;
+        // }
+        // &captureContainer{
+        //     width: 75%;
+        //     margin: 1rem 0 5rem 0;
+        //     justify-content: flex-start;
+        // }
     }
 }
