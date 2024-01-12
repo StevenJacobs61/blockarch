@@ -43,6 +43,7 @@ const AppsLayout = () => {
     if (confirm('Are you sure you wish to logout?')) {
         clearLocalData();
         navigate('/');
+        window.scrollTo({top:0, behavior: "smooth"});
     }
 }
 
@@ -56,6 +57,7 @@ const addProject = () => {
 const handleNavigateToResult = async (project) => {
   const res = await naviagteToResult(project);
   if(res) setHide(true);
+  window.scrollTo({top:0, behavior: "smooth"});
 }
 
 const handleShow = () => {
@@ -67,7 +69,7 @@ const handleShow = () => {
       {user ? 
       <div className="appsLayout_sideBar" style={{transform: hide ? "translateX(-100%)" : "", opacity: hide ? '0' : '1'}}>
           <div className="appsLayout_titlesContainer">
-            <h2 className='appsLayout_title' onClick={()=>navigate('/apps') + setHide(true)}>Profile</h2>
+            <h2 className='appsLayout_title' onClick={()=>navigate('/apps') + setHide(true) + window.scrollTo({top:0, behavior: "smooth"})}>Profile</h2>
             <h2 className='appsLayout_title' onClick={()=>handleLogout()}>Logout</h2>
             <h2 className='appsLayout_title' onClick={()=>addProject()}>New</h2>
             <h2 

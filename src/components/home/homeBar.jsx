@@ -30,7 +30,7 @@ const HomeBar = () => {
   },[])
 
   
-  
+  console.log(window);
   return (
     <div className='homeBar_barContainer'>
     <div className="homeBar_container">
@@ -69,7 +69,14 @@ const HomeBar = () => {
               Blog
           </p>
         </div>
-        <button className='homeBar_tryNow' onClick={()=> navigate("/apps/questions")}>Try It!</button>
+        <button 
+          className='homeBar_tryNow' 
+          onClick={()=>{
+            navigate("/apps/questions");
+            window.scrollTo({top:0, behavior: "smooth"});
+          } }>
+        Try It!
+        </button>
         <div className='homeBar_menuIconContainer' onClick={()=>setClick(!click)}>
           {!click ? 
             <Menu width='100%' height='100%'/> :

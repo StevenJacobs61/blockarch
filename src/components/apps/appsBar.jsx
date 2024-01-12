@@ -15,6 +15,7 @@ const AppsBar = ({setHide, hide, user}) => {
     localStorage.setItem('block', JSON.stringify(1));
     localStorage.setItem('qIndex', JSON.stringify(0));
     window.location.href = '/apps';
+    window.scrollTo({top:0, behavior: "smooth"});
   }
 
   const handleHome = () => {
@@ -33,6 +34,7 @@ const AppsBar = ({setHide, hide, user}) => {
       clearLocalData();
       navigate('/')
     }
+    window.scrollTo({top:0, behavior: "smooth"});
   }
 
   /* eslint-enable no-restricted-globals */

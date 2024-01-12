@@ -10,7 +10,6 @@ const UserQuestionsComp = ({setIsHidden, qIndex, setQIndex, alertMessage, setAle
     const navigate = useNavigate();
     
     const other = useRef(null);
-    const [confirmPassword, setConfirmPassword] = useState();
     const [finish, setFinish] = useState(false);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
