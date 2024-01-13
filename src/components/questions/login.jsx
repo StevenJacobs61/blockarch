@@ -60,7 +60,10 @@ const Login = () => {
         <label className='questions_label'>Password</label>
         <input type="password" className='questions_textInput'
             onChange={(e)=> setLoginDetails((prev)=> ({...prev, password: e.target.value}))}/>
+           {!loading ? 
            <h3 className='questions_createAccount' onClick={()=>handleNewAcount()}>Don't have an account yet? Create one here!</h3>
+           : <p className='questions_loading'>Please wait, your data is being retrieved...</p>
+        }
         <div className='questions_btnContainer'>
         {success ? 
             <p className='questions_success'>Success!</p>

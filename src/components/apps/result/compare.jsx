@@ -3,7 +3,7 @@ import '../../../styles/compare.scss'
 import '../../../styles/resultComp.scss';
 import { ReactComponent as Ethereum } from '../../../svg/ethereum.svg';
 import { ReactComponent as Polygon } from '../../../svg/polygon.svg';
-import { ReactComponent as Ada } from '../../../svg/ada.svg';
+import { ReactComponent as Near } from '../../../svg/near.svg';
 import { ReactComponent as Bsc } from '../../../svg/bsc.svg';
 import { ReactComponent as Ripple } from '../../../svg/ripple.svg';
 import { ReactComponent as Corda } from '../../../svg/corda.svg';
@@ -51,21 +51,28 @@ const Compare = ({results}) => {
                   )}
                 </div>
               </div>
-              {resultsArr.map((arr, i) => {
+              {resultsArr.slice(0, 3).map((arr, i) => {
                 let title = results[i].dlt_solution_id.solutionName;
                 let Logo = 
                     title === "Ethereum" ? Ethereum : 
                     title === "Ripple" ? Ripple :
-                    title === "Avax" ? Avalanche :
+                    title === "Avalanche" ? Avalanche :
                     title === "Corda" ? Corda :
                     title === "Polygon" ? Polygon :
-                    title === "Bsc" ? Bsc :
-                    title === "ada" ?  Ada:
-                    title === "Hyperledger" ?  Hyperledger:
+                    title === "Binance Smart Chain" ? Bsc :
+                    title === "Near" ?  Near:
+                    title === "Hyperledger Fabric" ?  Hyperledger:
                     Solana;
              return <div className="compare_gridColumn" key={i}>
                 <div className="compare_topContainer">
-                  <div className="compare_logoContainer">
+                  <div 
+                    className="compare_logoContainer"
+                    id={
+                      title === "Near" ? "near" : 
+                      title === "Solana" ? "solana" : 
+                      title === "Binance Smart Chain" ? "bsc" : 
+                      title === "Hyperledger Fabric" ? "hl" : 
+                      ""}>
                     <Logo width={'100%'} height={'100%'}/>
                   </div>
                   <h2 className='compare_title'>

@@ -240,7 +240,7 @@ const ProjectQuestions = ({setBlock, qIndex, setQIndex}) => {
                     checked={userProject[projectQuestions[qIndex].field] === false ? true : false}/>
             </div>)
         }
-        {loading && !success ? <p className='questions_loading'>Your Account is being created, do not leave the page...</p> : null}
+        {loading && !success ? <p className='questions_loading'>Please wait, your results are being calculated...</p> : null}
             { !Object.values(userProject).some((val) => val === null || val === undefined || val == NaN || val === "" || val.toString().trim() === "")
             ?
                 !success ? <button 

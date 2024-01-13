@@ -30,7 +30,6 @@ const HomeBar = () => {
   },[])
 
   
-  console.log(window);
   return (
     <div className='homeBar_barContainer'>
     <div className="homeBar_container">

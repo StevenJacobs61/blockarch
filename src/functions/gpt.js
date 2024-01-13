@@ -5,7 +5,6 @@ const systemMessage = {
 }
 
 export async function reqChat(prompt){
-    console.log("Request sent.");
     let res = null;
     const apiBody = {
         "model": "gpt-3.5-turbo",
@@ -65,7 +64,6 @@ export const getGptSummary = async (results) => {
                 , Regulation: ${results[2].block_7_score};  
             These are the scores. Please give a summary which supplies some insight into why these scores have been given, as well shine some light on outlying scores, for example if the third place blockchain has scored highest in a certain area. The blockchain with the highest sum of scores is the most recommened, in the order I have given them to you.`);
             
-        console.log(res);
         gptRes = res;
         } catch (error) {
         console.error(error);      
