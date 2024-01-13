@@ -3,7 +3,7 @@ import '../../../styles/compatible.scss';
 import '../../../styles/resultComp.scss';
 import { ReactComponent as Ethereum } from '../../../svg/ethereum.svg';
 import { ReactComponent as Polygon } from '../../../svg/polygon.svg';
-import { ReactComponent as Ada } from '../../../svg/ada.svg';
+import { ReactComponent as Near } from '../../../svg/near.svg';
 import { ReactComponent as Bsc } from '../../../svg/bsc.svg';
 import { ReactComponent as Ripple } from '../../../svg/ripple.svg';
 import { ReactComponent as Corda } from '../../../svg/corda.svg';
@@ -15,15 +15,10 @@ import {Chart as ChartJS} from 'chart.js/auto'
 
 
 const Compatible = ({results}) => {
-    const colors = ["#4b003c", 
-                    "#690054", 
-                    "#87006c", 
-                    "#a50084", 
-                    "#c3009c",
-                    "#e100b4",
-                    "#ff00cc",
-                    "#ff1ed2",
-                    "#ff3cd8"
+    const colors = [
+        "#ff3cd8",
+        "#c3009c",
+        "#4b003c", 
                 ];
 
     const data = {
@@ -31,8 +26,7 @@ const Compatible = ({results}) => {
         // results.map((result) => 
                 // result.dlt_solution_id.solutionName),
         datasets:[{
-            label: "Compatibility",
-            data: results.map((result) => result.total),
+            data: results.slice(0, 3).map((result) => result.total),
             backgroundColor: colors
         }]
     }
@@ -58,21 +52,32 @@ const Compatible = ({results}) => {
             {results.slice(0, 3).map((result, i) =>{
                 let title = result.dlt_solution_id.solutionName;
                 let Logo = 
-                    title === "Ethereum" ? Ethereum : 
-                    title === "Ripple" ? Ripple :
-                    title === "Avax" ? Avalanche :
-                    title === "Corda" ? Corda :
-                    title === "Polygon" ? Polygon :
-                    title === "Bsc" ? Bsc :
-                    title === "ada" ?  Ada:
-                    title === "Hyperledger" ?  Hyperledger:
-                    Solana;
+                title === "Ethereum" ? Ethereum : 
+                title === "Ripple" ? Ripple :
+                title === "Avalanche" ? Avalanche :
+                title === "Corda" ? Corda :
+                title === "Polygon" ? Polygon :
+                title === "Binance Smart Chain" ? Bsc :
+                title === "Near" ?  Near:
+                title === "Hyperledger Fabric" ?  Hyperledger:
+                Solana;
                   return  <div className="compatible_content" key={i}>
-                        <h3 className='compatible_contentHdr'>
+                        <h3 className='compatible_contentHdr'
+                            style={{color: 
+                                i === 0 ? "#ff3cd8" : 
+                                i === 1 ? "#c3009c" : 
+                                i === 2 ? "#4b003c" : 
+                                        "#101010"}}>
                             {i === 0 ? "1st" : i == 1 ? "2nd" : "3rd"}
                         </h3>
                         <div className='compatible_blockchain'>
-                            <div className='compatible_logoContainer'>
+                            <div className='compatible_logoContainer'
+                                id={
+                                    title === "Near" ? "near" : 
+                                    title === "Solana" ? "solana" : 
+                                    title === "Binance Smart Chain" ? "bsc" : 
+                                    title === "Hyperledger Fabric" ? "hl" : 
+                                    ""}>
                                 <Logo width={'100%'} height={'100%'}/>
                             </div>
                             <h3 className='compatible_blockchainTitle'
