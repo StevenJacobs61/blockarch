@@ -11,6 +11,7 @@ const Apps = () => {
   const { userProjects } = useProjects();
   const navigate = useNavigate();
   const [user, setUser] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(()=>{
     if(!localStorage.getItem('user')){
@@ -23,6 +24,7 @@ const Apps = () => {
   /* eslint-disable no-restricted-globals */
   async function handleDelete(){
     if(confirm("Are you sure you wish to delete your account?")){
+      setLoading(true);
       try {
         for(const project of userProjects){
           const resultsRes = await getById(project.id, '/project-blockchain-result');
@@ -35,10 +37,10 @@ const Apps = () => {
         console.error(error);  
       }
     }
+    setLoading(false);
   }
 /* eslint-enable no-restricted-globals */
-
-
+console.log(userProjects);
   return (
     <div className='apps_container'>
       <div className="apps_sectionContainer">
@@ -60,7 +62,10 @@ const Apps = () => {
       </div>
       <div className="apps_sectionsContainer">
         <h2 className='apps_hdr'>Account</h2>
-        <h3 className='apps_delete' onClick={handleDelete}>Delete account</h3>
+        {!loading ? 
+          <h3 className='apps_delete' onClick={handleDelete}>Delete account</h3> :
+          <div className="spinner"/>
+        }
       </div>
     </div>
   )

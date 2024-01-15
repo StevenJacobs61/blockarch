@@ -24,9 +24,6 @@ const HomeBar = () => {
       }
     }
     window.addEventListener('resize', handleResize)
-
-    clearLocalData()
-
   },[])
 
   

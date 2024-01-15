@@ -70,8 +70,12 @@
         margin: 1rem 0 1.5rem;
         box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.4);
         cursor: pointer;
+        transition: all 0.15s ease-in-out;
         &:hover{
-            background: rgba(255, 6, 215, 0.7);
+            color: $base;
+            background: transparent;
+            transform: scale(1.2);
+            box-shadow: none;
         }
     }
     &matchesContainer{

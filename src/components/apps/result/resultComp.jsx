@@ -9,8 +9,10 @@ const ResultComp = ({project}) => {
 
   const [results, setResults] = useState(()=>{
     let tempRes = JSON.parse(localStorage.getItem('results'));
-    const sortedResults = calculateAndSortResults(tempRes);
-    return sortedResults;
+    if(tempRes){
+      const sortedResults = calculateAndSortResults(tempRes);
+      return sortedResults;
+    }
   });
 
   return (

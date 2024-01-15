@@ -39,8 +39,9 @@ const Login = () => {
         }
     }catch(err){
         console.error(err)
-        setAlertMessage('Username or Password did not match. \n Please try again or create an account.')
+        setAlertMessage('Username or Password did not match. \n Please try again or create an account.');
     }
+    setLoading(false);
    }
 
    const handleNewAcount = () => {

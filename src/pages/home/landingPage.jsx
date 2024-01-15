@@ -11,7 +11,12 @@ import { clearLocalData } from "../../functions/utility";
 const LandingPage = () => {
 
   useEffect(() => {
-    clearLocalData();
+    const localUser = JSON.parse(localStorage.getItem('user'));
+    if(localUser && !Object.values(localUser).some((val) => val === null || val === undefined || val == NaN || val === "" || val.toString().trim() === "")){
+      window.location.href = "/apps"
+    }else{
+      clearLocalData();
+    }
   }, []);
 
   return (

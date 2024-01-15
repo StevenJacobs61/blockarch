@@ -16,17 +16,21 @@ export const resetLocalProject = () => {
     localStorage.removeItem('results')
 }
 export const naviagteToResult = async (project) => {
-    let success = true;
-    try {
-        localStorage.setItem('project', JSON.stringify(project));
-        const results = await getById(project.id, '/project-blockchain-result');
-        localStorage.setItem('results', JSON.stringify(results));    
-        window.location.href = '/apps/result'; 
-      } catch (error) {
-        console.error(error);
-        success = false;
-      }
-      return success;
+  if(await setLocalResults(project)){
+    window.location.href = '/apps/result'; 
+  }
+}
+export const setLocalResults = async (project) => {
+  let success = true;
+  try {
+      localStorage.setItem('project', JSON.stringify(project));
+      const results = await getById(project.id, '/project-blockchain-result');
+      localStorage.setItem('results', JSON.stringify(results));    
+    } catch (error) {
+      console.error(error);
+      success = false;
+    }
+    return success;
 }
 
 export const handleAddProject = () => {

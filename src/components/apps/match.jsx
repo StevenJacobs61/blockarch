@@ -16,6 +16,7 @@ import { naviagteToResult } from '../../functions/utility';
 const Match = ({project}) => {
 
     const [result, setResult] = useState();
+    const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         async function getResults (project){
@@ -51,8 +52,15 @@ const Match = ({project}) => {
 
   return (
     <div className='match_container' 
-    onClick={async()=> await naviagteToResult(project)}
-    >
+    onClick={async()=> {
+        setLoading(true);
+        try {
+            await naviagteToResult(project);
+        } catch (error) {
+            console.error(error)
+        }
+        setLoading(false);
+    }}>
         <div className="match_topContainer">
             <div className="match_left">
                 <div className="match_logoContainer">
@@ -65,8 +73,16 @@ const Match = ({project}) => {
             </div>
         </div>
         <div className="match_bottomContainer">
-            <button className='match_button'
-            >View match</button>
+            <button 
+                className='match_button'
+                style={{
+                    opacity:!loading ? '' : '0.3', 
+                    cursor: !loading ? '' : 'unset',
+                    color: !loading ? '' : '#FF06D7',
+                    background :  !loading ? '' : '#fff',
+                    pointerEvents: loading ? "none" : "auto"
+                }}
+            >{!loading ? "View match" : <div className='spinner'/>}</button>
         </div>
     </div>
   )

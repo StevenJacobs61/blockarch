@@ -94,6 +94,7 @@
         font-size: 1.2rem;
         color: $baseD;
     }
+
     @media(min-width:480px){
         &hdr, &subHdr{
             font-size: 1.2rem;
@@ -105,7 +106,13 @@
             width: 15px;
             margin: 0 0.5rem 0 0;
         }
+        &chartContainer{
+            width: 90px;
+            height: 90px;
+            margin: 1rem 0 0.5rem;
+        }
     }
+
     @media(min-width:769px){
         &hdr, &subHdr{
             font-size: 1.8rem;
