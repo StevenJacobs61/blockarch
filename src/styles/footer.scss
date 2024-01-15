@@ -46,3 +46,10 @@
         }
    }
 }
+@media(min-width:1200px){
+   .footer_{
+        &captureContainer{
+            width: 60%;
+        }
+   }
+}
