@@ -1,20 +1,18 @@
-import HomeBar from "./homeBar"
-import '../../styles/home.scss'
-import { Outlet } from "react-router-dom"
-import Footer from '../home/footer'
+import HomeBar from "./homeBar";
+import "../../styles/home.scss";
+import { Outlet } from "react-router-dom";
+import Footer from "../home/footer";
 
 const HomeLayout = () => {
-
-
   return (
-    <div className="layout_pageContainer">
-          <HomeBar/>
-      <div className="layout_container">
-          <Outlet/>
+    <div className="layout__container">
+      <HomeBar />
+      <div className="layout__container">
+        <Outlet />
       </div>
-      <Footer/>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default HomeLayout
+export default HomeLayout;

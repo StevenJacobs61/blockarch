@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+/* Buttons */
+
+.btn {
+  border: none;
+  background: none;
+}
+
+/* Clickable */
+
+.clickable {
+  transition: transform 0.15 ease-in-out;
+  cursor: pointer;
+}
+.clickable:hover {
+  transform: scale(1.08);
+}
+.clickable:active {
+  transform: scale(1.03);
+}
