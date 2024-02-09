@@ -12,6 +12,12 @@
   align-items: center;
   flex-direction: column;
 }
+.flex--cen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
 
 /* Clickable */
 
@@ -44,4 +50,12 @@
 
 .highlight {
   color: $base;
+}
+.underline {
+  text-decoration: underline;
+  text-decoration-color: $baseL;
+  text-underline-offset: 0.2rem;
+  text-decoration-thickness: 2.2px;
+}
+.hdr--md {
 }

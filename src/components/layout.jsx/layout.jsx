@@ -1,7 +1,7 @@
 import Navbar from "./navbar";
 import "../../styles/layout.scss";
 import { Outlet } from "react-router-dom";
-import Footer from "../home/footer";
+import Footer from "./footer";
 
 const Layout = () => {
   return (
@@ -12,7 +12,6 @@ const Layout = () => {
       <main className="flex--col layout__main">
         <Outlet />
       </main>
-      {/* <Footer /> */}
     </section>
   );
 };

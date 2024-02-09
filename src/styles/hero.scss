@@ -1,5 +1,8 @@
 @import "./variables.scss";
 
+.hero__container {
+  height: 100vh;
+}
 .hero__container,
 .hero__section-cont {
   @include flex($dir: column);
@@ -12,8 +15,8 @@
 
 .hero__hdr {
   text-align: center;
-  font-size: 3.3rem;
-  font-weight: 700;
+  font-size: 3.5rem;
+  font-weight: 600;
   line-height: 1.1;
   margin: 3rem 0 2rem;
   letter-spacing: -0.04em;
@@ -26,7 +29,7 @@
   line-height: 1.6;
   letter-spacing: 1px;
   margin-bottom: 10vw;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 // Buttons
@@ -72,6 +75,7 @@
 @media (min-width: 769px) {
   .hero__hdr {
     font-size: 3.8rem;
+    font-weight: 700;
   }
   .hero__text {
     font-size: 2.1rem;
@@ -89,9 +93,11 @@
 // Small Laptop
 @media (min-width: 1024px) {
   .hero__container {
+    height: 91vh;
     flex-direction: row;
     justify-content: center;
-    padding-top: 50px;
+    align-items: flex-start;
+    padding-top: 9vh;
   }
   .hero__section-cont {
     &:first-child {
@@ -108,7 +114,6 @@
   }
   .hero__hdr {
     font-size: 6.4rem;
-    // width: 70%;
   }
   .hero__text {
     font-size: 1.8vw;
@@ -117,6 +122,7 @@
     margin-bottom: 3vw;
   }
   .hero__gfx-cont {
+    margin-top: 120px;
     width: 400px;
   }
   .hero__btn-cont {
