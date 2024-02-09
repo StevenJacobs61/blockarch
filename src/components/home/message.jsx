@@ -56,6 +56,9 @@ export default function Message() {
           variants={fadeInAnimationVariants}
           initial="initial"
           whileInView="animate"
+          viewport={{
+            once: true,
+          }}
           className="message__hdr hdr--md"
         >
           Blockchain should be <strong className="highlight">universal</strong>{" "}
