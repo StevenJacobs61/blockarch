@@ -1,0 +1,47 @@
+@import "./styles/variables.scss";
+
+/* Flex */
+
+.flex {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.flex--col {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Clickable */
+
+.clickable {
+  transition: transform 0.15 ease-in-out;
+  cursor: pointer;
+}
+.clickable:hover {
+  transform: scale(1.05);
+}
+.clickable:active {
+  transform: scale(1.02);
+}
+
+/* Buttons */
+
+.btn,
+.btn--primary {
+  border: none;
+  background: none;
+}
+.btn--primary {
+  border-radius: 7.5px;
+  font-weight: 600;
+  background: $base;
+  color: $offWhite;
+}
+
+// Text
+
+.highlight {
+  color: $base;
+}

@@ -2,25 +2,64 @@
 
 .layout__container {
   @include flex($dir: column);
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+.layout__main {
+  width: 95%;
 }
 
-// .layout_ {
-//   &container {
-//     margin: 3rem 0 0;
-//   }
-//   @media (min-width: 480px) {
-//     &container {
-//       margin: 3rem 0 0;
-//     }
-//   }
-//   @media (min-width: 600px) {
-//     &container {
-//       margin: 4rem 0 0;
-//     }
-//   }
-// @media(min-width:600px){
-//     &container{
-//         margin: 7rem 0 0;
-//     }
-// }
-// }
+.bg-circle--1 {
+  background-color: rgba(255, 6, 215, 0.2);
+  position: absolute;
+  z-index: -10;
+  top: 5rem;
+  right: 11rem;
+  width: 31.25rem;
+  height: 31.25rem;
+  border-radius: 50%;
+  filter: blur(10rem);
+  @media (min-width: 640px) {
+    width: 68.75rem;
+  }
+}
+
+.bg-circle--2 {
+  background-color: rgba(255, 6, 215, 0.1);
+  position: absolute;
+  z-index: -10;
+  top: -5rem;
+  left: -35rem;
+  width: 50rem;
+  height: 31.25rem;
+  border-radius: 50%;
+  filter: blur(10rem);
+  @media (min-width: 640px) {
+    width: 68.75rem;
+  }
+  @media (min-width: 768px) {
+    left: -33rem;
+  }
+  @media (min-width: 1024px) {
+    left: -28rem;
+  }
+  @media (min-width: 1280px) {
+    left: -15rem;
+  }
+  @media (min-width: 1536px) {
+    left: -5rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .layout__main {
+    width: 80%;
+  }
+}
+@media (min-width: 1024px) {
+  .layout__main {
+    width: 90%;
+    max-width: 1200px;
+  }
+}

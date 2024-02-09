@@ -1,0 +1,159 @@
+@import "./variables.scss";
+
+.hero__container,
+.hero__section-cont {
+  @include flex($dir: column);
+}
+.hero__section-cont {
+  margin: 0.5rem 0;
+}
+
+// Text
+
+.hero__hdr {
+  text-align: center;
+  font-size: 3.3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 3rem 0 2rem;
+  letter-spacing: -0.04em;
+}
+.hero__text {
+  text-align: center;
+  font-size: 1.8rem;
+  color: $black;
+  max-width: 500px;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  margin-bottom: 10vw;
+  font-weight: 500;
+}
+
+// Buttons
+
+.hero__btn-cont {
+  width: 80%;
+  max-width: 300px;
+  margin-bottom: 1rem;
+}
+.hero__btn {
+  padding: 1.75rem 0;
+  width: 100%;
+  font-size: 1.8rem;
+}
+.hero__btn:active {
+  transform: scale(0.98);
+}
+
+// Icons
+
+.hero__icon {
+  fill: $white;
+  font-weight: 900;
+  margin-left: 1.2vw;
+  transition: all 0.05s ease-in-out;
+}
+
+.hero__btn:hover {
+  transform: scale(1.01);
+  .hero__icon {
+    transform: translateY(22%);
+  }
+}
+
+// Images
+
+.hero__gfx-cont {
+  width: 85vw;
+  max-width: 400px;
+  margin: 3rem 0;
+}
+// Tablet
+@media (min-width: 769px) {
+  .hero__hdr {
+    font-size: 3.8rem;
+  }
+  .hero__text {
+    font-size: 2.1rem;
+    margin-bottom: 5rem;
+  }
+  .hero__btn {
+    font-size: 1.65rem;
+  }
+  .hero__gfx-cont {
+    max-width: 430px;
+    margin: 4rem 0 0;
+  }
+}
+
+// Small Laptop
+@media (min-width: 1024px) {
+  .hero__container {
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 50px;
+  }
+  .hero__section-cont {
+    &:first-child {
+      flex-basis: 70%;
+      align-items: flex-start;
+    }
+    &:last-child {
+      flex-basis: 30%;
+    }
+  }
+  .hero__hdr,
+  .hero__text {
+    text-align: left;
+  }
+  .hero__hdr {
+    font-size: 6.4rem;
+    // width: 70%;
+  }
+  .hero__text {
+    font-size: 1.8vw;
+    line-height: 2.4vw;
+    font-weight: 500;
+    margin-bottom: 3vw;
+  }
+  .hero__gfx-cont {
+    width: 400px;
+  }
+  .hero__btn-cont {
+    width: 45%;
+  }
+  .hero__btn {
+    font-size: 1.7vw;
+    font-weight: 600;
+    padding: 1.3rem;
+  }
+  .hero__icon {
+    margin-left: 0.5vw;
+  }
+}
+@media (min-width: 1200px) {
+  .hero__container {
+    padding: 8rem 3rem 1rem;
+  }
+  .hero__gfx-cont {
+    width: 470px;
+    position: relative;
+    top: 2rem;
+    right: 1rem;
+  }
+  .hero__hdr {
+    margin-bottom: 3rem;
+  }
+  .hero__text {
+    font-size: 2.1rem;
+    font-weight: 300;
+    margin-bottom: 4rem;
+    width: 100%;
+    line-height: 3rem;
+  }
+  .hero__btn {
+    font-size: 2rem;
+    width: 100%;
+    padding: 1.5rem 0;
+  }
+}

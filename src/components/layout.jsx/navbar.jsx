@@ -1,21 +1,17 @@
 import { ReactComponent as Logo } from "../../svg/logo-with-name.svg";
-import "../../styles/homeBar.scss";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { ReactComponent as Menu } from "../../svg/menu.svg";
+import "../../styles/navbar.scss";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as Chevron } from "../../svg/chevron-right.svg";
-import { ReactComponent as Cross } from "../../svg/cross.svg";
 import { ReactComponent as Linkedin } from "../../svg/linkedin.svg";
 import { ReactComponent as X } from "../../svg/x.svg";
-import { clearLocalData } from "../../functions/utility";
 import { motion } from "framer-motion";
 
-const HomeBar = () => {
+const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="nav__container">
-      <motion.div
+    <header className="nav__container">
+      <motion.section
         className="nav__wrapper"
         initial={{
           opacity: 0,
@@ -27,7 +23,7 @@ const HomeBar = () => {
         }}
       >
         <a href="/" className="clickable nav__logo">
-          <Logo />
+          <Logo width={"100%"} height={"100%"} />
         </a>
         <motion.div
           initial={{
@@ -44,7 +40,7 @@ const HomeBar = () => {
             className="btn clickable nav__btn"
             onClick={() => navigate("/apps/questions")}
           >
-            Getting started
+            Get started
             <Chevron className="nav__chevron" />{" "}
           </button>
           <button
@@ -68,9 +64,9 @@ const HomeBar = () => {
             <Linkedin width={100} height={100} />
           </a>
         </article>
-      </motion.div>
-    </section>
+      </motion.section>
+    </header>
   );
 };
 
-export default HomeBar;
+export default Navbar;
