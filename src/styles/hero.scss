@@ -1,7 +1,6 @@
 @import "./variables.scss";
 
 .hero__container {
-  height: 100vh;
 }
 .hero__container,
 .hero__section-cont {
@@ -74,19 +73,21 @@
 // Tablet
 @media (min-width: 769px) {
   .hero__hdr {
-    font-size: 3.8rem;
+    font-size: 4.5rem;
+    margin-bottom: 3rem;
     font-weight: 700;
   }
   .hero__text {
-    font-size: 2.1rem;
+    font-size: 2.4rem;
     margin-bottom: 5rem;
+    max-width: 650px;
   }
   .hero__btn {
     font-size: 1.65rem;
   }
   .hero__gfx-cont {
     max-width: 430px;
-    margin: 4rem 0 0;
+    margin: 3rem 0 0;
   }
 }
 

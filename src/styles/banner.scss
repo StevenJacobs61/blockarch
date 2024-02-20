@@ -1,0 +1,79 @@
+@import "./variables.scss";
+.banner__container {
+  @include flexC();
+  margin: 0 0 3rem;
+  max-width: 100%;
+  & > * {
+    overflow-y: hidden;
+  }
+}
+.banner__marquee {
+  // max-width: 100%;
+}
+.banner__icon-cont {
+  height: 125px;
+  @include flexC();
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+#near {
+  transform: scale(0.8);
+}
+#ripple {
+  transform: scale(0.9);
+}
+#ethereum {
+  margin-right: 1rem;
+  margin-left: -2rem;
+}
+#solana {
+  margin-right: 1rem;
+}
+
+@media (min-width: 480px) {
+  .banner__icon-cont {
+    transform: scale(1.1);
+  }
+}
+@media (min-width: 769px) {
+  .banner__container {
+    margin: 5rem 0 3rem;
+  }
+  .banner__icon-cont {
+    transform: scale(1.25);
+    margin: 0 1rem;
+  }
+}
+@media (min-width: 1024px) {
+  .banner__container {
+    margin-bottom: 5rem;
+  }
+  .banner__icon-cont {
+    transform: scale(1.35);
+    margin: 0 3rem;
+  }
+  #ethereum {
+    margin-left: 2rem;
+    margin-right: 4rem;
+  }
+  #solana {
+    margin-right: 2rem;
+  }
+}
+@media (min-width: 1200px) {
+  .banner__container {
+    margin-bottom: 11rem;
+    margin-top: -2rem;
+  }
+  .banner__icon-cont {
+    transform: scale(1.45);
+    margin: 0 4rem;
+  }
+  #ethereum {
+    margin-left: 2rem;
+    margin-right: 5rem;
+  }
+  #solana {
+    margin-right: 4rem;
+  }
+}

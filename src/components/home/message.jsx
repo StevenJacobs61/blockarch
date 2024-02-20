@@ -66,20 +66,12 @@ export default function Message() {
         <ul className="message__wrapper">
           {words.map((word, i) => (
             <motion.li
+              key={i}
               variants={fadeInAnimationVariants}
               initial="initial"
               whileInView="animate"
               className={`message__text 
-              ${
-                i === 0 ||
-                i === 1 ||
-                i === 18 ||
-                i === 19 ||
-                i === 21 ||
-                i === 22
-                  ? "underline"
-                  : ""
-              }
+              ${i === 0 || i === 18 ? "underline" : ""}
               ${
                 i === 9 ||
                 i === 10 ||
@@ -105,22 +97,13 @@ export default function Message() {
             </motion.li>
           ))}
         </ul>
-        {/* <p className="message__text">
-          <u className="underline">Blockarch</u> demystifies the complexities of
-          blockchain technology with a simple
-          <u className="underline"> AI-powered matching </u>process. We are
-          enabling individuals to discover the
-          <u className="underline"> most compatible blockchain </u> for their
-          project, <u className="underline">without</u> the need for
-          <u className="underline"> coding </u> or cryptographic expertise.
-        </p> */}
       </div>
-      <div className="message__section flex--cen">
-        {/* <motion.div className="message__gfx-cont"> */}
-        {/* <img src={Graphic} alt="" width={100} height={100} /> */}
-        {/* <Graphic /> */}
-        {/* </motion.div> */}
-      </div>
+      {/* <div className="message__section flex--cen">
+        <motion.div className="message__gfx-cont">
+          <img src={Graphic} alt="" width={100} height={100} />
+          <Graphic />
+        </motion.div>
+      </div> */}
     </section>
   );
 }
