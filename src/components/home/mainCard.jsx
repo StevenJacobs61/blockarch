@@ -24,11 +24,14 @@ export default function MainCard({ handleClick }) {
         once: true,
       }}
     >
-      <h1 className="mainCard__hdr">Benefits of Blockarch</h1>
+      <h1 className="mainCard__hdr">
+        Benefits of <span style={{ color: "#4a4444" }}>Blockarch</span>
+      </h1>
       <p className="mainCard__text">
-        Blockarch is the leading toolkit that empowers everyone across all
-        levels of technological expertise- from developers to entrepreneurs- to
-        implement blockchain applications with confidence & ease.
+        <strong style={{ color: "#4a4444" }}>Blockarch</strong> is the leading
+        toolkit that empowers everyone across all levels of technological
+        expertise- from developers to entrepreneurs- to implement blockchain
+        applications with confidence & ease.
       </p>
       <div className="infoCards__icons-cont">
         <div

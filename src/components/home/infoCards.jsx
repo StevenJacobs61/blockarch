@@ -41,7 +41,6 @@ export default function InfoCards() {
       y: 0,
     },
   };
-  console.log(typeof click);
   return (
     <section className="infoCards__container">
       <div className="infocards__cards-cont">
