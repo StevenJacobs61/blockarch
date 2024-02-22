@@ -1,0 +1,119 @@
+@import "./variables.scss";
+
+.infoCards__container,
+.infocards__cards-cont,
+.mainCard__container,
+.infoCards__card-cont {
+  @include flex($dir: column);
+}
+.infoCards__card-cont {
+  position: relative;
+}
+.infoCards__container {
+  margin: 6rem 0 2rem;
+}
+
+.infoCards__icons-cont {
+  display: none;
+  // position: absolute;
+}
+
+// Main Card
+
+.mainCard__container {
+  width: 90vw;
+  max-width: 480px;
+  background: $base;
+  justify-content: space-around;
+  padding: 3rem 2.5rem;
+  gap: 1.5rem;
+  border-radius: 7.5px;
+  margin: 0 0 2rem;
+}
+.mainCard__hdr {
+  color: $white;
+  font-size: 3.2rem;
+  font-weight: 600;
+  text-align: left;
+  width: 100%;
+  letter-spacing: -0.04em;
+}
+.mainCard__text {
+  color: $white;
+  text-align: left;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+@media (min-width: 480px) {
+  .mainCard__container {
+    gap: 2.5rem;
+    padding: 3rem 4rem;
+  }
+  .mainCard__text {
+    font-size: 1.75rem;
+  }
+}
+@media (min-width: 769px) {
+  .mainCard__container {
+    max-width: 550px;
+    padding: 5rem;
+  }
+  .mainCard__text {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: $offWhite;
+  }
+}
+@media (min-width: 1024px) {
+  .infocards__cards-cont,
+  .infoCards__card-cont {
+    flex-direction: row;
+  }
+  .infocards__cards-cont {
+    align-items: center;
+  }
+  .infoCards__icons-cont {
+    @include flex();
+    width: 90%;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+  .infoCards__icon-cont {
+    @include flexC();
+    fill: $base;
+    margin-right: 2rem;
+    // border: 1px solid;
+    padding: 0.7rem;
+    background: $white;
+    border-radius: 50px;
+    &:first-child {
+      transform: rotate(180deg);
+      &:hover {
+        transform: scale(1.05) rotate(180deg);
+      }
+      &:active {
+        transform: scale(1.02) rotate(180deg);
+      }
+    }
+  }
+  .infoCards__icon {
+    width: 25px;
+    height: 25px;
+  }
+  .mainCard__container {
+    width: 55vw;
+    max-width: 500px;
+    margin: 0 3rem 0 0;
+    padding: 5rem 3rem 6rem;
+    background: none;
+  }
+  .mainCard__hdr {
+    font-size: 4rem;
+    color: $base;
+  }
+  .mainCard__text {
+    font-size: 2rem;
+    color: $base;
+  }
+}

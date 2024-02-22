@@ -1,7 +1,5 @@
 const Separator = () => {
-  return (
-    <div className='separator'></div>
-  )
-}
+  return <div className="separator"></div>;
+};
 
-export default Separator
+export default Separator;

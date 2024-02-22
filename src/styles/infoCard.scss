@@ -1,0 +1,80 @@
+@import "./variables.scss";
+.infoCard__content-cont {
+  @include flex($dir: column);
+}
+
+.infoCard__container {
+  width: 85vw;
+  max-width: 400px;
+  height: 290px;
+  margin: 3rem 0 1rem;
+  border-radius: 15px;
+  //   box-shadow: 1px 3px 4px 1px rgba(0, 0, 0, 0.2);
+}
+.infoCard__top-cont {
+  height: 38%;
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+}
+.infoCard__top-half,
+.infoCard__bottom-half {
+  width: 100%;
+}
+.infoCard__top-half {
+  background: $base;
+  height: 50%;
+  border-radius: 15px 15px 0 0;
+}
+.infoCard__icon-cont {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25%;
+  fill: $white;
+  background: $base;
+  border-radius: 100px;
+  padding: 0.8rem;
+}
+.infoCard__bottom-half {
+  height: 50%;
+}
+
+.infoCard__content-cont {
+  text-align: center;
+  padding: 0 2rem;
+}
+.infoCard__hdr {
+  //   color: #8d017a;
+  color: $baseD;
+  font-size: 1.9rem;
+  margin: 0 0 2rem;
+  letter-spacing: -0.04em;
+}
+.infoCard__text {
+  color: $offBlack;
+  line-height: 1.6;
+  font-size: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .infoCard__container {
+    width: 200px;
+    margin: 0 5rem 0 0;
+  }
+  .infoCard__top-cont {
+    height: 27.5%;
+  }
+  .infoCard__icon-cont {
+    width: 20%;
+  }
+  .infoCard__hdr {
+    font-size: 1.6rem;
+    margin-top: -1.5rem;
+    height: 32px;
+    @include flexC();
+  }
+  .infoCard__text {
+    font-size: 1.2rem;
+  }
+}

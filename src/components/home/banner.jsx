@@ -3,12 +3,12 @@ import Marquee from "react-fast-marquee";
 import { ReactComponent as Ripple } from "../../svg/blockchains/ripple.svg";
 import { ReactComponent as Ether } from "../../svg/blockchains/ethereum.svg";
 import { ReactComponent as Polygon } from "../../svg/blockchains/polygon.svg";
-// import { ReactComponent as Avalanche } from "../../svg/avalanche.svg";
+import { ReactComponent as Avalanche } from "../../svg/blockchains/avalanche.svg";
 import { ReactComponent as Corda } from "../../svg/blockchains/corda.svg";
 import { ReactComponent as Binance } from "../../svg/blockchains/bsc.svg";
 import { ReactComponent as Near } from "../../svg/blockchains/near.svg";
 import { ReactComponent as Solana } from "../../svg/blockchains/solana.svg";
-// import { ReactComponent as Hyperledger } from "../../svg/hyperledger.svg";
+import { ReactComponent as Hyperledger } from "../../svg/blockchains/hyperledger.svg";
 import { motion } from "framer-motion";
 import "../../styles/banner.scss";
 
@@ -75,16 +75,21 @@ const Banner = () => {
         >
           <Ripple width="100%" height="100%" fill="#ffb8f4" />
         </a>
-        {/* <a href="https://www.avax.network/" className="banner__icon-cont">
+        <a
+          href="https://www.avax.network/"
+          className="banner__icon-cont"
+          id="avalanche"
+        >
           <Avalanche width="100%" height="100%" fill="#ffb8f4" />
         </a>
+
         <a
           href="https://www.hyperledger.org/"
           className="banner__icon-cont"
           id="hyperledger"
         >
           <Hyperledger width="100%" height="100%" fill="#101010" />
-        </a> */}
+        </a>
         <a href="https://polygon.technology/" className="banner__icon-cont">
           <Polygon width="100%" height="100%" fill="#ffb8f4" />
         </a>
