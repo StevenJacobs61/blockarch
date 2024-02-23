@@ -2,7 +2,7 @@ import "../../styles/footer.scss";
 import { ReactComponent as X } from "../../svg/x.svg";
 import { ReactComponent as LinkedIn } from "../../svg/linkedin.svg";
 import { motion } from "framer-motion";
-import { fadeInAnimationDown, fadeInAnimationUp } from "../../data/motion";
+import { fadeInAnimationDown } from "../../data/motion";
 
 const Footer = () => {
   return (
@@ -16,7 +16,8 @@ const Footer = () => {
       }}
     >
       <div className="footer__links-cont">
-        <motion.span
+        <motion.a
+          href="https://twitter.com/blockarch_?s=11&t=sMO7Csa0LziSjQLf0Vw4mg"
           variants={fadeInAnimationDown}
           initial="initial"
           whileInView="animate"
@@ -29,8 +30,9 @@ const Footer = () => {
           className="footer__link-cont clickable"
         >
           <X width="100%" height="100%" className="footer__link" />
-        </motion.span>
-        <motion.span
+        </motion.a>
+        <motion.a
+          href="https://www.linkedin.com/company/blockarchio/"
           className="footer__link-cont clickable"
           variants={fadeInAnimationDown}
           initial="initial"
@@ -43,7 +45,7 @@ const Footer = () => {
           }}
         >
           <LinkedIn width="100%" height="100%" className="footer__link" />
-        </motion.span>
+        </motion.a>
       </div>
       <h1 className="footer__copyright">
         © 2023 BlockArch. All rights reserved.

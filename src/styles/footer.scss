@@ -2,7 +2,7 @@
 .footer__container {
   @include flex($dir: column);
   border-top: 1px solid $baseL;
-  padding: 1rem 2rem 0;
+  padding: 1rem 2rem 2rem;
   width: 90%;
   margin: 1rem;
 }
