@@ -51,8 +51,8 @@
     padding: 0 2rem;
   }
 }
-// @media (min-width: 1200px) {
-//   .getStarted__hdr {
-//     // font-size: 2rem;
-//   }
-// }
+@media (min-width: 1200px) {
+  .getStarted__container {
+    margin: 20rem 2rem 4rem;
+  }
+}
