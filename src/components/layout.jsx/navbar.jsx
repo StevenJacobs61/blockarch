@@ -1,6 +1,5 @@
 import { ReactComponent as Logo } from "../../svg/logo-with-name.svg";
 import "../../styles/navbar.scss";
-import { useNavigate } from "react-router-dom";
 import { ReactComponent as Chevron } from "../../svg/chevron-right.svg";
 import { ReactComponent as Linkedin } from "../../svg/linkedin.svg";
 import { ReactComponent as X } from "../../svg/x.svg";
@@ -8,8 +7,6 @@ import { motion } from "framer-motion";
 import { fadeInAnimationUp } from "../../data/motion";
 
 const Navbar = () => {
-  const navigate = useNavigate();
-
   return (
     <header className="nav__container">
       <motion.section
@@ -27,14 +24,14 @@ const Navbar = () => {
         >
           <button
             className="btn clickable nav__btn"
-            onClick={() => navigate("/apps/questions")}
+            onClick={() => (window.location.href = "/login")}
           >
             Get started
             <Chevron className="nav__chevron" />{" "}
           </button>
           <button
             className="btn clickable nav__btn"
-            onClick={() => navigate("/apps/questions/login")}
+            onClick={() => (window.location.href = "/login")}
           >
             Sign in
           </button>

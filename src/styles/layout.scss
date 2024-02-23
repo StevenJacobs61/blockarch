@@ -4,8 +4,9 @@
   @include flex($dir: column);
   width: 100%;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   // background: rgba(255, 6, 215, 0.1);
+  min-height: 100vh;
 }
 .layout__main {
   width: 95%;

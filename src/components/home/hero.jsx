@@ -1,10 +1,8 @@
 import React from "react";
 import "../../styles/hero.scss";
 import { motion } from "framer-motion";
-import { BsFillLightningFill } from "react-icons/bs";
 import { ReactComponent as Graphic } from "../../svg/hero-graphic4.svg";
 import { fadeInAnimationDown, fadeInAnimationUp } from "../../data/motion";
-import GetStarted from "./getStarted";
 import GetStartedButton from "../getStartedButton";
 
 export default function Hero() {

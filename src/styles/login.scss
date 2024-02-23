@@ -1,0 +1,75 @@
+@import "./variables.scss";
+
+.login__container {
+  @include flex($dir: column);
+  width: 90%;
+}
+.login__hdr {
+  font-weight: 400;
+  font-size: 2rem;
+  margin: 2rem 1rem;
+  text-align: center;
+  color: $offBlack;
+}
+.login__component-cont {
+  @include flex($dir: column);
+}
+.login__or-cont {
+  @include flexC();
+  width: 75%;
+  margin: 1rem;
+}
+.login__or-line {
+  height: 1.5px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.login__or {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 0 1rem;
+  color: $offBlack;
+}
+.login__google-cont {
+  @include flexC();
+  margin: 1rem;
+}
+
+// Loading Status
+.loadingStatus__hdr {
+  margin: 1rem 1rem 0.5rem;
+  cursor: pointer;
+  transition: color 0.15s;
+  width: 80%;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: $offBlack;
+  &:hover {
+    color: $base;
+  }
+}
+.loadingStatus__text {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 80%;
+  color: $baseD;
+  margin: 1rem 0;
+}
+
+// Submit Button
+.submitBtn__container {
+  margin: 0.5rem 0 0;
+}
+.submitbtn__btn {
+  width: 82%;
+  margin: 1rem;
+  font-size: 1.2rem;
+  @include flexCenR();
+  padding: 0.5rem 0.7rem;
+  transition: all 0.2s;
+}
+.submitBtn__success {
+  font-size: 1.8rem;
+}

@@ -38,12 +38,14 @@
 .btn--primary {
   border: none;
   background: none;
+  cursor: pointer;
 }
 .btn--primary {
   border-radius: 7.5px;
   font-weight: 600;
   background: $base;
   color: $offWhite;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
 // Text

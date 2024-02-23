@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { getUserByEmail } from "../../functions/userAPI";
 import { useNavigate } from "react-router-dom";
 import { logIn } from "../../functions/logIn";
+import "../../styles/login.scss";
+import LoadingStatus from "./loadingStatus";
+import SubmitBtn from "./submitBtn";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,15 +25,30 @@ const Login = () => {
       : setActiveSubmit(false);
   }, [loginDetails]);
 
-  const handleSubmit = async () => {
-    if (!activeSubmit) return;
+  const prepareLocalStorage = async (res) => {
+    await localStorage.setItem("user", JSON.stringify(res));
+    await localStorage.setItem("block", JSON.stringify(1));
+    await localStorage.setItem("qIndex", JSON.stringify(0));
+  };
+
+  const handleLogin = (authData) => {
+    const details = {
+      emailAddress: authData.email,
+      password: "google",
+    };
+    setActiveSubmit(true);
     setLoading(true);
+    handleSubmit(details);
+  };
+
+  const handleSubmit = async (details) => {
+    if (!activeSubmit) return;
+    const password = details.password || loginDetails.password;
+    const email = details.emailAddress || loginDetails.emailAddress;
     try {
-      const res = await getUserByEmail(loginDetails.emailAddress);
-      if (loginDetails.password == res.password) {
-        await localStorage.setItem("user", JSON.stringify(res));
-        await localStorage.setItem("block", JSON.stringify(1));
-        await localStorage.setItem("qIndex", JSON.stringify(0));
+      const res = await getUserByEmail(email);
+      if (password == res.password) {
+        await prepareLocalStorage(res);
         setSuccess(true);
         setLoading(false);
         setTimeout(() => {
@@ -49,20 +69,10 @@ const Login = () => {
     setLoading(false);
   };
 
-  const handleNewAcount = () => {
-    localStorage.removeItem("user");
-    navigate("/apps/questions");
-  };
-
   return (
-    <div className="questions_loginTitleContainer">
-      <h1 className="questions_loginTitle">Login</h1>
-      <div className="questions_loginContainer">
-        <h2 className="questions_loginHdr">
-          Confirm your
-          <br />
-          Email & Password
-        </h2>
+    <div className="login__container">
+      <h1 className="login__hdr">Welcome back! Log in to Blockarch</h1>
+      <div className="login__component-cont">
         <h3 className="questions_alertMessage">{alertMessage}</h3>
         <label className="questions_label">Email Address</label>
         <input
@@ -83,36 +93,28 @@ const Login = () => {
             setLoginDetails((prev) => ({ ...prev, password: e.target.value }))
           }
         />
-        {!loading ? (
-          <h3
-            className="questions_createAccount"
-            onClick={() => handleNewAcount()}
-          >
-            Don't have an account yet? Create one here!
-          </h3>
-        ) : (
-          <p className="questions_loading">
-            Please wait, your data is being retrieved...
-          </p>
-        )}
-        <div className="questions_btnContainer">
-          {success ? (
-            <p className="questions_success">Success!</p>
-          ) : (
-            <button
-              className="questions_buttonLogin"
-              style={{
-                opacity: activeSubmit && !loading ? "" : "0.3",
-                cursor: activeSubmit && !loading ? "" : "unset",
-                color: activeSubmit && !loading ? "" : "#FF06D7",
-                background: activeSubmit && !loading ? "" : "#fff",
-                pointerEvents: loading ? "none" : "auto",
-              }}
-              onClick={() => handleSubmit()}
-            >
-              {loading ? <div className="spinner" /> : "Submit"}
-            </button>
-          )}
+        <SubmitBtn
+          handleSubmit={handleSubmit}
+          activeSubmit={activeSubmit}
+          loading={loading}
+          success={success}
+        />
+        <LoadingStatus loading={loading} />
+        <div className="login__or-cont">
+          <div className="login__or-line" />
+          <h3 className="login__or">or</h3>
+          <div className="login__or-line" />
+        </div>
+        <div className="login__google-cont">
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              const decodedResponse = jwtDecode(credentialResponse.credential);
+              handleLogin(decodedResponse);
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
         </div>
       </div>
     </div>
