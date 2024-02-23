@@ -1,0 +1,48 @@
+@import "./variables.scss";
+
+.getStartedButton__btn {
+  padding: 1.75rem 0;
+  width: 100%;
+  font-size: 1.8rem;
+}
+.getStartedButton__btn:active {
+  transform: scale(0.98);
+}
+
+.getStartedButton__icon {
+  fill: $white;
+  font-weight: 900;
+  margin-left: 1.2vw;
+  transition: all 0.05s ease-in-out;
+}
+.getStartedButton__btn:hover {
+  transform: scale(1.01);
+  .getStartedButton__icon {
+    transform: translateY(22%);
+  }
+}
+
+@media (min-width: 769px) {
+  .getStartedButton__btn {
+    font-size: 1.65rem;
+  }
+}
+
+// Small Laptop
+@media (min-width: 1024px) {
+  .getStartedButton__btn {
+    font-size: 1.7vw;
+    font-weight: 600;
+    padding: 1.3rem;
+  }
+  .getStartedButton__icon {
+    margin-left: 0.5vw;
+  }
+}
+@media (min-width: 1200px) {
+  .getStartedButton__btn {
+    font-size: 2rem;
+    width: 100%;
+    padding: 1.5rem 0;
+  }
+}

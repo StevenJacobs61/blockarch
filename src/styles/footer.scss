@@ -1,55 +1,47 @@
-@import './variables.scss';
+@import "./variables.scss";
+.footer__container {
+  @include flex($dir: column);
+  border-top: 1px solid $baseL;
+  padding: 1rem 2rem 0;
+  width: 90%;
+  margin: 1rem;
+}
+.footer__copyright {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: $black;
+  letter-spacing: -0.04em;
+}
+.footer__links-cont {
+  width: 70%;
+  margin: 0.5rem 2rem 1.2rem;
+  @include flexC();
+  gap: 3rem;
+}
+.footer__link-cont {
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 50px;
+  padding: 1rem;
+  fill: $base;
+}
+.footer__link {
+  width: 25px;
+  height: 25px;
+  background: $white;
+}
 
-.footer_{
-    &container{
-        @include flexCol();
-        padding: 2rem;
-        width: 100%;
-        background: $baseL;
-    }
-    &captureContainer{
-        width: 70%;
-        margin: 1rem 0 2rem;
-    }
-    &iconContainer{
-        width: 60px;
-        height: inherit;
-        margin: 0 0 1.5rem;
-        overflow: hidden;
-        fill: $offWhite;
-    }
-    &copyright{
-        margin: 1.5rem 0 0;
-        font-size: 1.2rem;
-        font-weight: 500;
-        color: $offBlack;
-    }
-}
-@media(min-width:769px){
-   .footer_{
-        &captureContainer{
-            width: 40%;
-            margin: 1rem 0 2rem;
-        }
-        &iconContainer{
-            width: 70px;
-        }
-   }
-}
-@media(min-width:1024px){
-   .footer_{
-        &captureContainer{
-            margin: 1rem 0 3rem;
-        }
-        &iconContainer{
-           width: 75px;
-        }
-   }
-}
-@media(min-width:1200px){
-   .footer_{
-        &captureContainer{
-            width: 60%;
-        }
-   }
+@media (min-width: 769px) {
+  .footer__container {
+    margin-top: 3rem;
+  }
+  .footer__links-cont {
+    margin: 2rem;
+  }
+  .footer__link {
+    width: 35px;
+    height: 35px;
+  }
+  .footer__copyright {
+    font-size: 1.5rem;
+  }
 }

@@ -18,60 +18,24 @@
   // position: absolute;
 }
 
-// Main Card
-
-.mainCard__container {
-  width: 90vw;
-  max-width: 480px;
-  background: $base;
-  justify-content: space-around;
-  padding: 3rem 2.5rem;
-  gap: 1.5rem;
-  border-radius: 7.5px;
-  margin: 0 0 2rem;
-}
-.mainCard__hdr {
-  color: $white;
-  font-size: 3.2rem;
-  font-weight: 600;
-  text-align: left;
-  width: 100%;
-  letter-spacing: -0.04em;
-}
-.mainCard__text {
-  color: $white;
-  text-align: left;
-  font-size: 1.3rem;
-  line-height: 1.6;
-  font-weight: 400;
-}
-@media (min-width: 480px) {
-  .mainCard__container {
-    gap: 2.5rem;
-    padding: 3rem 4rem;
-  }
-  .mainCard__text {
-    font-size: 1.75rem;
-  }
-}
-@media (min-width: 769px) {
-  .mainCard__container {
-    max-width: 550px;
-    padding: 5rem;
-  }
-  .mainCard__text {
-    font-size: 1.75rem;
-    font-weight: 500;
-    color: $offWhite;
-  }
-}
 @media (min-width: 1024px) {
-  .infocards__cards-cont,
-  .infoCards__card-cont {
+  .infoCards__container {
+    margin-top: 6rem;
+    width: 90vw;
+    max-width: 1300px;
+  }
+  .infoCards__card-cont,
+  .infocards__cards-cont {
     flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  .infoCards__card-cont {
+    margin-bottom: 3rem;
+    justify-content: flex-end;
   }
   .infocards__cards-cont {
-    align-items: center;
+    align-items: flex-end;
   }
   .infoCards__icons-cont {
     @include flex();
@@ -81,11 +45,10 @@
   }
   .infoCards__icon-cont {
     @include flexC();
-    fill: $base;
+    fill: $white;
     margin-right: 2rem;
-    // border: 1px solid;
     padding: 0.7rem;
-    background: $white;
+    background: $base;
     border-radius: 50px;
     &:first-child {
       transform: rotate(180deg);
@@ -98,22 +61,20 @@
     }
   }
   .infoCards__icon {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
+    padding-left: 0.6rem;
   }
-  .mainCard__container {
-    width: 45vw;
-    max-width: 500px;
-    margin: 0 3rem 0 0;
-    padding: 5rem 3rem 6rem;
-    background: none;
+}
+@media (min-width: 1200px) {
+  .infoCards__card-cont {
+    margin-right: 4%;
   }
-  .mainCard__hdr {
-    font-size: 4rem;
-    color: $base;
+  .infoCards__icon {
+    width: 35px;
+    height: 35px;
   }
-  .mainCard__text {
-    font-size: 2rem;
-    color: $baseD;
+  .infoCards__icons-cont {
+    margin-top: -1.5rem;
   }
 }

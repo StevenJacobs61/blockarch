@@ -3,6 +3,7 @@ import MainCard from "./mainCard";
 import InfoCard from "./infoCard";
 import "../../styles/infoCards.scss";
 import { motion } from "framer-motion";
+import { fadeInAnimationLeft } from "../../data/motion";
 
 const data = [
   {
@@ -31,31 +32,29 @@ export default function InfoCards() {
     }
   };
 
-  const fadeInAnimationVariants = {
-    initial: {
-      opacity: 0,
-      y: 100,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-    },
-  };
   return (
     <section className="infoCards__container">
       <div className="infocards__cards-cont">
         <MainCard handleClick={handleClick} />
-        <div className="infoCards__card-cont">
+        <motion.div
+          className="infoCards__card-cont"
+          variants={fadeInAnimationLeft}
+          initial="initial"
+          whileInView="animate"
+          viewport={{
+            once: true,
+          }}
+        >
           {data.map((card, i) => (
-            <>
+            <React.Fragment key={card.title}>
               {click !== i ? (
-                <div key={i}>
+                <div>
                   <InfoCard title={card.title} text={card.text} i={i} />
                 </div>
               ) : null}
-            </>
+            </React.Fragment>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

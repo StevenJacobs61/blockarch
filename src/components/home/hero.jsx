@@ -3,35 +3,26 @@ import "../../styles/hero.scss";
 import { motion } from "framer-motion";
 import { BsFillLightningFill } from "react-icons/bs";
 import { ReactComponent as Graphic } from "../../svg/hero-graphic4.svg";
+import { fadeInAnimationDown, fadeInAnimationUp } from "../../data/motion";
+import GetStarted from "./getStarted";
+import GetStartedButton from "../getStartedButton";
 
 export default function Hero() {
-  const animate = {
-    opacity: 1,
-    y: 0,
-  };
-  const transition = {
-    delay: 0.1,
-  };
-
   return (
     <section className="hero__container">
       <article className="hero__section-cont">
         <motion.h1
           className="hero__hdr"
-          initial={{
-            opacity: 0,
-            y: -100,
+          initial={fadeInAnimationUp.initial}
+          animate={fadeInAnimationUp.animate}
+          transition={{
+            delay: 0.1,
           }}
-          animate={animate}
-          transition={transition}
         >
           Select your{" "}
           <motion.span
-            initial={{
-              opacity: 0,
-              y: -100,
-            }}
-            animate={animate}
+            initial={fadeInAnimationUp.initial}
+            animate={fadeInAnimationUp.animate}
             transition={{
               delay: 0.2,
               type: "spring",
@@ -46,12 +37,11 @@ export default function Hero() {
         </motion.h1>
         <motion.h2
           className="hero__text"
-          initial={{
-            opacity: 0,
-            y: 100,
+          initial={fadeInAnimationDown.initial}
+          animate={fadeInAnimationDown.animate}
+          transition={{
+            delay: 0.1,
           }}
-          animate={animate}
-          transition={transition}
         >
           Our{" "}
           <strong className="highlight">blockchain selection toolkit </strong>
@@ -68,25 +58,20 @@ export default function Hero() {
             opacity: 0.01,
             y: 100,
           }}
-          animate={animate}
-          transition={transition}
+          animate={fadeInAnimationDown.animate}
+          transition={{
+            delay: 0.1,
+          }}
         >
-          <button className="clickable btn--primary hero__btn">
-            Get Started <BsFillLightningFill className="hero__icon" />
-          </button>
+          <GetStartedButton />
         </motion.div>
       </article>
+
       <div className="hero__section-cont">
         <motion.div
           className="hero__gfx-cont"
-          initial={{
-            opacity: 0,
-            y: 100,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
+          initial={fadeInAnimationDown.initial}
+          animate={fadeInAnimationDown.animate}
         >
           <Graphic width="100%" height="100%" />
         </motion.div>

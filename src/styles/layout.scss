@@ -5,6 +5,7 @@
   width: 100%;
   position: relative;
   overflow-x: hidden;
+  // background: rgba(255, 6, 215, 0.1);
 }
 .layout__main {
   width: 95%;
@@ -51,6 +52,47 @@
     right: 10%;
   }
 }
+// .bg-circle--3 {
+//   background-color: rgba(255, 6, 215, 0.2);
+//   position: absolute;
+//   z-index: -10;
+//   bottom: 10%; /* Changed from top */
+//   left: 10%; /* Changed from right */
+//   width: 31.25rem;
+//   height: 31.25rem;
+//   border-radius: 50%;
+//   filter: blur(10rem);
+//   @media (min-width: 640px) {
+//     width: 68.75rem;
+//   }
+// }
+
+// .bg-circle--4 {
+//   background-color: rgba(255, 6, 215, 0.1);
+//   position: absolute;
+//   z-index: -10;
+//   bottom: 5%; /* Adjusted bottom position */
+//   right: 10%rem; /* Changed from left */
+//   width: 50rem;
+//   height: 31.25rem;
+//   border-radius: 50%;
+//   filter: blur(10rem);
+//   @media (min-width: 640px) {
+//     width: 68.75rem;
+//   }
+//   @media (min-width: 768px) {
+//     right: -33rem; /* Changed from left */
+//   }
+//   @media (min-width: 1024px) {
+//     right: -28rem; /* Changed from left */
+//   }
+//   @media (min-width: 1280px) {
+//     right: -15rem; /* Changed from left */
+//   }
+//   @media (min-width: 1536px) {
+//     left: 10%; /* Changed from right */
+//   }
+// }
 
 @media (min-width: 480px) {
   .layout__main {

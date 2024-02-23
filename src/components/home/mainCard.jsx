@@ -1,23 +1,14 @@
 import React from "react";
-import "../../styles/infoCards.scss";
 import { motion } from "framer-motion";
 import { ReactComponent as Chevron } from "../../svg/chevron.svg";
+import { fadeInAnimationRight } from "../../data/motion";
+import "../../styles/mainCard.scss";
 
 export default function MainCard({ handleClick }) {
-  const fadeInAnimationVariants = {
-    initial: {
-      opacity: 0,
-      y: 100,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-    },
-  };
   return (
     <motion.div
       className="mainCard__container"
-      variants={fadeInAnimationVariants}
+      variants={fadeInAnimationRight}
       initial="initial"
       whileInView="animate"
       viewport={{
@@ -35,7 +26,7 @@ export default function MainCard({ handleClick }) {
       </p>
       <div className="infoCards__icons-cont">
         <div
-          className="infoCards__icon-cont "
+          className="clickable btn infoCards__icon-cont"
           style={{
             paddingRight: "-1rem",
           }}

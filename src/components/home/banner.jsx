@@ -56,7 +56,6 @@ const Banner = () => {
       <Marquee
         className="banner__marquee"
         autoFill
-        speed={speed}
         gradient
         gradientWidth={gradientWidth}
         pauseOnHover

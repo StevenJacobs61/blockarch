@@ -5,6 +5,7 @@ import { ReactComponent as Chevron } from "../../svg/chevron-right.svg";
 import { ReactComponent as Linkedin } from "../../svg/linkedin.svg";
 import { ReactComponent as X } from "../../svg/x.svg";
 import { motion } from "framer-motion";
+import { fadeInAnimationUp } from "../../data/motion";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -13,27 +14,15 @@ const Navbar = () => {
     <header className="nav__container">
       <motion.section
         className="nav__wrapper"
-        initial={{
-          opacity: 0,
-          translateY: -100,
-        }}
-        animate={{
-          opacity: 1,
-          translateY: 0,
-        }}
+        initial={fadeInAnimationUp.initial}
+        animate={fadeInAnimationUp.animate}
       >
         <a href="/" className="clickable nav__logo">
           <Logo width={"100%"} height={"100%"} />
         </a>
         <motion.div
-          initial={{
-            opacity: 0,
-            translateY: -100,
-          }}
-          animate={{
-            opacity: 1,
-            translateY: 0,
-          }}
+          initial={fadeInAnimationUp.initial}
+          animate={fadeInAnimationUp.animate}
           className="nav__btns"
         >
           <button
