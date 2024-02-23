@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainCard from "./mainCard";
 import InfoCard from "./infoCard";
 import "../../styles/infoCards.scss";
@@ -32,6 +32,18 @@ export default function InfoCards() {
     }
   };
 
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    function resize() {
+      let currentWidth = window.innerWidth;
+      setWidth(currentWidth);
+    }
+    resize();
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  });
+
   return (
     <section className="infoCards__container">
       <div className="infocards__cards-cont">
@@ -47,7 +59,7 @@ export default function InfoCards() {
         >
           {data.map((card, i) => (
             <React.Fragment key={card.title}>
-              {click !== i ? (
+              {click !== i || width < 1024 ? (
                 <div>
                   <InfoCard title={card.title} text={card.text} i={i} />
                 </div>

@@ -4,7 +4,7 @@
 }
 
 .infoCard__container {
-  width: 85vw;
+  width: 75vw;
   max-width: 400px;
   height: 290px;
   margin: 3rem 0 1rem;
@@ -54,6 +54,7 @@
   color: $offBlack;
   line-height: 1.6;
   font-size: 1.5rem;
+  width: 90%;
 }
 @media (min-width: 1024px) {
   .infoCard__container {
