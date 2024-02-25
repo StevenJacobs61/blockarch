@@ -2,13 +2,12 @@ import React from "react";
 import "../../styles/login.scss";
 
 export default function LoadingStatus({ loading }) {
-  const handleNewAcount = async () => {
-    await localStorage
-      .removeItem("user")
-      .then((window.location.href = "/questions"));
+  const handleNewAcount = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/questions";
   };
   return !loading ? (
-    <h3 className="loadingStatus__hdr" onClick={async () => handleNewAcount()}>
+    <h3 className="loadingStatus__hdr" onClick={() => handleNewAcount()}>
       Don't have an account yet? Create one here!
     </h3>
   ) : (

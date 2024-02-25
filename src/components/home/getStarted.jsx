@@ -1,12 +1,8 @@
 import React from "react";
 import "../../styles/getStarted.scss";
 import GetStartedButton from "../getStartedButton";
-import { animate, motion } from "framer-motion";
-import {
-  fadeInAnimationLeft,
-  fadeInAnimationRight,
-  fadeInAnimationUp,
-} from "../../data/motion";
+import { motion } from "framer-motion";
+import { fadeInAnimationLeft, fadeInAnimationRight } from "../../data/motion";
 
 export default function GetStarted() {
   return (

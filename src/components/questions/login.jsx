@@ -7,6 +7,7 @@ import LoadingStatus from "./loadingStatus";
 import SubmitBtn from "./submitBtn";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import GoogleAuth from "./googleAuth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,59 +26,62 @@ const Login = () => {
       : setActiveSubmit(false);
   }, [loginDetails]);
 
-  const prepareLocalStorage = async (res) => {
-    await localStorage.setItem("user", JSON.stringify(res));
-    await localStorage.setItem("block", JSON.stringify(1));
-    await localStorage.setItem("qIndex", JSON.stringify(0));
-  };
-
-  const handleLogin = (authData) => {
+  const handleLogin = async (authData) => {
     const details = {
       emailAddress: authData.email,
-      password: "google",
+      password: `##googleAuth##--##${authData.email}##`,
     };
     setActiveSubmit(true);
     setLoading(true);
-    handleSubmit(details);
+    handleSubmit(details, true);
   };
 
-  const handleSubmit = async (details) => {
-    if (!activeSubmit) return;
+  const handleSubmit = async (details, active) => {
+    if (!activeSubmit && !active) return;
     const password = details.password || loginDetails.password;
     const email = details.emailAddress || loginDetails.emailAddress;
     try {
       const res = await getUserByEmail(email);
       if (password == res.password) {
-        await prepareLocalStorage(res);
-        setSuccess(true);
-        setLoading(false);
-        setTimeout(() => {
-          logIn();
-          navigate("/apps");
-        }, 1500);
+        finalizeLogin(res);
       } else {
         setAlertMessage(
           "Password did not match. \n Please try again or create an account."
         );
+        setLoading(false);
       }
     } catch (err) {
       console.error(err);
       setAlertMessage(
         "Username or Password did not match. \n Please try again or create an account."
       );
+      setLoading(false);
     }
     setLoading(false);
+    return;
+  };
+
+  const finalizeLogin = (res) => {
+    localStorage.setItem("user", JSON.stringify(res));
+    localStorage.setItem("block", JSON.stringify(1));
+    localStorage.setItem("qIndex", JSON.stringify(0));
+    setSuccess(true);
+    setLoading(false);
+    setTimeout(() => {
+      logIn();
+      navigate("/apps");
+    }, 1500);
   };
 
   return (
     <div className="login__container">
       <h1 className="login__hdr">Welcome back! Log in to Blockarch</h1>
       <div className="login__component-cont">
-        <h3 className="questions_alertMessage">{alertMessage}</h3>
-        <label className="questions_label">Email Address</label>
+        <h3 className="login__alert-message">{alertMessage}</h3>
+        <label className="login__label">Email Address</label>
         <input
           type="text"
-          className="questions_textInput"
+          className="login__input"
           onChange={(e) =>
             setLoginDetails((prev) => ({
               ...prev,
@@ -85,10 +89,10 @@ const Login = () => {
             }))
           }
         />
-        <label className="questions_label">Password</label>
+        <label className="login__label">Password</label>
         <input
           type="password"
-          className="questions_textInput"
+          className="login__input"
           onChange={(e) =>
             setLoginDetails((prev) => ({ ...prev, password: e.target.value }))
           }
@@ -100,22 +104,7 @@ const Login = () => {
           success={success}
         />
         <LoadingStatus loading={loading} />
-        <div className="login__or-cont">
-          <div className="login__or-line" />
-          <h3 className="login__or">or</h3>
-          <div className="login__or-line" />
-        </div>
-        <div className="login__google-cont">
-          <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              const decodedResponse = jwtDecode(credentialResponse.credential);
-              handleLogin(decodedResponse);
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-          />
-        </div>
+        <GoogleAuth handleLogin={handleLogin} />
       </div>
     </div>
   );

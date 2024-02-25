@@ -6,7 +6,7 @@ export default function GetStartedButton() {
   return (
     <button
       className="clickable btn--primary getStartedButton__btn"
-      onClick={() => (window.location.href = "/login")}
+      onClick={() => (window.location.href = "/questions")}
     >
       Get Started <BsFillLightningFill className="getStartedButton__icon" />
     </button>

@@ -24,7 +24,7 @@ const Navbar = () => {
         >
           <button
             className="btn clickable nav__btn"
-            onClick={() => (window.location.href = "/login")}
+            onClick={() => (window.location.href = "/questions")}
           >
             Get started
             <Chevron className="nav__chevron" />{" "}

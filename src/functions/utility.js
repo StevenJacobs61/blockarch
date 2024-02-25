@@ -5,7 +5,7 @@ export const isNull = (obj) => {
     (val) =>
       val === null ||
       val === undefined ||
-      val == NaN ||
+      `${val}` === "NaN" ||
       val === "" ||
       val.toString().trim() === ""
   );
