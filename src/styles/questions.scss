@@ -1,9 +1,34 @@
 @import "./variables.scss";
 .questions__container,
-.questions__questions-cont {
+.questions__questions-cont,
+.questions__success-cont {
   @include flex($dir: column);
 }
-.questions__questions-cont {
+.questions__success-cont {
+  padding: 2rem;
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+  height: 60vh;
+  gap: 3rem;
+}
+.questions__success-hdr {
+  margin: 1rem 0 1rem;
+  font-size: 3.2rem;
+  color: $black;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  text-transform: capitalize;
+}
+.questions__success-text {
+  color: $offBlack;
+  font-weight: 500;
+  font-size: 2rem;
+}
+.questions__success-btn {
+  padding: 1.5rem 1.2rem;
+  margin: 2rem;
+  font-size: 2rem;
 }
 
 .questions_ {

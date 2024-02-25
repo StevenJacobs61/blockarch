@@ -3,8 +3,8 @@ import { isNull } from "../../functions/utility";
 import { useQuestions } from "../../context/questionsContext";
 import { userQuestions } from "../../data/userQuestions";
 
-export default function UserButtons({ success, loading, handleSubmit }) {
-  const { user, qIndex, handleIndex } = useQuestions();
+export default function UserButtons({ handleSubmit }) {
+  const { user, qIndex, handleIndex, success, loading } = useQuestions();
 
   return (
     <>

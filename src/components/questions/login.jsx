@@ -29,7 +29,7 @@ const Login = () => {
   const handleLogin = async (authData) => {
     const details = {
       emailAddress: authData.email,
-      password: `##googleAuth##--##${authData.email}##`,
+      password: `${process.env.REACT_APP_GOOGLE_AUTH_PASSOWRD$}${authData.email}`,
     };
     setActiveSubmit(true);
     setLoading(true);

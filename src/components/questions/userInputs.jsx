@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 const qIndexThree = ["Personal", "Corporate"];
 const qIndexFour = ["Developer", "Tech Lead", "CEO", "CTO"];
 
-export default function UserInputs({ other, loading }) {
-  const { qIndex, updateUser, user, setUser } = useQuestions();
+export default function UserInputs({ other }) {
+  const { qIndex, updateUser, user, setUser, loading } = useQuestions();
   const navigate = useNavigate();
 
   function validateInput(newValue, input) {

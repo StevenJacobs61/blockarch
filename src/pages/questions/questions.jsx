@@ -6,7 +6,8 @@ import ProgressBar from "../../components/questions/progressBar";
 import { useQuestions } from "../../context/questionsContext";
 
 const Questions = () => {
-  const { block, isHidden } = useQuestions();
+  const { block, isHidden, success, setSuccess, user, setIsHidden } =
+    useQuestions();
 
   return (
     <div className="questions__container">
@@ -14,7 +15,33 @@ const Questions = () => {
         <div
           className={`questions__questions-cont ${isHidden ? "fadeEffect hidden" : "fadeEffect"}`}
         >
-          {!block ? <UserQuestionsComp /> : <ProjectQuestions />}
+          {success ? (
+            <div className="questions__success-cont">
+              <h1 className="questions__success-hdr">
+                <strong className="highlight">Welcome </strong>Onbaord{" "}
+                {user.firstName}!
+              </h1>
+              <h2 className="questions__success-text">
+                Your account was created successfully.
+              </h2>
+              <button
+                className="clickable btn btn--primary questions__success-btn"
+                onClick={() => {
+                  setSuccess(false);
+                  setIsHidden(true);
+                  setTimeout(() => {
+                    setIsHidden(false);
+                  }, [200]);
+                }}
+              >
+                Start your first project
+              </button>
+            </div>
+          ) : block === 0 ? (
+            <UserQuestionsComp />
+          ) : (
+            <ProjectQuestions />
+          )}
         </div>
       </div>
 

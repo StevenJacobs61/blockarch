@@ -18,11 +18,14 @@ const UserQuestionsComp = () => {
     setUser,
     setBlock,
     handleIndex,
+    success,
+    loading,
+    setLoading,
+    setSuccess,
+    setIsHidden,
   } = useQuestions();
 
   const other = useRef(null);
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async () => {
     if (user.confirmPassword !== user.password && !user.googleAuth) {
@@ -31,7 +34,8 @@ const UserQuestionsComp = () => {
       return;
     }
     setLoading(true);
-    if (!isUserInUse()) {
+    const inUse = await isUserInUse();
+    if (!inUse) {
       const { confirmPassword, googleAuth, ...otherUserProperties } = user;
       await addUser(otherUserProperties);
     }
@@ -45,6 +49,7 @@ const UserQuestionsComp = () => {
         return true;
       }
     } catch (error) {
+      console.error(error);
       if (error.code == 500) {
         setAlertMessage("Email Address alreasy in use.");
         return true;
@@ -58,9 +63,13 @@ const UserQuestionsComp = () => {
       setBlock(1);
       setQIndex(0);
       setUser(response.data);
-      setSuccess(true);
-      setTimeout(() => {}, 2000);
-      window.location.reload();
+      setIsHidden(true);
+      setTimeout(() => {
+        setIsHidden(false);
+        setSuccess(true);
+      }, [200]);
+      setLoading(false);
+      setAlertMessage("Your account was created successfully!");
     } catch (error) {
       setLoading(false);
     }
@@ -72,8 +81,8 @@ const UserQuestionsComp = () => {
       emailAddress: authDetails.email,
       firstName: authDetails.given_name,
       lastName: authDetails.family_name,
-      password: `##googleAuth##--##${authDetails.email}##`,
-      confirmPassword: `##googleAuth##--##${authDetails.email}##`,
+      password: `${process.env.REACT_APP_GOOGLE_AUTH_PASSOWRD}${authDetails.email}`,
+      confirmPassword: `${process.env.REACT_APP_GOOGLE_AUTH_PASSOWRD}${authDetails.email}`,
       googleAuth: true,
     }));
     setQIndex(2);
@@ -102,13 +111,9 @@ const UserQuestionsComp = () => {
         <h3 className="questions_alertMessage">{alertMessage}</h3>
       ) : null}
 
-      <UserInputs other={other} loading={loading} />
+      <UserInputs other={other} />
 
-      <UserButtons
-        success={success}
-        loading={loading}
-        handleSubmit={handleSubmit}
-      />
+      <UserButtons handleSubmit={handleSubmit} />
 
       <Google handleGoogleAuth={handleGoogleAuth} />
     </div>

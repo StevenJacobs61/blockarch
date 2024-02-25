@@ -6,7 +6,9 @@ export const QuestionsContext = createContext(null);
 export default function QuestionsContextProivder({ children }) {
   const [isQuestions, setIsQuestions] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [block, setBlock] = useState();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [block, setBlock] = useState(0);
   const [qIndex, setQIndex] = useState(0);
   const [alertMessage, setAlertMessage] = useState(null);
   const [user, setUser] = useState(() => {
@@ -50,9 +52,12 @@ export default function QuestionsContextProivder({ children }) {
   useEffect(() => {
     function configBlock() {
       if (!localStorage.getItem("block") || !localStorage.getItem("user")) {
-        localStorage.setItem("block", 0);
+        localStorage.setItem("block", "0");
+      } else {
+        const localBlock = parseInt(localStorage.getItem("block"));
+        console.log(localBlock);
+        setBlock(parseInt(localStorage.getItem("block")));
       }
-      setBlock(parseInt(localStorage.getItem("block")));
     }
     function configIndex() {
       const localIndex = parseInt(localStorage.getItem("qIndex"));
@@ -62,7 +67,6 @@ export default function QuestionsContextProivder({ children }) {
     }
     function configUser() {
       const localUser = JSON.parse(localStorage.getItem("user"));
-      console.log(localUser);
       if (localUser) {
         setUser(localUser);
       } else {
@@ -79,10 +83,12 @@ export default function QuestionsContextProivder({ children }) {
       localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
   useEffect(() => {
-    localStorage.setItem("block", JSON.stringify(block));
+    if (JSON.parse(localStorage.getItem("block")) !== block)
+      localStorage.setItem("block", JSON.stringify(block));
   }, [block]);
   useEffect(() => {
-    localStorage.setItem("qIndex", JSON.stringify(qIndex));
+    if (JSON.parse(localStorage.getItem("qIndex")) !== qIndex)
+      localStorage.setItem("qIndex", JSON.stringify(qIndex));
   }, [qIndex]);
 
   function updateUser(newValue) {
@@ -108,6 +114,11 @@ export default function QuestionsContextProivder({ children }) {
         updateUser,
         handleIndex,
         isHidden,
+        setIsHidden,
+        setLoading,
+        loading,
+        setSuccess,
+        success,
       }}
     >
       {children}
