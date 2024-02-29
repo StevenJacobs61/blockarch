@@ -30,6 +30,34 @@
   margin: 2rem;
   font-size: 2rem;
 }
+.questions__back-icon {
+  width: 21px;
+  margin-left: 2rem;
+  height: inherit;
+  fill: $base;
+  cursor: pointer;
+}
+.questions__top-cont {
+  width: 100%;
+  @include flex();
+  justify-content: flex-start;
+  gap: 0.8rem;
+  margin: 0.5rem 0 1.5rem;
+}
+.questions__loading {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 80%;
+  color: $baseD;
+  margin: 1rem 0;
+}
+.questions__alert-message {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 1rem 0.5rem;
+  color: $baseD;
+}
 
 .questions_ {
   &questionsContainer,
@@ -64,26 +92,6 @@
     }
   }
   &topContainer {
-    width: 100%;
-    @include flex();
-    justify-content: flex-start;
-    gap: 0.8rem;
-    margin: 0.5rem 0 1.5rem;
-  }
-  &arrowContainer {
-    width: 28px;
-    height: inherit;
-    fill: $base;
-    cursor: pointer;
-  }
-  &back {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: gray;
-    margin-top: 0.5rem;
-    cursor: pointer;
-    text-transform: capitalize;
-    // color: $base;
   }
   &questionsTitle {
     margin: 1rem 0 2rem;
@@ -133,28 +141,8 @@
     }
   }
   &changeContainer {
-    @include flexCenR();
-    gap: 1rem;
-    margin: 2rem 0 0.5rem;
-    width: 80%;
   }
   &buttonChange {
-    background: $base;
-    color: $white;
-    border: 1px solid $base;
-    padding: 0.5rem 0.7rem;
-    border-radius: 3px;
-    cursor: pointer;
-    box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.4);
-    margin: 0 0.5rem 1rem;
-    width: 70%;
-    font-weight: 700;
-    transition: all 0.2s;
-    &:hover {
-      background: $white;
-      color: $base;
-      border: 1px solid $base;
-    }
   }
   &buttonSubmit {
     font-weight: 700;
@@ -177,9 +165,6 @@
     }
   }
   &success {
-    font-size: 1.8rem;
-    color: $base;
-    font-weight: 600;
   }
   // Login page
   &loginContainer {
@@ -192,11 +177,6 @@
     color: $gray;
   }
   &alertMessage {
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0 1rem 0.5rem;
-    color: $baseD;
   }
   &loginHdr {
     font-size: 2rem;
@@ -239,11 +219,6 @@
     }
   }
   &loading {
-    font-size: 1.5rem;
-    text-align: center;
-    width: 80%;
-    color: $baseD;
-    margin: 1rem 0;
   }
   &answersContainer {
     width: 100%;

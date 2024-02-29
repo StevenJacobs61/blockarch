@@ -5,8 +5,10 @@ import { ReactComponent as Linkedin } from "../../svg/linkedin.svg";
 import { ReactComponent as X } from "../../svg/x.svg";
 import { motion } from "framer-motion";
 import { fadeInAnimationUp } from "../../data/motion";
+import { useUser } from "../../context/userContext";
 
 const Navbar = () => {
+  const { loggedIn } = useUser();
   return (
     <header className="nav__container">
       <motion.section
@@ -14,7 +16,7 @@ const Navbar = () => {
         initial={fadeInAnimationUp.initial}
         animate={fadeInAnimationUp.animate}
       >
-        <a href="/" className="clickable nav__logo">
+        <a href={loggedIn ? "/apps" : "/"} className="clickable nav__logo">
           <Logo width={"100%"} height={"100%"} />
         </a>
         <motion.div

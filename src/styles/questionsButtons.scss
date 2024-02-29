@@ -1,0 +1,28 @@
+@import "./variables.scss";
+
+.qustionsButtons__container {
+  width: 100%;
+}
+.questionsButtons__btn-change {
+  background: $base;
+  color: $white;
+  border: 1px solid $base;
+  padding: 00.8rem 1.2rem;
+  margin: 0 0.5rem 1rem;
+  transition: all 0.2s;
+  &:hover {
+    background: $white;
+    color: $base;
+    border: 1px solid $base;
+  }
+}
+.questionsButtons__text-success {
+  font-size: 1.8rem;
+  color: $base;
+  font-weight: 600;
+}
+.questionsButtons__change-cont {
+  @include flexCenR();
+  gap: 1rem;
+  margin: 2rem 0 0.5rem;
+}

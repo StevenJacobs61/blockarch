@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { userQuestions } from "../data/userQuestions";
+import { projectQuestions } from "../data/projectQuestions";
 
 export const QuestionsContext = createContext(null);
 
@@ -26,6 +27,9 @@ export default function QuestionsContextProivder({ children }) {
       return JSON.parse(localStorage.getItem("user"));
     }
   });
+  const [userProject, setUserProject] = useState(
+    initializeUserProjectFields(projectQuestions)
+  );
 
   const handleIndex = (direction) => {
     if (
@@ -55,8 +59,7 @@ export default function QuestionsContextProivder({ children }) {
         localStorage.setItem("block", "0");
       } else {
         const localBlock = parseInt(localStorage.getItem("block"));
-        console.log(localBlock);
-        setBlock(parseInt(localStorage.getItem("block")));
+        setBlock(localBlock);
       }
     }
     function configIndex() {
@@ -73,9 +76,22 @@ export default function QuestionsContextProivder({ children }) {
         localStorage.setItem("user", JSON.stringify(user));
       }
     }
+    function configUserProject() {
+      const localProject = JSON.parse(localStorage.getItem("project"));
+      if (localProject) {
+        setUserProject(localProject);
+      } else {
+        localStorage.setItem("project", JSON.stringify(userProject));
+      }
+    }
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setUserProject((prev) => ({ ...prev, user: user }));
+    }
     configBlock();
     configIndex();
     configUser();
+    configUserProject();
   }, []);
 
   useEffect(() => {
@@ -96,6 +112,14 @@ export default function QuestionsContextProivder({ children }) {
       ...prev,
       [userQuestions[qIndex].input[0].field]: newValue,
     }));
+  }
+  function initializeUserProjectFields(questions) {
+    return questions
+      .filter((question) => question.endpoint === "user-project")
+      .reduce((obj, question) => {
+        obj[question.field] = null;
+        return obj;
+      }, {});
   }
 
   return (
@@ -119,6 +143,8 @@ export default function QuestionsContextProivder({ children }) {
         loading,
         setSuccess,
         success,
+        userProject,
+        setUserProject,
       }}
     >
       {children}

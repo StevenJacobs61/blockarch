@@ -12,6 +12,7 @@ import Apps from "./pages/apps/apps";
 import Result from "./pages/apps/result";
 import Layout from "./components/layout.jsx/layout";
 import QuestionsContextProivder from "./context/questionsContext";
+import UserContextProvider from "./context/userContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,7 +20,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/questions" element={<Questions />} />
-      <Route index element={<Apps />} />
+      <Route path="/apps" element={<Apps />} />
       <Route path="/result" element={<Result />} />
     </Route>
   )
@@ -28,7 +29,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <QuestionsContextProivder>
-      <RouterProvider router={router} />
+      <UserContextProvider>
+        <RouterProvider router={router} />
+      </UserContextProvider>
     </QuestionsContextProivder>
   );
 }

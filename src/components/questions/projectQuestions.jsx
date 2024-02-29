@@ -13,21 +13,21 @@ import axios from "axios";
 import { calculateAndSortResults } from "../../functions/utility";
 import { getGptSummary } from "../../functions/gpt";
 import { useQuestions } from "../../context/questionsContext";
+import QuestionsButtons from "./questionsButtons";
 
 const ProjectQuestions = () => {
-  const { setBlock, qIndex, setQIndex } = useQuestions();
+  const {
+    setBlock,
+    qIndex,
+    setQIndex,
+    userProject,
+    setUserProject,
+    success,
+    setSuccess,
+    loading,
+    setLoading,
+  } = useQuestions();
 
-  function initializeUserProjectFields(questions) {
-    return questions
-      .filter((question) => question.endpoint === "user-project")
-      .reduce((obj, question) => {
-        obj[question.field] = null;
-        return obj;
-      }, {});
-  }
-  const [userProject, setUserProject] = useState(
-    initializeUserProjectFields(projectQuestions)
-  );
   const [userProjectPurpose, setUserProjectPurpose] = useState({});
   const [purposeValue, setPurposeValue] = useState("");
   const [userProjectLanguages, setUserProjectLanguages] = useState({});
@@ -37,8 +37,6 @@ const ProjectQuestions = () => {
   const [userProjectNetworkParticipants, setUserProjectNetworkParticipants] =
     useState({});
   const [networkValue, setNetworkValue] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const findValue = (obj) => {
@@ -47,10 +45,6 @@ const ProjectQuestions = () => {
   };
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      setUserProject((prev) => ({ ...prev, user: user }));
-    }
     if (!localStorage.getItem("project")) {
       localStorage.setItem(
         "project",
@@ -80,11 +74,6 @@ const ProjectQuestions = () => {
       delete project.userProjectPurpose;
       setUserProject({ ...project });
     }
-    if (!localStorage.getItem("qIndex")) {
-      localStorage.setItem("qIndex", qIndex);
-    } else {
-      setQIndex(parseInt(localStorage.getItem("qIndex")));
-    }
   }, []);
 
   const handleIndex = (direction) => {
@@ -101,18 +90,12 @@ const ProjectQuestions = () => {
     let newIndex = null;
     if (direction === 1) {
       newIndex = qIndex === projectQuestions.length - 1 ? 0 : qIndex + 1;
-      localStorage.setItem("qIndex", JSON.stringify(newIndex));
       setQIndex(newIndex);
     } else if (direction === 0) {
       newIndex = qIndex === 0 ? projectQuestions.length - 1 : qIndex - 1;
-      localStorage.setItem("qIndex", JSON.stringify(newIndex));
       setQIndex(newIndex);
     }
     setBlock(projectQuestions[newIndex].block);
-    localStorage.setItem(
-      "block",
-      JSON.stringify(projectQuestions[newIndex].block)
-    );
   };
 
   const handleChecked = (e) => {
@@ -239,25 +222,24 @@ const ProjectQuestions = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem(
-      "project",
-      JSON.stringify({
-        ...userProject,
-        userProjectIndustry,
-        userProjectLanguages,
-        userProjectNetworkParticipants,
-        userProjectPurpose,
-      })
-    );
+    if (JSON.parse(localStorage.getItem("project")) !== userProject) {
+      localStorage.setItem(
+        "project",
+        JSON.stringify({
+          ...userProject,
+          userProjectIndustry,
+          userProjectLanguages,
+          userProjectNetworkParticipants,
+          userProjectPurpose,
+        })
+      );
+    }
   }, [qIndex]);
 
   return (
-    <div className="projectQuestions_container">
+    <div className="projectQuestions__container">
       <div className="questions_topContainer">
-        <div
-          className="questions_arrowContainer"
-          onClick={() => handleIndex(0)}
-        >
+        <div className="questions__back-icon" onClick={() => handleIndex(0)}>
           <Arrow width="100%" height="100%" />
         </div>
       </div>
@@ -375,46 +357,10 @@ const ProjectQuestions = () => {
             Please wait, your results are being calculated...
           </p>
         ) : null}
-        {!Object.values(userProject).some(
-          (val) =>
-            val === null ||
-            val === undefined ||
-            val == NaN ||
-            val === "" ||
-            val.toString().trim() === ""
-        ) ? (
-          !success ? (
-            <button
-              className="questions_buttonSubmit"
-              onClick={() => handleSubmit()}
-              style={{
-                opacity: loading ? "0.4" : "",
-                pointerEvents: loading ? "none" : "auto",
-              }}
-            >
-              {qIndex !== projectQuestions.length - 1 && !loading ? (
-                "Finish"
-              ) : qIndex == projectQuestions.length - 1 && !loading ? (
-                "Submit"
-              ) : (
-                <div className="spinner" />
-              )}
-            </button>
-          ) : (
-            <p className="questions_success">Success!</p>
-          )
-        ) : null}
-        <div className="questions_changeContainer">
-          {qIndex !== projectQuestions.length - 1 &&
-          qIndex !== projectQuestions.length - 2 ? (
-            <button
-              className="questions_buttonChange"
-              onClick={() => handleIndex(1)}
-            >
-              Next
-            </button>
-          ) : null}
-        </div>
+        <QuestionsButtons
+          handleSubmit={handleSubmit}
+          handleIndex={handleIndex}
+        />
       </div>
     </div>
   );

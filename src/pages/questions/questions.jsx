@@ -4,11 +4,12 @@ import ProjectQuestions from "../../components/questions/projectQuestions";
 import Answers from "../../components/questions/answers";
 import ProgressBar from "../../components/questions/progressBar";
 import { useQuestions } from "../../context/questionsContext";
+import { useUser } from "../../context/userContext";
 
 const Questions = () => {
   const { block, isHidden, success, setSuccess, user, setIsHidden } =
     useQuestions();
-
+  const { loggedIn } = useUser();
   return (
     <div className="questions__container">
       <div className="questions__questions-cont">
@@ -37,7 +38,7 @@ const Questions = () => {
                 Start your first project
               </button>
             </div>
-          ) : block === 0 ? (
+          ) : block === 0 && !loggedIn ? (
             <UserQuestionsComp />
           ) : (
             <ProjectQuestions />

@@ -1,12 +1,12 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import "../../styles/userQuestions.scss";
 import { add, getUserByEmail } from "../../functions/userAPI";
-import { userQuestions } from "../../data/userQuestions";
 import { ReactComponent as Arrow } from "../../svg/arrow-back.svg";
 import { useQuestions } from "../../context/questionsContext";
 import Google from "./google";
 import UserInputs from "./userInputs";
-import UserButtons from "./userButtons";
+import { useUser } from "../../context/userContext";
+import QuestionsButtons from "./questionsButtons";
 
 const UserQuestionsComp = () => {
   const {
@@ -24,6 +24,7 @@ const UserQuestionsComp = () => {
     setSuccess,
     setIsHidden,
   } = useQuestions();
+  const { cookieLogin } = useUser();
 
   const other = useRef(null);
 
@@ -66,6 +67,7 @@ const UserQuestionsComp = () => {
       setIsHidden(true);
       setTimeout(() => {
         setIsHidden(false);
+        cookieLogin();
         setSuccess(true);
       }, [200]);
       setLoading(false);
@@ -89,12 +91,9 @@ const UserQuestionsComp = () => {
   };
   return (
     <div className={`userQuestions__container`}>
-      <div className="questions_topContainer">
+      <div className="questions__top-cont">
         {qIndex !== 0 ? (
-          <div
-            className="questions_arrowContainer"
-            onClick={() => handleIndex(0)}
-          >
+          <div className="questions__back-icon" onClick={() => handleIndex(0)}>
             <Arrow width="100%" height="100%" />
           </div>
         ) : null}
@@ -103,17 +102,17 @@ const UserQuestionsComp = () => {
         {loading ? "Not long now! Please wait" : "Create a user account"}
       </h1>
       {loading && !success ? (
-        <p className="questions_loading">
+        <p className="questions__loading">
           Your Account is being created, do not leave the page...
         </p>
       ) : null}
       {alertMessage ? (
-        <h3 className="questions_alertMessage">{alertMessage}</h3>
+        <h3 className="questions__alert-message">{alertMessage}</h3>
       ) : null}
 
       <UserInputs other={other} />
 
-      <UserButtons handleSubmit={handleSubmit} />
+      <QuestionsButtons handleSubmit={handleSubmit} handleIndex={handleIndex} />
 
       <Google handleGoogleAuth={handleGoogleAuth} />
     </div>

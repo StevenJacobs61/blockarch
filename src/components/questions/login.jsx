@@ -5,8 +5,6 @@ import { logIn } from "../../functions/logIn";
 import "../../styles/login.scss";
 import LoadingStatus from "./loadingStatus";
 import SubmitBtn from "./submitBtn";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 import GoogleAuth from "./googleAuth";
 
 const Login = () => {

@@ -1,20 +1,23 @@
-@import './variables.scss';
+@import "./variables.scss";
 
-.projectQuestions_{
-    &container{
-        @include flexCol;
-        width: 100%;
-        max-width: 300px;
-        overflow: hidden;
-    }
-    &inputContainer{
-        @include flexCol();
-        overflow: visible;
-    }
-    &questionsContainer{
-        padding: 1rem 2rem 1rem;
-        @include flexCol();
-        justify-content: flex-start;
-        width: 90%;
-    }
+.projectQuestions__continer {
+  @include flexCol;
+  width: 100%;
+  max-width: 300px;
+  overflow: hidden;
+}
+
+.projectQuestions_ {
+  &container {
+  }
+  &inputContainer {
+    @include flexCol();
+    overflow: visible;
+  }
+  &questionsContainer {
+    padding: 1rem 2rem 1rem;
+    @include flexCol();
+    justify-content: flex-start;
+    width: 90%;
+  }
 }

@@ -46,7 +46,7 @@ export default function UserInputs({ other }) {
       ) : null}
 
       {qIndex === 3 ? (
-        qIndexThree.map((input) => (
+        qIndexThree.map((input, i) => (
           <Input
             key={input}
             value={input}
@@ -58,8 +58,9 @@ export default function UserInputs({ other }) {
         ))
       ) : qIndex === 4 ? (
         <>
-          {qIndexFour.map((input) => (
+          {qIndexFour.map((input, i) => (
             <Input
+              key={input}
               value={input}
               title={input}
               type={"radio"}
@@ -99,10 +100,7 @@ export default function UserInputs({ other }) {
         )
       ) : null}
       {qIndex === 0 ? (
-        <p
-          className="userQuestions__login"
-          onClick={() => navigate("/apps/questions/login")}
-        >
+        <p className="userQuestions__login" onClick={() => navigate("/login")}>
           Already have an account?
           <br /> Login here!
         </p>
