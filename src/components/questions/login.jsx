@@ -6,6 +6,7 @@ import "../../styles/login.scss";
 import LoadingStatus from "./loadingStatus";
 import SubmitBtn from "./submitBtn";
 import GoogleAuth from "./googleAuth";
+import Input from "./input";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -71,30 +72,35 @@ const Login = () => {
     }, 1500);
   };
 
+  function handleChange(e) {
+    e.preventDefault();
+    setLoginDetails((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  }
   return (
     <div className="login__container">
       <h1 className="login__hdr">Welcome back! Log in to Blockarch</h1>
       <div className="login__component-cont">
         <h3 className="login__alert-message">{alertMessage}</h3>
-        <label className="login__label">Email Address</label>
-        <input
-          type="text"
-          className="login__input"
-          onChange={(e) =>
-            setLoginDetails((prev) => ({
-              ...prev,
-              emailAddress: e.target.value,
-            }))
-          }
-        />
-        <label className="login__label">Password</label>
-        <input
-          type="password"
-          className="login__input"
-          onChange={(e) =>
-            setLoginDetails((prev) => ({ ...prev, password: e.target.value }))
-          }
-        />
+        {!loading ? (
+          <>
+            <Input
+              name={"emailAddress"}
+              type={"text"}
+              change={(e) => handleChange(e)}
+              title={"Email Address"}
+            />
+            <Input
+              name={"password"}
+              type={"password"}
+              change={(e) => handleChange(e)}
+              title={"Password"}
+            />
+          </>
+        ) : null}
+
         <SubmitBtn
           handleSubmit={handleSubmit}
           activeSubmit={activeSubmit}
