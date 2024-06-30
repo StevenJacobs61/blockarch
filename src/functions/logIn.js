@@ -7,8 +7,5 @@ export function logOut() {
   Cookies.remove("login_token");
 }
 export function isLoggedIn() {
-  return (
-    JSON.stringify(Cookies.get("login_token")) ===
-    process.env.REACT_APP_LOGIN_TOKEN
-  );
+  return Cookies.get("login_token") === process.env.REACT_APP_LOGIN_TOKEN;
 }

@@ -31,25 +31,29 @@ export default function UserContextProvider({ children }) {
     checkCookies();
   }, []);
 
-  useEffect(() => {
-    const handleLocationChange = () => {
-      setPathname(window.location.pathname);
-    };
-    window.addEventListener("popstate", handleLocationChange);
-    console.log(isLoggedIn());
-    if (pathname === "/" && isLoggedIn()) {
+  function handleLoggedIn() {
+    setPathname(window.location.pathname);
+    setLoggedIn(isLoggedIn());
+    if (window.location.pathname === "/" && isLoggedIn()) {
+      console.log("logged in");
       window.location.href = "/apps";
     } else if (
-      (pathname === "/apps" || pathname === "/result") &&
+      (window.location.pathname === "/apps" ||
+        window.location.pathname === "/result") &&
       !isLoggedIn()
     ) {
       window.location.href = "/login";
     }
+  }
 
+  useEffect(() => {
+    handleLoggedIn();
+    window.addEventListener("popstate", handleLoggedIn);
+    console.log("logged in: ", isLoggedIn());
     return () => {
-      window.removeEventListener("popstate", handleLocationChange);
+      window.removeEventListener("popstate", handleLoggedIn);
     };
-  }, [pathname]);
+  }, []);
 
   return (
     <UserContext.Provider

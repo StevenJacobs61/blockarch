@@ -7,6 +7,7 @@ export const getUserByEmail = async (email) => {
     const response = await axios.get(
       `${process.env.REACT_APP_BACKEND_BASE_URL}/user/email?email=${email}`
     );
+    console.log({ response });
     return response.data;
   } catch (error) {
     console.error(error);
