@@ -1,10 +1,13 @@
 import Cookies from "js-cookie";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { isLoggedIn } from "../functions/logIn";
 
 const UserContext = createContext(null);
 
 export default function UserContextProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [pathname, setPathname] = useState(window.location.pathname);
+  const [googleAuthData, setGoogleAuthData] = useState();
 
   function checkCookies() {
     const cookieFound = Cookies.get("login_token");
@@ -27,9 +30,39 @@ export default function UserContextProvider({ children }) {
   useEffect(() => {
     checkCookies();
   }, []);
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setPathname(window.location.pathname);
+    };
+    window.addEventListener("popstate", handleLocationChange);
+    console.log(isLoggedIn());
+    if (pathname === "/" && isLoggedIn()) {
+      window.location.href = "/apps";
+    } else if (
+      (pathname === "/apps" || pathname === "/result") &&
+      !isLoggedIn()
+    ) {
+      window.location.href = "/login";
+    }
+
+    return () => {
+      window.removeEventListener("popstate", handleLocationChange);
+    };
+  }, [pathname]);
+
   return (
     <UserContext.Provider
-      value={{ loggedIn, setLoggedIn, cookieLogin, cookieLogout }}
+      value={{
+        loggedIn,
+        setLoggedIn,
+        cookieLogin,
+        cookieLogout,
+        pathname,
+        setPathname,
+        googleAuthData,
+        setGoogleAuthData,
+      }}
     >
       {children}
     </UserContext.Provider>

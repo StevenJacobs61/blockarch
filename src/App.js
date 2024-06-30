@@ -10,7 +10,7 @@ import Questions from "./pages/questions/questions";
 import Login from "./components/questions/login";
 import Apps from "./pages/apps/apps";
 import Result from "./pages/apps/result";
-import Layout from "./components/layout.jsx/layout";
+import Layout from "./components/layout/layout";
 import QuestionsContextProivder from "./context/questionsContext";
 import UserContextProvider from "./context/userContext";
 

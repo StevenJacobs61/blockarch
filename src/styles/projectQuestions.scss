@@ -1,10 +1,16 @@
 @import "./variables.scss";
 
-.projectQuestions__continer {
-  @include flexCol;
+.projectQuestions__container {
   width: 100%;
   max-width: 300px;
   overflow: hidden;
+  @include flex($dir: column);
+}
+.projectQuestions__questions-cont {
+  width: 100%;
+  max-width: 300px;
+  overflow: hidden;
+  @include flex($dir: column);
 }
 
 .projectQuestions_ {

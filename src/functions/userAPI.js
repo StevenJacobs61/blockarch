@@ -3,10 +3,15 @@ import axios from "axios";
 // API calls to interact with the Users table in DB
 
 export const getUserByEmail = async (email) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_BACKEND_BASE_URL}/user/email?email=${email}`
-  );
-  return response.data;
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_BASE_URL}/user/email?email=${email}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return 404;
+  }
 };
 export const getById = async (id, path) => {
   const response = await axios.get(

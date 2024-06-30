@@ -24,7 +24,7 @@ export const resetLocalProject = () => {
 };
 export const naviagteToResult = async (project) => {
   if (await setLocalResults(project)) {
-    window.location.href = "/apps/result";
+    window.location.href = "/result";
   }
 };
 export const setLocalResults = async (project) => {
@@ -44,10 +44,10 @@ export const handleAddProject = () => {
   localStorage.removeItem("project");
   localStorage.setItem("block", JSON.stringify(1));
   localStorage.setItem("qIndex", JSON.stringify(0));
-  if (window.location.pathname === "/apps/questions") {
+  if (window.location.pathname === "/questions") {
     window.location.reload();
   }
-  window.location.href = "/apps/questions";
+  window.location.href = "/questions";
 };
 
 export const calculateAndSortResults = (results) => {

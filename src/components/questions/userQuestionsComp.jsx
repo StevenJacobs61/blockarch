@@ -36,17 +36,22 @@ const UserQuestionsComp = () => {
     }
     setLoading(true);
     const inUse = await isUserInUse();
+    console.log(inUse);
     if (!inUse) {
       const { confirmPassword, googleAuth, ...otherUserProperties } = user;
       await addUser(otherUserProperties);
+    } else {
+      setLoading(false);
     }
   };
+
   async function isUserInUse() {
     try {
       const emailRes = await getUserByEmail(user.emailAddress);
       if (emailRes) {
         setAlertMessage("Email Address alreasy in use.");
         setQIndex(0);
+        console.log({ emailRes });
         return true;
       }
     } catch (error) {
@@ -61,23 +66,24 @@ const UserQuestionsComp = () => {
   async function addUser(otherUserProperties) {
     try {
       const response = await add(otherUserProperties, "/user");
-      setBlock(1);
-      setQIndex(0);
       setUser(response.data);
       setIsHidden(true);
       setTimeout(() => {
         setIsHidden(false);
         cookieLogin();
         setSuccess(true);
+        setBlock(1);
+        setQIndex(0);
+        setLoading(false);
       }, [200]);
-      setLoading(false);
       setAlertMessage("Your account was created successfully!");
     } catch (error) {
       setLoading(false);
     }
   }
-
+  console.log(user);
   const handleGoogleAuth = (authDetails) => {
+    console.log(authDetails);
     setUser((prev) => ({
       ...prev,
       emailAddress: authDetails.email,
@@ -92,18 +98,19 @@ const UserQuestionsComp = () => {
   return (
     <div className={`userQuestions__container`}>
       <div className="questions__top-cont">
-        {qIndex !== 0 ? (
+        {qIndex !== 0 && !loading ? (
           <div className="questions__back-icon" onClick={() => handleIndex(0)}>
             <Arrow width="100%" height="100%" />
           </div>
         ) : null}
       </div>
-      <h1 className="userQuestions__hdr">
+      <h1 className="questions__hdr">
         {loading ? "Not long now! Please wait" : "Create a user account"}
       </h1>
-      {loading && !success ? (
+      {loading ? (
         <p className="questions__loading">
-          Your Account is being created, do not leave the page...
+          Your account is being created... This may take several minutes, do not
+          referesh or leave this page.
         </p>
       ) : null}
       {alertMessage ? (

@@ -34,9 +34,9 @@ export default function UserInputs({ other }) {
   }
   return (
     <div className="userQuestions__questions-cont">
-      {!loading ? (
+      {!loading && qIndex !== 0 && !user.googleAuth ? (
         <>
-          <h2 className="userQuestions__question-title">
+          <h2 className="questions__questions-title">
             {userQuestions[qIndex].title}
           </h2>
           <h3 className="userQuestions__subtext">

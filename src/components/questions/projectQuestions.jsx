@@ -157,11 +157,13 @@ const ProjectQuestions = () => {
       const userRes = await getUserByEmail(
         JSON.parse(localStorage.getItem("user")).emailAddress
       );
+      console.log({ userRes });
       let project = userProject;
       project.user = userRes;
       const addRes = await add(project, "/user-project");
       newProject = addRes.data;
       userProjectId = addRes.data.id;
+      console.log({ addRes });
     } catch (error) {
       console.error(error);
     }
@@ -197,24 +199,29 @@ const ProjectQuestions = () => {
         `${process.env.REACT_APP_BACKEND_BASE_URL}/project-blockchain-result`,
         projectRes.data
       );
+      console.log({ calcRes });
       const resultsRes = await getById(
         projectRes.data.id,
         "/project-blockchain-result"
       );
+      console.log({ resultsRes });
       const sortedResults = calculateAndSortResults(resultsRes);
+      console.log({ sortedResults });
       let gptRes = await getGptSummary(sortedResults);
+      console.log({ gptRes });
       const finalProjectRes = await updateById(
         { ...projectRes.data, summary: gptRes },
         "/user-project",
         userProjectId
       );
+      console.log({ finalProjectRes });
       localStorage.setItem("project", JSON.stringify(finalProjectRes.data));
       localStorage.setItem("results", JSON.stringify(resultsRes));
       localStorage.setItem("block", 1);
       localStorage.removeItem("qIndex");
       setSuccess(true);
       setTimeout(() => {
-        navigate("/apps/result");
+        navigate("/result");
       }, 2000);
     } catch (error) {
       console.error(error);
@@ -238,15 +245,15 @@ const ProjectQuestions = () => {
 
   return (
     <div className="projectQuestions__container">
-      <div className="questions_topContainer">
+      <div className="questions__top-cont">
         <div className="questions__back-icon" onClick={() => handleIndex(0)}>
           <Arrow width="100%" height="100%" />
         </div>
       </div>
-      <h1 className="questions_hdr">{projectQuestions[qIndex].title}</h1>
-      <div className="projectQuestions_questionsContainer">
+      <h1 className="questions__hdr">{projectQuestions[qIndex].title}</h1>
+      <div className="projectQuestions__questions-cont">
         {projectQuestions[qIndex].subtext ? (
-          <h2 className="questions_questionsTitle">
+          <h2 className="questions__questions-title">
             {projectQuestions[qIndex].subtext}
           </h2>
         ) : null}
@@ -254,7 +261,7 @@ const ProjectQuestions = () => {
         projectQuestions[qIndex].type === "number" ? (
           <input
             type={projectQuestions[qIndex].type}
-            className="questions_textInput"
+            className="input__textbox"
             onChange={(e) => {
               const value =
                 projectQuestions[qIndex].type === "number"
@@ -278,13 +285,13 @@ const ProjectQuestions = () => {
 
             return (
               <div className="projectQuestions_inputContainer" key={i}>
-                <label className="questions_label" htmlFor={`answer-${qIndex}`}>
+                <label className="input__label" htmlFor={`answer-${qIndex}`}>
                   {ans}
                 </label>
                 <input
                   type="radio"
                   name={`answer-${qIndex}`}
-                  className="questions_checkbox"
+                  className="input__checkbox"
                   value={val}
                   onChange={(e) => handleChecked(e)}
                   checked={
@@ -312,12 +319,12 @@ const ProjectQuestions = () => {
           })
         ) : (
           projectQuestions[qIndex].field !== "finish" && (
-            <div className="projectQuestions_container">
-              <label className="questions_label">Yes</label>
+            <div className="projectQuestions__container">
+              <label className="input__label">Yes</label>
               <input
                 type="radio"
                 name={`answer-${qIndex}`}
-                className="questions_checkbox"
+                className="input__checkbox"
                 value={true}
                 onChange={() =>
                   setUserProject((prev) => ({
@@ -331,11 +338,11 @@ const ProjectQuestions = () => {
                     : false
                 }
               />
-              <label className="questions_label">No</label>
+              <label className="input__label">No</label>
               <input
                 type="radio"
                 name={`answer-${qIndex}`}
-                className="questions_checkbox"
+                className="input__checkbox"
                 value={false}
                 onChange={() =>
                   setUserProject((prev) => ({
@@ -353,7 +360,7 @@ const ProjectQuestions = () => {
           )
         )}
         {loading && !success ? (
-          <p className="questions_loading">
+          <p className="questions__loading">
             Please wait, your results are being calculated...
           </p>
         ) : null}

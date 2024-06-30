@@ -5,10 +5,6 @@
   margin: 0 0 2rem;
   width: 100%;
 }
-.userQuestions__hdr {
-  margin: 0 0 1rem;
-  text-align: center;
-}
 .userQuestions__questions-cont {
   @include flex($dir: column);
   overflow: hidden;
@@ -23,11 +19,6 @@
   font-weight: 400;
   margin: 0.5rem 0;
   text-align: center;
-}
-.userQuestions__input-cont {
-  @include flexCol();
-  margin: 0 0 0.5rem;
-  overflow: visible;
 }
 .userQuestions__login {
   margin: 0 0 1rem;

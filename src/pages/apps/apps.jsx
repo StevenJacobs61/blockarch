@@ -5,10 +5,11 @@ import { useProjects } from "../../hooks/useUserProjects";
 import { useNavigate } from "react-router-dom";
 import { deleteById, deleteProject, getById } from "../../functions/userAPI";
 import { clearLocalData, handleAddProject } from "../../functions/utility";
-import { logOut } from "../../functions/logIn";
+import { useUser } from "../../context/userContext";
 
 const Apps = () => {
   const { userProjects } = useProjects();
+  const { cookieLogout } = useUser();
   const navigate = useNavigate();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(false);
@@ -34,7 +35,8 @@ const Apps = () => {
           await deleteProject(project, resultsRes);
         }
         await deleteById(user.id, "/user");
-        await clearLocalData();
+        clearLocalData();
+        cookieLogout();
         navigate("/");
       } catch (error) {
         console.error(error);
@@ -46,7 +48,7 @@ const Apps = () => {
   const handleLogout = () => {
     if (confirm("Are you sure you wish to logout?")) {
       clearLocalData();
-      logOut();
+      cookieLogout();
       navigate("/");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -77,10 +79,18 @@ const Apps = () => {
       <div className="apps_sectionsContainer">
         <h2 className="apps_hdr">Account</h2>
         {!loading ? (
-          <h3 className="apps_delete" onClick={handleLogout}>
-            {/* Delete account */}
-            Logout
-          </h3>
+          <>
+            <h3 className="apps_logout" onClick={handleLogout}>
+              {/* Delete account */}
+              Logout
+            </h3>
+            <div className="apps_binContainer">
+              {/* <Bin className="apps_bin" /> */}
+              <h3 className="apps_delete" onClick={handleDelete}>
+                Delete Account
+              </h3>
+            </div>
+          </>
         ) : (
           <div className="spinner" />
         )}

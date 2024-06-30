@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/userQuestions.scss";
 import "../../styles/questions.scss";
+import "../../styles/input.scss";
 
 export default function Input({
   value,
@@ -12,15 +13,13 @@ export default function Input({
   name,
 }) {
   return (
-    <div className="userQuestions__input-cont">
-      <label className="questions_label">{title}</label>
+    <div className="input__container">
+      <label className="input__label">{title}</label>
       <input
         type={type}
         ref={reff}
         name={name}
-        className={
-          type === "radio" ? "questions_checkbox" : "questions_textInput"
-        }
+        className={type === "radio" ? "input__checkbox" : "input__textbox"}
         value={value}
         onChange={change}
         checked={checked}

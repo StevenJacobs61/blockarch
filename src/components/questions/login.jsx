@@ -7,17 +7,19 @@ import LoadingStatus from "./loadingStatus";
 import SubmitBtn from "./submitBtn";
 import GoogleAuth from "./googleAuth";
 import Input from "./input";
+import { useQuestions } from "../../context/questionsContext";
+import { useUser } from "../../context/userContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { success, setSuccess, loading, setLoading, setUser } = useQuestions();
+  const { setGoogleAuthData, googleAuthData } = useUser();
   const [loginDetails, setLoginDetails] = useState({
     emailAddress: null,
     password: null,
   });
   const [activeSubmit, setActiveSubmit] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     Object.values(loginDetails).every((value) => value)
@@ -26,10 +28,13 @@ const Login = () => {
   }, [loginDetails]);
 
   const handleLogin = async (authData) => {
+    console.log(authData);
+    setGoogleAuthData(authData);
     const details = {
       emailAddress: authData.email,
-      password: `${process.env.REACT_APP_GOOGLE_AUTH_PASSOWRD$}${authData.email}`,
+      password: `${process.env.REACT_APP_GOOGLE_AUTH_PASSOWRD}${authData.email}`,
     };
+    console.log({ details });
     setActiveSubmit(true);
     setLoading(true);
     handleSubmit(details, true);
@@ -39,25 +44,18 @@ const Login = () => {
     if (!activeSubmit && !active) return;
     const password = details.password || loginDetails.password;
     const email = details.emailAddress || loginDetails.emailAddress;
-    try {
-      const res = await getUserByEmail(email);
-      if (password == res.password) {
-        finalizeLogin(res);
-      } else {
-        setAlertMessage(
-          "Password did not match. \n Please try again or create an account."
-        );
-        setLoading(false);
-      }
-    } catch (err) {
-      console.error(err);
+    const res = await getUserByEmail(email);
+    if (res === 404) {
       setAlertMessage(
-        "Username or Password did not match. \n Please try again or create an account."
+        "Password did not match. \n Please try again or create an account."
       );
       setLoading(false);
+      return;
+    } else if (password == res.password) {
+      setUser(res);
+      finalizeLogin(res);
     }
     setLoading(false);
-    return;
   };
 
   const finalizeLogin = (res) => {
@@ -69,7 +67,7 @@ const Login = () => {
     setTimeout(() => {
       logIn();
       navigate("/apps");
-    }, 1500);
+    }, 1000);
   };
 
   function handleChange(e) {
@@ -84,7 +82,7 @@ const Login = () => {
       <h1 className="login__hdr">Welcome back! Log in to Blockarch</h1>
       <div className="login__component-cont">
         <h3 className="login__alert-message">{alertMessage}</h3>
-        {!loading ? (
+        {!loading && !success ? (
           <>
             <Input
               name={"emailAddress"}
@@ -107,8 +105,12 @@ const Login = () => {
           loading={loading}
           success={success}
         />
-        <LoadingStatus loading={loading} />
-        <GoogleAuth handleLogin={handleLogin} />
+        {!success ? (
+          <>
+            <LoadingStatus loading={loading} />
+            <GoogleAuth handleLogin={handleLogin} />
+          </>
+        ) : null}
       </div>
     </div>
   );
