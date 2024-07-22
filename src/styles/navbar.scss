@@ -21,6 +21,12 @@
   fill: $base;
   text-decoration: none;
   overflow: hidden;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(1.05);
+  }
 }
 
 // Socials
@@ -130,10 +136,10 @@
 @media (min-width: 1200px) {
   .nav__wrapper {
     padding: 2.7rem 0;
-    width: 100%;
+    width: 95%;
   }
   .nav__logo {
-    transform: scale(1.2);
+    width: 195px;
   }
   .nav__btns {
     padding: 0;
@@ -145,5 +151,10 @@
   }
   .nav__btn:last-child {
     padding: 1rem;
+  }
+}
+@media (min-width: 1350px) {
+  .nav__wrapper {
+    width: 100%;
   }
 }

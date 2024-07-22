@@ -68,14 +68,17 @@
 
 // Loading Status
 .loadingStatus__hdr {
-  margin: 1rem 1rem 0.5rem;
+  margin: 2rem 1rem 0.5rem;
   cursor: pointer;
   transition: color 0.15s;
   width: 80%;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 500;
-  color: $offBlack;
+  color: $baseD;
+  span {
+    color: $offBlack;
+  }
   &:hover {
     color: $base;
   }

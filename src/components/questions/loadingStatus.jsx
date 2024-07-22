@@ -8,7 +8,7 @@ export default function LoadingStatus({ loading }) {
   };
   return !loading ? (
     <h3 className="loadingStatus__hdr" onClick={() => handleNewAcount()}>
-      Don't have an account yet? Create one here!
+      Don't have an account yet? <span>Create one here!</span>
     </h3>
   ) : (
     <p className="loadingStatus__text">

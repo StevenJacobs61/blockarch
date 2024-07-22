@@ -99,12 +99,6 @@ export default function UserInputs({ other }) {
           ))
         )
       ) : null}
-      {qIndex === 0 ? (
-        <p className="userQuestions__login" onClick={() => navigate("/login")}>
-          Already have an account?
-          <br /> Login here!
-        </p>
-      ) : null}
     </div>
   );
 }

@@ -29,12 +29,14 @@ const Login = () => {
 
   const handleLogin = async (authData) => {
     console.log(authData);
+    // DELETE!!!
     setGoogleAuthData(authData);
     const details = {
       emailAddress: authData.email,
       password: `${process.env.REACT_APP_GOOGLE_AUTH_PASSOWRD}${authData.email}`,
     };
     console.log({ details });
+    // DELETEEE
     setActiveSubmit(true);
     setLoading(true);
     handleSubmit(details, true);
@@ -107,8 +109,8 @@ const Login = () => {
         />
         {!success ? (
           <>
-            <LoadingStatus loading={loading} />
             <GoogleAuth handleLogin={handleLogin} />
+            <LoadingStatus loading={loading} />
           </>
         ) : null}
       </div>

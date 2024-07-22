@@ -18,7 +18,7 @@ const Navbar = () => {
         initial={fadeInAnimationUp.initial}
         animate={fadeInAnimationUp.animate}
       >
-        <a href={loggedIn ? "/apps" : "/"} className="clickable nav__logo">
+        <a href={loggedIn ? "/apps" : "/"} className="nav__logo">
           <Logo width={"100%"} height={"100%"} />
         </a>
         {!loggedIn ? <SignedOutLinks /> : <SignedInLinks />}

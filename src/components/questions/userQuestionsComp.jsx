@@ -7,6 +7,7 @@ import Google from "./google";
 import UserInputs from "./userInputs";
 import { useUser } from "../../context/userContext";
 import QuestionsButtons from "./questionsButtons";
+import { useNavigate } from "react-router-dom";
 
 const UserQuestionsComp = () => {
   const {
@@ -18,13 +19,13 @@ const UserQuestionsComp = () => {
     setUser,
     setBlock,
     handleIndex,
-    success,
     loading,
     setLoading,
     setSuccess,
     setIsHidden,
   } = useQuestions();
   const { cookieLogin } = useUser();
+  const navigate = useNavigate();
 
   const other = useRef(null);
 
@@ -122,6 +123,12 @@ const UserQuestionsComp = () => {
       <QuestionsButtons handleSubmit={handleSubmit} handleIndex={handleIndex} />
 
       <Google handleGoogleAuth={handleGoogleAuth} />
+      {qIndex === 0 ? (
+        <p className="userQuestions__login" onClick={() => navigate("/login")}>
+          <span>Already have an account?</span>
+          <br /> Login here!
+        </p>
+      ) : null}
     </div>
   );
 };
