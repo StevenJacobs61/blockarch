@@ -28,7 +28,7 @@ const Login = () => {
   }, [loginDetails]);
 
   const handleLogin = async (authData) => {
-    console.log(authData);
+    console.log({ authData });
     // DELETE!!!
     setGoogleAuthData(authData);
     const details = {
@@ -43,13 +43,14 @@ const Login = () => {
   };
 
   const handleSubmit = async (details, active) => {
+    console.log({ details });
     if (!activeSubmit && !active) return;
     const password = details.password || loginDetails.password;
     const email = details.emailAddress || loginDetails.emailAddress;
     const res = await getUserByEmail(email);
     if (res === 404) {
       setAlertMessage(
-        "Password did not match. \n Please try again or create an account."
+        "This account either doesn't exist or the credentials are incorrect. \n Please try to create an account or ensure you have the correct email and password."
       );
       setLoading(false);
       return;

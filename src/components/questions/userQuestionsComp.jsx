@@ -37,11 +37,12 @@ const UserQuestionsComp = () => {
     }
     setLoading(true);
     const inUse = await isUserInUse();
-    console.log(inUse);
-    if (!inUse) {
+    console.log({ inUse });
+    if (inUse === 404) {
       const { confirmPassword, googleAuth, ...otherUserProperties } = user;
       await addUser(otherUserProperties);
     } else {
+      setAlertMessage("Email already in use.");
       setLoading(false);
     }
   };
@@ -49,11 +50,13 @@ const UserQuestionsComp = () => {
   async function isUserInUse() {
     try {
       const emailRes = await getUserByEmail(user.emailAddress);
-      if (emailRes) {
+      console.log({ emailRes });
+      if (emailRes !== 404) {
         setAlertMessage("Email Address alreasy in use.");
         setQIndex(0);
-        console.log({ emailRes });
-        return true;
+        return 200;
+      } else {
+        return 404;
       }
     } catch (error) {
       console.error(error);
@@ -61,12 +64,17 @@ const UserQuestionsComp = () => {
         setAlertMessage("Email Address alreasy in use.");
         return true;
       }
+      if (error.code === 404) {
+        return 404;
+      }
+      return 404;
     }
-    return false;
   }
+  console.log({ user });
   async function addUser(otherUserProperties) {
     try {
       const response = await add(otherUserProperties, "/user");
+      console.log({ response });
       setUser(response.data);
       setIsHidden(true);
       setTimeout(() => {
@@ -82,9 +90,8 @@ const UserQuestionsComp = () => {
       setLoading(false);
     }
   }
-  console.log(user);
   const handleGoogleAuth = (authDetails) => {
-    console.log(authDetails);
+    console.log({ authDetails });
     setUser((prev) => ({
       ...prev,
       emailAddress: authDetails.email,

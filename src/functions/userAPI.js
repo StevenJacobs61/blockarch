@@ -7,7 +7,6 @@ export const getUserByEmail = async (email) => {
     const response = await axios.get(
       `${process.env.REACT_APP_BACKEND_BASE_URL}/user/email?email=${email}`
     );
-    console.log({ response });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -22,11 +21,16 @@ export const getById = async (id, path) => {
 };
 
 export const add = async (newData, path) => {
-  const response = await axios.post(
-    `${process.env.REACT_APP_BACKEND_BASE_URL}${path}`,
-    newData
-  );
-  return response;
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_BACKEND_BASE_URL}${path}`,
+      newData
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 };
 
 export const updateById = async (newUserDetails, path, id) => {

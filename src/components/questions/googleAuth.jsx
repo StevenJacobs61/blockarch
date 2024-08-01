@@ -10,6 +10,9 @@ export default function GoogleAuth({ handleLogin }) {
         <h3 className="login__or">or</h3>
         <div className="login__or-line" />
       </div>
+      <h1 className="questions__alert-message">
+        Create an account using google credentials
+      </h1>
       <div className="login__google-cont">
         <GoogleLogin
           onSuccess={(credentialResponse) => {
